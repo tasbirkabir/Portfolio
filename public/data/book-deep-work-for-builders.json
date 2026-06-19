@@ -1,0 +1,83 @@
+{
+  "book": {
+    "id": "cmqksechb0003rtpku5cc4z7k",
+    "title": "Deep Work for Builders",
+    "slug": "deep-work-for-builders",
+    "subtitle": "A focus system for makers who ship in a world built to distract them.",
+    "description": "The modern focus system for people who build for a living. Reclaim deep work, design your environment for attention, and ship the work that actually matters.",
+    "price": 12,
+    "originalPrice": null,
+    "pages": 72,
+    "category": "Productivity",
+    "accent": "#7c2d12",
+    "coverStyle": "mono",
+    "badge": null,
+    "featured": false,
+    "rating": 4.8,
+    "reviewsCount": 321,
+    "buyers": 2480,
+    "accessType": "paid",
+    "status": "published",
+    "whatYouLearn": [
+      "Designing an environment for deep work",
+      "The builder's daily architecture",
+      "Killing the notifications that kill focus",
+      "Shipping rituals that beat resistance"
+    ],
+    "chapters": [
+      {
+        "title": "The Attention Crisis",
+        "pages": 10
+      },
+      {
+        "title": "Environment Design",
+        "pages": 14
+      },
+      {
+        "title": "The Builder's Day",
+        "pages": 16
+      },
+      {
+        "title": "Rituals Over Willpower",
+        "pages": 14
+      },
+      {
+        "title": "Shipping as a Habit",
+        "pages": 10
+      },
+      {
+        "title": "Protecting the Work",
+        "pages": 8
+      }
+    ],
+    "faq": [
+      {
+        "q": "Is this just another productivity book?",
+        "a": "No. It is a system designed specifically for builders — people whose output is creative and whose enemy is fragmentation."
+      }
+    ],
+    "highlights": [
+      "72 pages",
+      "Daily architecture template",
+      "Focus environment checklist"
+    ],
+    "seoTitle": null,
+    "seoDesc": null,
+    "content": [
+      {
+        "id": "preview",
+        "title": "Introduction",
+        "sections": [
+          {
+            "heading": "A note before you begin",
+            "body": [
+              "This is a preview of the opening of the book. The full version includes every chapter, every framework, and every template referenced inside.",
+              "Grab a notebook. The frameworks inside are meant to be used, not just read."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "testimonials": []
+}

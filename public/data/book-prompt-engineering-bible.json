@@ -1,0 +1,83 @@
+{
+  "book": {
+    "id": "cmqksechc0004rtpk6kxi6i7l",
+    "title": "The Prompt Engineering Bible",
+    "slug": "prompt-engineering-bible",
+    "subtitle": "From basics to production: the complete guide to making AI do real work.",
+    "description": "The definitive guide to prompt engineering for builders. From first principles to production-grade prompt systems, chains, and evaluation loops.",
+    "price": 24,
+    "originalPrice": 49,
+    "pages": 142,
+    "category": "Automation",
+    "accent": "#1e3a8a",
+    "coverStyle": "stack",
+    "badge": "Bestseller",
+    "featured": false,
+    "rating": 4.9,
+    "reviewsCount": 508,
+    "buyers": 4100,
+    "accessType": "paid",
+    "status": "published",
+    "whatYouLearn": [
+      "The anatomy of a production-grade prompt",
+      "Chaining prompts into reliable systems",
+      "Evaluation loops that measure quality",
+      "Building a personal prompt library"
+    ],
+    "chapters": [
+      {
+        "title": "First Principles",
+        "pages": 18
+      },
+      {
+        "title": "Anatomy of a Prompt",
+        "pages": 24
+      },
+      {
+        "title": "Chaining & Systems",
+        "pages": 30
+      },
+      {
+        "title": "Evaluation Loops",
+        "pages": 26
+      },
+      {
+        "title": "The Prompt Library",
+        "pages": 24
+      },
+      {
+        "title": "Production Patterns",
+        "pages": 20
+      }
+    ],
+    "faq": [
+      {
+        "q": "Which models does this cover?",
+        "a": "The principles are model-agnostic and work across all major LLMs."
+      }
+    ],
+    "highlights": [
+      "142 pages",
+      "50+ production prompts",
+      "Evaluation framework included"
+    ],
+    "seoTitle": null,
+    "seoDesc": null,
+    "content": [
+      {
+        "id": "preview",
+        "title": "Introduction",
+        "sections": [
+          {
+            "heading": "A note before you begin",
+            "body": [
+              "This is a preview of the opening of the book. The full version includes every chapter, every framework, and every template referenced inside.",
+              "Grab a notebook. The frameworks inside are meant to be used, not just read."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "testimonials": []
+}

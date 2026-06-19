@@ -1,0 +1,83 @@
+{
+  "book": {
+    "id": "cmqkseche0007rtpku37cfv94",
+    "title": "Systems Thinking for Founders",
+    "slug": "systems-thinking-for-founders",
+    "subtitle": "See the loops, leverage points, and bottlenecks that run your business.",
+    "description": "A founder's guide to systems thinking. Learn to see your business as a set of loops, find the leverage points, and make changes that compound instead of changes that fade.",
+    "price": 16,
+    "originalPrice": null,
+    "pages": 98,
+    "category": "Systems",
+    "accent": "#4c1d95",
+    "coverStyle": "stack",
+    "badge": null,
+    "featured": false,
+    "rating": 4.8,
+    "reviewsCount": 167,
+    "buyers": 1120,
+    "accessType": "paid",
+    "status": "published",
+    "whatYouLearn": [
+      "Reading your business as a system of loops",
+      "Finding leverage points that compound",
+      "Distinguishing fixes from fundamentals",
+      "Designing feedback into everything"
+    ],
+    "chapters": [
+      {
+        "title": "The Founder's Lens",
+        "pages": 14
+      },
+      {
+        "title": "Loops & Stocks",
+        "pages": 22
+      },
+      {
+        "title": "Leverage Points",
+        "pages": 24
+      },
+      {
+        "title": "Fixes vs Fundamentals",
+        "pages": 18
+      },
+      {
+        "title": "Designing Feedback",
+        "pages": 14
+      },
+      {
+        "title": "The Compound Founder",
+        "pages": 6
+      }
+    ],
+    "faq": [
+      {
+        "q": "Is this too abstract for a busy founder?",
+        "a": "No — every concept is tied to a concrete business decision you have probably already faced."
+      }
+    ],
+    "highlights": [
+      "98 pages",
+      "System-mapping worksheets",
+      "Leverage point checklist"
+    ],
+    "seoTitle": null,
+    "seoDesc": null,
+    "content": [
+      {
+        "id": "preview",
+        "title": "Introduction",
+        "sections": [
+          {
+            "heading": "A note before you begin",
+            "body": [
+              "This is a preview of the opening of the book. The full version includes every chapter, every framework, and every template referenced inside.",
+              "Grab a notebook. The frameworks inside are meant to be used, not just read."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "testimonials": []
+}

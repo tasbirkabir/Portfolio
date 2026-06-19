@@ -1,0 +1,83 @@
+{
+  "book": {
+    "id": "cmqksechd0005rtpky3gw90ty",
+    "title": "Landing Pages That Convert",
+    "slug": "landing-pages-that-convert",
+    "subtitle": "The anatomy of pages that turn strangers into buyers.",
+    "description": "A teardown-driven guide to high-converting landing pages. Learn the architecture of pages that sell, with annotated examples and a copy-and-paste framework.",
+    "price": 14,
+    "originalPrice": null,
+    "pages": 64,
+    "category": "Marketing",
+    "accent": "#9d174d",
+    "coverStyle": "grid",
+    "badge": null,
+    "featured": false,
+    "rating": 4.6,
+    "reviewsCount": 142,
+    "buyers": 980,
+    "accessType": "paid",
+    "status": "published",
+    "whatYouLearn": [
+      "The 7-block landing page architecture",
+      "Writing headlines that stop the scroll",
+      "Proof stacks that remove objections",
+      "The single-ask principle"
+    ],
+    "chapters": [
+      {
+        "title": "The Conversion Brief",
+        "pages": 8
+      },
+      {
+        "title": "The 7-Block Architecture",
+        "pages": 16
+      },
+      {
+        "title": "Headlines That Stop",
+        "pages": 12
+      },
+      {
+        "title": "Proof Stacks",
+        "pages": 12
+      },
+      {
+        "title": "The Single Ask",
+        "pages": 8
+      },
+      {
+        "title": "Testing What Matters",
+        "pages": 8
+      }
+    ],
+    "faq": [
+      {
+        "q": "Do I need to know how to design?",
+        "a": "No. The framework works with any page builder."
+      }
+    ],
+    "highlights": [
+      "64 pages",
+      "Annotated teardowns",
+      "7-block page template"
+    ],
+    "seoTitle": null,
+    "seoDesc": null,
+    "content": [
+      {
+        "id": "preview",
+        "title": "Introduction",
+        "sections": [
+          {
+            "heading": "A note before you begin",
+            "body": [
+              "This is a preview of the opening of the book. The full version includes every chapter, every framework, and every template referenced inside.",
+              "Grab a notebook. The frameworks inside are meant to be used, not just read."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "testimonials": []
+}

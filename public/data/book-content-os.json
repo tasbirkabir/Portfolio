@@ -1,0 +1,83 @@
+{
+  "book": {
+    "id": "cmqksecha0002rtpktn76hcqd",
+    "title": "Content OS",
+    "slug": "content-os",
+    "subtitle": "The framework for turning content into a client pipeline that compounds.",
+    "description": "A complete content operating system. Define your pillars, build a repeatable production engine, and turn every post into a step in your sales funnel.",
+    "price": 17,
+    "originalPrice": null,
+    "pages": 88,
+    "category": "Marketing",
+    "accent": "#0f766e",
+    "coverStyle": "grid",
+    "badge": "New",
+    "featured": false,
+    "rating": 4.7,
+    "reviewsCount": 174,
+    "buyers": 1210,
+    "accessType": "paid",
+    "status": "published",
+    "whatYouLearn": [
+      "The 4 content pillars that feed a pipeline",
+      "A production system that runs on schedule, not inspiration",
+      "Repurposing one idea into ten assets",
+      "The framework-first content strategy"
+    ],
+    "chapters": [
+      {
+        "title": "Content as a System",
+        "pages": 12
+      },
+      {
+        "title": "The Four Pillars",
+        "pages": 18
+      },
+      {
+        "title": "Production Engine",
+        "pages": 20
+      },
+      {
+        "title": "Repurposing at Scale",
+        "pages": 16
+      },
+      {
+        "title": "Framework-First Strategy",
+        "pages": 14
+      },
+      {
+        "title": "Measuring What Matters",
+        "pages": 8
+      }
+    ],
+    "faq": [
+      {
+        "q": "I am not a writer. Will this work?",
+        "a": "The system is built around frameworks and templates, not prose talent. AI handles first drafts; you refine."
+      }
+    ],
+    "highlights": [
+      "88 pages",
+      "Content calendar template",
+      "30-day content plan"
+    ],
+    "seoTitle": null,
+    "seoDesc": null,
+    "content": [
+      {
+        "id": "preview",
+        "title": "Introduction",
+        "sections": [
+          {
+            "heading": "A note before you begin",
+            "body": [
+              "This is a preview of the opening of the book. The full version includes every chapter, every framework, and every template referenced inside.",
+              "Grab a notebook. The frameworks inside are meant to be used, not just read."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "testimonials": []
+}

@@ -1,0 +1,83 @@
+{
+  "book": {
+    "id": "cmqkseche0006rtpkqpucpowg",
+    "title": "The $10K Month System",
+    "slug": "10k-month-system",
+    "subtitle": "A 90-day plan to your first consistent five-figure month as a solo operator.",
+    "description": "A 90-day operating plan to reach and sustain a $10,000/month run rate. Week-by-week actions, the exact offers, and the math that makes it work.",
+    "price": 18,
+    "originalPrice": 35,
+    "pages": 110,
+    "category": "Freelancing",
+    "accent": "#15803d",
+    "coverStyle": "editorial",
+    "badge": "Popular",
+    "featured": false,
+    "rating": 4.7,
+    "reviewsCount": 233,
+    "buyers": 1670,
+    "accessType": "paid",
+    "status": "published",
+    "whatYouLearn": [
+      "The math of a $10k month",
+      "Offers priced to hit the number",
+      "A 90-day demand plan",
+      "The retention loop that locks it in"
+    ],
+    "chapters": [
+      {
+        "title": "The Math",
+        "pages": 14
+      },
+      {
+        "title": "Offers That Hit",
+        "pages": 22
+      },
+      {
+        "title": "The 90-Day Plan",
+        "pages": 30
+      },
+      {
+        "title": "Demand Generation",
+        "pages": 20
+      },
+      {
+        "title": "The Retention Loop",
+        "pages": 16
+      },
+      {
+        "title": "Sustaining It",
+        "pages": 8
+      }
+    ],
+    "faq": [
+      {
+        "q": "Is $10k realistic in 90 days?",
+        "a": "For an established skill, yes. For a brand-new skill, expect 6 months using the same system."
+      }
+    ],
+    "highlights": [
+      "110 pages",
+      "90-day week-by-week plan",
+      "Pricing & offer calculator"
+    ],
+    "seoTitle": null,
+    "seoDesc": null,
+    "content": [
+      {
+        "id": "preview",
+        "title": "Introduction",
+        "sections": [
+          {
+            "heading": "A note before you begin",
+            "body": [
+              "This is a preview of the opening of the book. The full version includes every chapter, every framework, and every template referenced inside.",
+              "Grab a notebook. The frameworks inside are meant to be used, not just read."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "testimonials": []
+}

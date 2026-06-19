@@ -1,0 +1,67 @@
+{
+  "testimonials": [
+    {
+      "id": "cmqksecho000lrtpkihid7f6l",
+      "name": "Client 01",
+      "role": "Business Owner",
+      "quote": "Tasbir delivered exactly what we needed. The website was fast, professional, and helped us generate more inquiries than before.",
+      "rating": 5,
+      "bookSlug": null,
+      "avatar": null
+    },
+    {
+      "id": "cmqksecho000mrtpkd96h50oc",
+      "name": "Client 02",
+      "role": "Operations Manager",
+      "quote": "The automation system saved our team hours every week. Everything now runs much more efficiently.",
+      "rating": 5,
+      "bookSlug": null,
+      "avatar": null
+    },
+    {
+      "id": "cmqksechp000nrtpkv8ejyy0p",
+      "name": "Client 03",
+      "role": "Startup Founder",
+      "quote": "Working with Tasbir was smooth from start to finish. Communication was excellent and delivery exceeded expectations.",
+      "rating": 5,
+      "bookSlug": null,
+      "avatar": null
+    },
+    {
+      "id": "cmqksechp000ortpkfrpiqdap",
+      "name": "Client 04",
+      "role": "Company Director",
+      "quote": "Our new website looks modern, loads fast, and performs significantly better than our previous version.",
+      "rating": 5,
+      "bookSlug": null,
+      "avatar": null
+    },
+    {
+      "id": "cmqksechq000prtpkzebpg4wl",
+      "name": "Client 05",
+      "role": "Agency Owner",
+      "quote": "The AI integration helped automate repetitive tasks and improved our workflow immediately.",
+      "rating": 5,
+      "bookSlug": null,
+      "avatar": null
+    },
+    {
+      "id": "cmqksechq000qrtpk7fawhtci",
+      "name": "Marcus Lee",
+      "role": "Founder, Northwind Studio",
+      "quote": "I read a lot of business books. Most are 90% filler. This one is the opposite — every page had something I wanted to implement.",
+      "rating": 5,
+      "bookSlug": "ai-agency-operating-system",
+      "avatar": null
+    },
+    {
+      "id": "cmqksechq000rrtpkkfcs0gqf",
+      "name": "Priya Nair",
+      "role": "Solo Consultant",
+      "quote": "The weekly review ritual is the single highest-leverage habit I have ever adopted. Three months in, I can actually see my business.",
+      "rating": 5,
+      "bookSlug": "ai-agency-operating-system",
+      "avatar": null
+    }
+  ]
+}

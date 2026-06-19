@@ -1,0 +1,240 @@
+{
+  "book": {
+    "id": "cmqksech80000rtpkhpmycbw4",
+    "title": "The AI Agency Operating System",
+    "slug": "ai-agency-operating-system",
+    "subtitle": "Build, Track, Advertise, Convert — the complete framework for a productized, AI-native agency.",
+    "description": "The complete operating system for building, pricing, and scaling an AI services business in 2026. Sixteen chapters across the Blueprint, Foundation, Architecture, Monetization, Execution, and Scale — every framework, deep dive, rate card, and action plan I use to run real B2B campaigns, from missed-call voice agents to $30k/month productized retainers. Includes 5 real-world case studies and a 3-month execution timeline.",
+    "price": 19,
+    "originalPrice": 39,
+    "pages": 85,
+    "category": "AI Business",
+    "accent": "#1a1a1a",
+    "coverStyle": "editorial",
+    "badge": "Bestseller",
+    "featured": true,
+    "rating": 4.9,
+    "reviewsCount": 412,
+    "buyers": 3822,
+    "accessType": "paid",
+    "status": "published",
+    "whatYouLearn": [
+      "The outcome-first positioning framework that makes business owners buy",
+      "The $1T automation gap and why midmarket businesses are the real opportunity",
+      "The Agency Triangle: Service, Client, Operations — and why missing one kills scale",
+      "Choosing your agency model: Custom, Productized, or White-Label",
+      "High-income AI services: voice agents, automations, and chatbots — deep dives",
+      "Pricing AI services with setup fees, retainers, and value-based anchors",
+      "The 30-day first client playbook and the 5-phase discovery call",
+      "Scaling from $10k to $30k/month with productized retainers and referrals"
+    ],
+    "chapters": [
+      {
+        "title": "Letter from Tasbir",
+        "pages": 6
+      },
+      {
+        "title": "What Is an AI Agency, Really?",
+        "pages": 6
+      },
+      {
+        "title": "The Founder Mindset",
+        "pages": 8
+      },
+      {
+        "title": "Choosing a Profitable Niche",
+        "pages": 4
+      },
+      {
+        "title": "High-Income AI Services",
+        "pages": 3
+      },
+      {
+        "title": "AI Voice Agents — Deep Dive",
+        "pages": 3
+      },
+      {
+        "title": "AI Automations — Deep Dive",
+        "pages": 2
+      },
+      {
+        "title": "AI Chatbots — Deep Dive",
+        "pages": 2
+      },
+      {
+        "title": "Pricing AI Services",
+        "pages": 4
+      },
+      {
+        "title": "Creating Offers That Sell",
+        "pages": 2
+      },
+      {
+        "title": "Finding Your First Clients",
+        "pages": 4
+      },
+      {
+        "title": "The Discovery Call & Sales",
+        "pages": 2
+      },
+      {
+        "title": "Delivering Projects & Onboarding",
+        "pages": 5
+      },
+      {
+        "title": "SOPs, Systems & Tech Stack",
+        "pages": 1
+      },
+      {
+        "title": "Scaling to $10K & $30K/Month",
+        "pages": 3
+      },
+      {
+        "title": "Future, Case Studies & Action Plan",
+        "pages": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "Is this for beginners or established agencies?",
+        "a": "Both. If you are starting, the Blueprint and Foundation parts give you the mental model and offer. If you are established, the Architecture, Execution, and Scale parts hand you the SOPs, pricing, and delivery systems that unlock the next tier."
+      },
+      {
+        "q": "Do I need technical skills to build the AI services?",
+        "a": "No. The deep dives are written for builders using no-code/low-code tools like n8n, Make, and GoHighLevel. If you can follow a recipe, you can deliver these services."
+      },
+      {
+        "q": "What format is the book?",
+        "a": "An 85-page ebook plus a built-in premium reader with bookmarks, highlights, notes, dark mode, search, and progress tracking. Every framework and action plan is included."
+      },
+      {
+        "q": "How long until I see results?",
+        "a": "Most readers complete the Chapter 1 action plan in the first week and run their first outreach by week two. First client typically lands in 30–60 days."
+      },
+      {
+        "q": "Is there a guarantee?",
+        "a": "Yes. If the frameworks do not pay for themselves in 30 days, email me and I will refund you in full. No forms, no friction."
+      }
+    ],
+    "highlights": [
+      "85 pages across 16 chapters",
+      "Built-in premium ebook reader",
+      "Every framework, rate card & action plan included",
+      "5 real-world case studies + 3-month timeline",
+      "30-day no-questions refund"
+    ],
+    "seoTitle": null,
+    "seoDesc": null,
+    "content": [
+      {
+        "id": "ch-0",
+        "title": "Letter from Tasbir",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "Dear Reader, If you've spent more than five minutes on social media recently, you've seen the promises.",
+              "I built this book to be the exact opposite of that hype — a blueprint based on real campaigns, real setups, real client calls, and real software delivery.",
+              "The AI agency opportunity is the most significant B2B leverage point of this decade. But it is only an opportunity for those who build real systems, sell real business outcomes, and deliver professional services."
+            ]
+          },
+          {
+            "heading": "The B2B Proof Manifesto",
+            "body": [
+              "This operational blueprint has been stress-tested across numerous global B2B integrations. By treating automation as infrastructure rather than an administrative expense, we have consistently unlocked high-value, auditable outcomes.",
+              "Medical Clinic Booking — AI voice receptionist: 38 patient bookings in 30 days, freeing 8 receptionist hours/week.",
+              "Recruitment Agency — multi-model CV extraction: reduced screening times by 60%.",
+              "High-Ticket Lead Gen — cold email automation: signed 3 accounts in 2.5 months, generating $12,000/mo MRR.",
+              "Shopify E-Commerce — RAG support bot: resolved 78% of tickets automatically, saving $3,000/month."
+            ]
+          },
+          {
+            "heading": "My Origin Story — The First Client",
+            "body": [
+              "When I started in AI automation, I fell into the same traps most beginners do. I spent days designing a logo, setting up a website, and perfecting my email signature. I felt like an agency owner, but I had zero revenue.",
+              "My shift happened when I stopped looking at tools like n8n and Make as technical toys, and started looking at them as problem-solving engines. I found a local clinic owner who was losing patients because their receptionist couldn't answer calls.",
+              "I offered to build a missed-call auto-SMS loop for free for one week. It captured four patients who would have gone to competitors. The owner signed the check, set up a maintenance retainer, and referred me to two colleagues.",
+              "That first client taught me that business owners do not care about n8n nodes, API keys, or AI reasoning loops. They care about appointments, hours saved, and revenue. That is the outcome-first philosophy this book is built on."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-1",
+        "title": "What Is an AI Agency, Really?",
+        "sections": [
+          {
+            "heading": "Dismantling the Myths",
+            "body": [
+              "Everyone seems to be talking about 'starting an AI agency' in 2026. The result? Most people start with a completely wrong mental model — and they fail within 60 days, not because they lack intelligence or work ethic, but because they were building on a broken foundation.",
+              "The biggest misconception is confusing an AI services business (an agency) with an AI software business (a SaaS product). An AI agency does not sell software. An AI agency sells outcomes. You are a service provider who uses AI as your tool to solve specific, expensive operational bottlenecks.",
+              "Business owners are not technical. When you explain n8n, they hear complexity. Complexity represents risk. Risk prevents them from signing. When you explain '5 hours of staff time saved weekly' or 'missed calls answered instantly', they hear efficiency and revenue. These are outcomes they gladly pay for."
+            ]
+          },
+          {
+            "heading": "The $1T Automation Gap",
+            "body": [
+              "There is a massive divide in the economy today. Enterprise companies have large budgets to hire consultant firms to build AI integrations. Small-to-midmarket local businesses have no such budgets, yet they suffer from the exact same operational inefficiencies: 62% of calls go unanswered, leads decay 10x after 5 minutes, and 10+ hours a week are lost to manual data entry.",
+              "This is the $1T automation gap — the opportunity sitting between enterprise AI and the local businesses that desperately need it but cannot access it. Your agency fills that gap."
+            ]
+          },
+          {
+            "heading": "The Agency Triangle Framework",
+            "body": [
+              "If any pillar is missing, the agency fails to scale. The three pillars are: 1) The Service — building automations, chatbots, or voice agents using SOPs. 2) The Client — finding leads, running outreach, closing sales, onboarding. 3) The Operations — SOPs, VAs, project tracking, billing, and reporting.",
+              "Choose your model: Model A (Custom, $3k–$10k setup, 70% margin), Model B (Productized, $999–$2.5k, 90% margin — recommended for beginners), or Model C (White-Label, rev split, 80% margin).",
+              "Start with Model B. Do not build custom systems. Choose one primary service, package it into a single productized offer at a fixed price. Once you have closed 3 clients, you will have the SOPs, confidence, and capital to expand."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-2",
+        "title": "The Founder Mindset",
+        "sections": [
+          {
+            "heading": "Freelancer Brain vs. Founder Brain",
+            "body": [
+              "The most common reason AI agencies fail is a mindset that was built for employment — never updated for ownership. A freelancer waits to be told what to work on, trades time for money, and sees marketing as an expense. A founder decides what matters, prices for leverage, and sees marketing as the engine.",
+              "The shift feels uncomfortable. You will catch yourself doing busywork because it feels productive. The test: if the task does not lead to a client, a deliverable, or a system, it is not founder work."
+            ]
+          },
+          {
+            "heading": "The 5 Mental Traps that Stall Agency Growth",
+            "body": [
+              "1. The Learning Loop — consuming tutorials instead of collecting clients. 2. The Perfectionism Trap — refining the brand instead of running outreach. 3. The Tool Addiction — chasing every new AI tool instead of mastering one stack. 4. The Discount Reflex — lowering prices to avoid rejection. 5. The Solo Trap — refusing to delegate because 'it's faster to do it myself.'",
+              "Each trap feels productive in the moment and costs you months. The antidote is the same for all five: ship to real clients and let their feedback rewire your priorities."
+            ]
+          },
+          {
+            "heading": "High-Performance Scheduling System",
+            "body": [
+              "08:00–10:00 Outbound Prospecting — scrape and qualify 50 niche contacts, add leads to CRM. 10:00–12:00 Custom Video Audits — record and dispatch 10 personalized Loom audits. 13:00–15:00 Core System Delivery — configure n8n/Make blueprints, build Vapi voice sandbox. 15:00–16:30 Follow-ups & CRM Hygiene — call warm replies, book discovery calls. 16:30–17:30 EOD Review & Prep — verify metrics, build next-day list.",
+              "The schedule is the system. Protect the morning for acquisition; the afternoon can absorb delivery. Never let delivery crowd out prospecting — that is how agencies starve in 90 days."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "testimonials": [
+    {
+      "id": "cmqksechq000qrtpk7fawhtci",
+      "name": "Marcus Lee",
+      "role": "Founder, Northwind Studio",
+      "quote": "I read a lot of business books. Most are 90% filler. This one is the opposite — every page had something I wanted to implement.",
+      "rating": 5,
+      "bookSlug": "ai-agency-operating-system",
+      "avatar": null
+    },
+    {
+      "id": "cmqksechq000rrtpkkfcs0gqf",
+      "name": "Priya Nair",
+      "role": "Solo Consultant",
+      "quote": "The weekly review ritual is the single highest-leverage habit I have ever adopted. Three months in, I can actually see my business.",
+      "rating": 5,
+      "bookSlug": "ai-agency-operating-system",
+      "avatar": null
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "book": {
+    "id": "cmqksech90001rtpkhs38iid9",
+    "title": "The Solo Scale Playbook",
+    "slug": "solo-scale-playbook",
+    "subtitle": "How to grow a one-person business past six figures without hiring a team.",
+    "description": "The exact playbook for staying solo and scaling anyway. Productize your offer, automate the busywork, and build a business that earns like a team but runs like a solopreneur.",
+    "price": 15,
+    "originalPrice": 29,
+    "pages": 96,
+    "category": "Freelancing",
+    "accent": "#b45309",
+    "coverStyle": "duotone",
+    "badge": "Popular",
+    "featured": false,
+    "rating": 4.8,
+    "reviewsCount": 286,
+    "buyers": 1940,
+    "accessType": "paid",
+    "status": "published",
+    "whatYouLearn": [
+      "Productizing a service so it sells while you sleep",
+      "Automation stacks that replace a junior hire",
+      "Pricing for leverage instead of hours",
+      "The 3-client model that replaces a full roster"
+    ],
+    "chapters": [
+      {
+        "title": "The Solo Advantage",
+        "pages": 14
+      },
+      {
+        "title": "Productize or Perish",
+        "pages": 20
+      },
+      {
+        "title": "The Automation Stack",
+        "pages": 22
+      },
+      {
+        "title": "Pricing for Leverage",
+        "pages": 18
+      },
+      {
+        "title": "The 3-Client Model",
+        "pages": 12
+      },
+      {
+        "title": "Staying Sane at Scale",
+        "pages": 10
+      }
+    ],
+    "faq": [
+      {
+        "q": "I already have clients. Will this help?",
+        "a": "Yes — the playbook is built for working solopreneurs who want fewer clients, higher rates, and more leverage."
+      },
+      {
+        "q": "Do I need to know how to code to automate?",
+        "a": "No. Every automation uses no-code tools and clear recipes."
+      }
+    ],
+    "highlights": [
+      "96 pages",
+      "10 no-code automation recipes",
+      "Pricing calculator included"
+    ],
+    "seoTitle": null,
+    "seoDesc": null,
+    "content": [
+      {
+        "id": "preview",
+        "title": "Introduction",
+        "sections": [
+          {
+            "heading": "A note before you begin",
+            "body": [
+              "This is a preview of the opening of the book. The full version includes every chapter, every framework, and every template referenced inside.",
+              "Grab a notebook. The frameworks inside are meant to be used, not just read."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "testimonials": []
+}

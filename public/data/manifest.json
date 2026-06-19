@@ -1,0 +1,53 @@
+{
+  "books": [
+    {
+      "slug": "ai-agency-operating-system",
+      "title": "The AI Agency Operating System",
+      "accessType": "paid",
+      "price": 19
+    },
+    {
+      "slug": "prompt-engineering-bible",
+      "title": "The Prompt Engineering Bible",
+      "accessType": "paid",
+      "price": 24
+    },
+    {
+      "slug": "deep-work-for-builders",
+      "title": "Deep Work for Builders",
+      "accessType": "paid",
+      "price": 12
+    },
+    {
+      "slug": "solo-scale-playbook",
+      "title": "The Solo Scale Playbook",
+      "accessType": "paid",
+      "price": 15
+    },
+    {
+      "slug": "10k-month-system",
+      "title": "The $10K Month System",
+      "accessType": "paid",
+      "price": 18
+    },
+    {
+      "slug": "content-os",
+      "title": "Content OS",
+      "accessType": "paid",
+      "price": 17
+    },
+    {
+      "slug": "systems-thinking-for-founders",
+      "title": "Systems Thinking for Founders",
+      "accessType": "paid",
+      "price": 16
+    },
+    {
+      "slug": "landing-pages-that-convert",
+      "title": "Landing Pages That Convert",
+      "accessType": "paid",
+      "price": 14
+    }
+  ],
+  "generatedAt": "2026-06-19T15:10:04.782Z"
+}

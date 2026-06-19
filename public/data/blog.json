@@ -1,0 +1,67 @@
+{
+  "posts": [
+    {
+      "id": "cmqksechn000krtpkmgdbnfjl",
+      "title": "Scaling Past Six Figures Without Hiring a Team",
+      "slug": "scaling-past-six-figures-without-hiring",
+      "excerpt": "You do not need a team to scale. You need leverage. Here is how to grow a one-person business past six figures using productization, automation, and pricing — not payroll.",
+      "content": "You do not need a team to scale. You need leverage.\n\nThe dream of 'scaling' has been quietly rewritten as 'hiring.' But hiring is one form of leverage, and it is the most expensive, most fragile form there is. Before you add payroll, exhaust the other three.\n\n## Leverage one: productize\n\nA custom service cannot be systematized. The first leverage move is to standardize the eighty percent of your work that repeats, and charge a premium for the twenty percent that requires judgment.\n\n## Leverage two: automate\n\nEvery repetitive task in your business is a candidate for automation. Invoices, onboarding, scheduling, follow-ups, reporting — each one is a junior hire you do not have to make.\n\n## Leverage three: price\n\nThis is the most overlooked leverage of all. Doubling your prices is equivalent to doubling your output, but it takes an afternoon instead of a year.\n\nMost solopreneurs underprice out of fear, not math. Run the numbers: how many clients do you actually need at your current price to hit your target? Now halve the client count and double the price. Same revenue, half the delivery load, twice the focus per client. That is leverage.\n\n## The order matters\n\nDo them in this order: productize first, automate second, price third. Only after all three are exhausted does hiring begin to make sense.\n\nMost businesses hire to solve problems that productization, automation, and pricing would have solved cheaper. Don't be most businesses. Get your leverage in order first, and you may find you never need the team at all.",
+      "category": "Freelancing",
+      "tags": [
+        "freelancing",
+        "scaling",
+        "leverage"
+      ],
+      "readTime": 9,
+      "cover": "/images/blog-scale.jpg",
+      "featured": false,
+      "status": "published",
+      "seoTitle": null,
+      "seoDesc": null,
+      "publishedAt": "2026-06-19T10:29:32.987Z",
+      "updatedAt": "2026-06-19T10:29:32.987Z"
+    },
+    {
+      "id": "cmqksechl000irtpkbgibsetl",
+      "title": "The Compounding Founder: Why Systems Beat Hustle Every Time",
+      "slug": "compounding-founder-systems-beat-hustle",
+      "excerpt": "Hustle is linear. Systems are exponential. The difference between a founder who burns out at year three and one who compounds for a decade is almost never talent — it is whether the business has an operating system.",
+      "content": "Hustle is linear. Systems are exponential.\n\nThe difference between a founder who burns out at year three and one who compounds for a decade is almost never talent. It is whether the business has an operating system underneath it — a set of repeatable processes that produce results whether the founder is inspired or exhausted.\n\n## The trap of heroic effort\n\nMost early businesses run on heroic effort. The founder is the sales team, the delivery team, the marketing team, and the cleanup crew. It works, for a while, because heroes can do impossible things in short bursts.\n\nBut heroic effort has a half-life. It degrades under stress, under sleep debt, under the thousand small decisions a week demands. A business built on heroics is a business one bad month away from collapse.\n\n## What a system actually is\n\nA system is not a Notion template. A system is a decision you make once, codify, and never have to make again. It is a default. Every default you set is a unit of attention you reclaim for the work that actually requires you.\n\nThe agencies that scale are not smarter. They have simply made more decisions into defaults. Their offer is a default. Their onboarding is a default. Their pricing is a default.\n\n## The compounding effect\n\nSystems compound in a way heroics cannot. A process improved by ten percent this month is improved by ten percent forever. A habit installed once pays dividends daily. A framework documented once can be handed to someone else — which is the only way a business ever gets larger than its founder.\n\nIf your business cannot run without you for two weeks, you do not have a business. You have a job with good branding. The work of the next year is to change that — one default at a time.",
+      "category": "Systems",
+      "tags": [
+        "systems",
+        "founder",
+        "compounding"
+      ],
+      "readTime": 8,
+      "cover": "/images/blog-systems.jpg",
+      "featured": true,
+      "status": "published",
+      "seoTitle": null,
+      "seoDesc": null,
+      "publishedAt": "2026-06-19T10:29:32.986Z",
+      "updatedAt": "2026-06-19T10:29:32.986Z"
+    },
+    {
+      "id": "cmqksechm000jrtpk9efl5374",
+      "title": "How I Built a Content Engine That Runs While I Sleep",
+      "slug": "content-engine-that-runs-while-i-sleep",
+      "excerpt": "Content is the cheapest advertising you will ever produce — if it is built as a system, not a side project. Here is the exact engine behind every post on this site.",
+      "content": "Content is the cheapest advertising you will ever produce.\n\nA useful article compounds for years. A sharp framework earns you the right to be recommended. Paid ads amplify what works — they rarely rescue what does not.\n\n## The four pillars\n\nEvery piece of content I publish does one of four jobs: it attracts a new audience, it nurtures an existing one, it converts a warm lead, or it compounds as a reference.\n\n## The production system\n\nI do not write when I am inspired. I write on a schedule. Inspiration is unreliable; schedules ship.\n\nThe system is simple: one framework per week, two shorter pieces that repurpose it, and one deep reference post per month. Everything starts from a single idea and gets sliced into the formats that fit each platform.\n\nThe leverage is in the slicing. One framework becomes a long-form post, a thread, a carousel, a newsletter section, and a video script. Same idea, five assets. This is how a solo operator keeps up with teams.\n\n## Why it compounds\n\nAn article I wrote two years ago still sends clients every month. A framework still gets quoted in conversations I am not in. The work I did once keeps paying — and the more I add, the larger the surface area that catches attention.\n\nThis is the real argument for consistency over brilliance. A hundred decent posts, shipped on schedule, will outperform ten perfect posts shipped whenever you felt ready. The library is the asset. Build the library.",
+      "category": "Marketing",
+      "tags": [
+        "content",
+        "marketing",
+        "systems"
+      ],
+      "readTime": 11,
+      "cover": "/images/blog-content.jpg",
+      "featured": false,
+      "status": "published",
+      "seoTitle": null,
+      "seoDesc": null,
+      "publishedAt": "2026-06-19T10:29:32.986Z",
+      "updatedAt": "2026-06-19T10:29:32.986Z"
+    }
+  ]
+}

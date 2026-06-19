@@ -1,0 +1,53 @@
+{
+  "settings": {
+    "id": "singleton",
+    "heroEyebrow": "AI Consultant · Web Developer · Media Buyer — Dhaka, Bangladesh",
+    "heroTitle": "I build the future. Digital systems.",
+    "heroSubtitle": "Hey, I'm Tasbir. I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.",
+    "heroCta1": "Explore the books",
+    "heroCta2": "Work with me",
+    "heroImage": "/images/logo.png",
+    "brandName": "Tasbir Kabir",
+    "brandTagline": "Build · Automate · Scale · Optimize · Repeat",
+    "logoUrl": "/images/logo.png",
+    "faviconUrl": "/images/logo.png",
+    "ogImageUrl": "/images/logo.png",
+    "accentColor": "#b45309",
+    "footerBio": "AI Consultant, Web Developer & Media Buyer based in Dhaka, Bangladesh. I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.",
+    "footerCopyright": "Tasbir Kabir — AI Consultant & Web Developer",
+    "socialLinkedin": "https://www.linkedin.com/in/tasbirrkabir",
+    "socialTwitter": "https://x.com/tasbirrkabir",
+    "socialGithub": "https://github.com/tasbirkabir",
+    "socialFacebook": "https://www.facebook.com/share/1Tf65s6PB7/",
+    "socialEmail": "mailto:tasbirrkabir@gmail.com",
+    "seoTitle": "Tasbir Kabir — AI Consultant, Web Developer & Media Buyer",
+    "seoDesc": "I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.",
+    "navItems": [
+      {
+        "label": "Home",
+        "view": "home"
+      },
+      {
+        "label": "Books",
+        "view": "books"
+      },
+      {
+        "label": "Resources",
+        "view": "resources"
+      },
+      {
+        "label": "Blog",
+        "view": "blog"
+      },
+      {
+        "label": "About",
+        "view": "about"
+      },
+      {
+        "label": "Contact",
+        "view": "contact"
+      }
+    ],
+    "updatedAt": "2026-06-19T10:29:32.999Z"
+  }
+}

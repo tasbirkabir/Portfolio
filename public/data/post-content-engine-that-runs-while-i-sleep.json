@@ -1,0 +1,23 @@
+{
+  "post": {
+    "id": "cmqksechm000jrtpk9efl5374",
+    "title": "How I Built a Content Engine That Runs While I Sleep",
+    "slug": "content-engine-that-runs-while-i-sleep",
+    "excerpt": "Content is the cheapest advertising you will ever produce — if it is built as a system, not a side project. Here is the exact engine behind every post on this site.",
+    "content": "Content is the cheapest advertising you will ever produce.\n\nA useful article compounds for years. A sharp framework earns you the right to be recommended. Paid ads amplify what works — they rarely rescue what does not.\n\n## The four pillars\n\nEvery piece of content I publish does one of four jobs: it attracts a new audience, it nurtures an existing one, it converts a warm lead, or it compounds as a reference.\n\n## The production system\n\nI do not write when I am inspired. I write on a schedule. Inspiration is unreliable; schedules ship.\n\nThe system is simple: one framework per week, two shorter pieces that repurpose it, and one deep reference post per month. Everything starts from a single idea and gets sliced into the formats that fit each platform.\n\nThe leverage is in the slicing. One framework becomes a long-form post, a thread, a carousel, a newsletter section, and a video script. Same idea, five assets. This is how a solo operator keeps up with teams.\n\n## Why it compounds\n\nAn article I wrote two years ago still sends clients every month. A framework still gets quoted in conversations I am not in. The work I did once keeps paying — and the more I add, the larger the surface area that catches attention.\n\nThis is the real argument for consistency over brilliance. A hundred decent posts, shipped on schedule, will outperform ten perfect posts shipped whenever you felt ready. The library is the asset. Build the library.",
+    "category": "Marketing",
+    "tags": [
+      "content",
+      "marketing",
+      "systems"
+    ],
+    "readTime": 11,
+    "cover": "/images/blog-content.jpg",
+    "featured": false,
+    "status": "published",
+    "seoTitle": null,
+    "seoDesc": null,
+    "publishedAt": "2026-06-19T10:29:32.986Z",
+    "updatedAt": "2026-06-19T10:29:32.986Z"
+  }
+}

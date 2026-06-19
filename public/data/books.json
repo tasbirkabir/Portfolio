@@ -1,0 +1,590 @@
+{
+  "books": [
+    {
+      "id": "cmqksech80000rtpkhpmycbw4",
+      "title": "The AI Agency Operating System",
+      "slug": "ai-agency-operating-system",
+      "subtitle": "Build, Track, Advertise, Convert — the complete framework for a productized, AI-native agency.",
+      "description": "The complete operating system for building, pricing, and scaling an AI services business in 2026. Sixteen chapters across the Blueprint, Foundation, Architecture, Monetization, Execution, and Scale — every framework, deep dive, rate card, and action plan I use to run real B2B campaigns, from missed-call voice agents to $30k/month productized retainers. Includes 5 real-world case studies and a 3-month execution timeline.",
+      "price": 19,
+      "originalPrice": 39,
+      "pages": 85,
+      "category": "AI Business",
+      "accent": "#1a1a1a",
+      "coverStyle": "editorial",
+      "badge": "Bestseller",
+      "featured": true,
+      "rating": 4.9,
+      "reviewsCount": 412,
+      "buyers": 3822,
+      "accessType": "paid",
+      "status": "published",
+      "whatYouLearn": [
+        "The outcome-first positioning framework that makes business owners buy",
+        "The $1T automation gap and why midmarket businesses are the real opportunity",
+        "The Agency Triangle: Service, Client, Operations — and why missing one kills scale",
+        "Choosing your agency model: Custom, Productized, or White-Label",
+        "High-income AI services: voice agents, automations, and chatbots — deep dives",
+        "Pricing AI services with setup fees, retainers, and value-based anchors",
+        "The 30-day first client playbook and the 5-phase discovery call",
+        "Scaling from $10k to $30k/month with productized retainers and referrals"
+      ],
+      "chapters": [
+        {
+          "title": "Letter from Tasbir",
+          "pages": 6
+        },
+        {
+          "title": "What Is an AI Agency, Really?",
+          "pages": 6
+        },
+        {
+          "title": "The Founder Mindset",
+          "pages": 8
+        },
+        {
+          "title": "Choosing a Profitable Niche",
+          "pages": 4
+        },
+        {
+          "title": "High-Income AI Services",
+          "pages": 3
+        },
+        {
+          "title": "AI Voice Agents — Deep Dive",
+          "pages": 3
+        },
+        {
+          "title": "AI Automations — Deep Dive",
+          "pages": 2
+        },
+        {
+          "title": "AI Chatbots — Deep Dive",
+          "pages": 2
+        },
+        {
+          "title": "Pricing AI Services",
+          "pages": 4
+        },
+        {
+          "title": "Creating Offers That Sell",
+          "pages": 2
+        },
+        {
+          "title": "Finding Your First Clients",
+          "pages": 4
+        },
+        {
+          "title": "The Discovery Call & Sales",
+          "pages": 2
+        },
+        {
+          "title": "Delivering Projects & Onboarding",
+          "pages": 5
+        },
+        {
+          "title": "SOPs, Systems & Tech Stack",
+          "pages": 1
+        },
+        {
+          "title": "Scaling to $10K & $30K/Month",
+          "pages": 3
+        },
+        {
+          "title": "Future, Case Studies & Action Plan",
+          "pages": 3
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is this for beginners or established agencies?",
+          "a": "Both. If you are starting, the Blueprint and Foundation parts give you the mental model and offer. If you are established, the Architecture, Execution, and Scale parts hand you the SOPs, pricing, and delivery systems that unlock the next tier."
+        },
+        {
+          "q": "Do I need technical skills to build the AI services?",
+          "a": "No. The deep dives are written for builders using no-code/low-code tools like n8n, Make, and GoHighLevel. If you can follow a recipe, you can deliver these services."
+        },
+        {
+          "q": "What format is the book?",
+          "a": "An 85-page ebook plus a built-in premium reader with bookmarks, highlights, notes, dark mode, search, and progress tracking. Every framework and action plan is included."
+        },
+        {
+          "q": "How long until I see results?",
+          "a": "Most readers complete the Chapter 1 action plan in the first week and run their first outreach by week two. First client typically lands in 30–60 days."
+        },
+        {
+          "q": "Is there a guarantee?",
+          "a": "Yes. If the frameworks do not pay for themselves in 30 days, email me and I will refund you in full. No forms, no friction."
+        }
+      ],
+      "highlights": [
+        "85 pages across 16 chapters",
+        "Built-in premium ebook reader",
+        "Every framework, rate card & action plan included",
+        "5 real-world case studies + 3-month timeline",
+        "30-day no-questions refund"
+      ],
+      "seoTitle": null,
+      "seoDesc": null
+    },
+    {
+      "id": "cmqksechc0004rtpk6kxi6i7l",
+      "title": "The Prompt Engineering Bible",
+      "slug": "prompt-engineering-bible",
+      "subtitle": "From basics to production: the complete guide to making AI do real work.",
+      "description": "The definitive guide to prompt engineering for builders. From first principles to production-grade prompt systems, chains, and evaluation loops.",
+      "price": 24,
+      "originalPrice": 49,
+      "pages": 142,
+      "category": "Automation",
+      "accent": "#1e3a8a",
+      "coverStyle": "stack",
+      "badge": "Bestseller",
+      "featured": false,
+      "rating": 4.9,
+      "reviewsCount": 508,
+      "buyers": 4100,
+      "accessType": "paid",
+      "status": "published",
+      "whatYouLearn": [
+        "The anatomy of a production-grade prompt",
+        "Chaining prompts into reliable systems",
+        "Evaluation loops that measure quality",
+        "Building a personal prompt library"
+      ],
+      "chapters": [
+        {
+          "title": "First Principles",
+          "pages": 18
+        },
+        {
+          "title": "Anatomy of a Prompt",
+          "pages": 24
+        },
+        {
+          "title": "Chaining & Systems",
+          "pages": 30
+        },
+        {
+          "title": "Evaluation Loops",
+          "pages": 26
+        },
+        {
+          "title": "The Prompt Library",
+          "pages": 24
+        },
+        {
+          "title": "Production Patterns",
+          "pages": 20
+        }
+      ],
+      "faq": [
+        {
+          "q": "Which models does this cover?",
+          "a": "The principles are model-agnostic and work across all major LLMs."
+        }
+      ],
+      "highlights": [
+        "142 pages",
+        "50+ production prompts",
+        "Evaluation framework included"
+      ],
+      "seoTitle": null,
+      "seoDesc": null
+    },
+    {
+      "id": "cmqksechb0003rtpku5cc4z7k",
+      "title": "Deep Work for Builders",
+      "slug": "deep-work-for-builders",
+      "subtitle": "A focus system for makers who ship in a world built to distract them.",
+      "description": "The modern focus system for people who build for a living. Reclaim deep work, design your environment for attention, and ship the work that actually matters.",
+      "price": 12,
+      "originalPrice": null,
+      "pages": 72,
+      "category": "Productivity",
+      "accent": "#7c2d12",
+      "coverStyle": "mono",
+      "badge": null,
+      "featured": false,
+      "rating": 4.8,
+      "reviewsCount": 321,
+      "buyers": 2480,
+      "accessType": "paid",
+      "status": "published",
+      "whatYouLearn": [
+        "Designing an environment for deep work",
+        "The builder's daily architecture",
+        "Killing the notifications that kill focus",
+        "Shipping rituals that beat resistance"
+      ],
+      "chapters": [
+        {
+          "title": "The Attention Crisis",
+          "pages": 10
+        },
+        {
+          "title": "Environment Design",
+          "pages": 14
+        },
+        {
+          "title": "The Builder's Day",
+          "pages": 16
+        },
+        {
+          "title": "Rituals Over Willpower",
+          "pages": 14
+        },
+        {
+          "title": "Shipping as a Habit",
+          "pages": 10
+        },
+        {
+          "title": "Protecting the Work",
+          "pages": 8
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is this just another productivity book?",
+          "a": "No. It is a system designed specifically for builders — people whose output is creative and whose enemy is fragmentation."
+        }
+      ],
+      "highlights": [
+        "72 pages",
+        "Daily architecture template",
+        "Focus environment checklist"
+      ],
+      "seoTitle": null,
+      "seoDesc": null
+    },
+    {
+      "id": "cmqksech90001rtpkhs38iid9",
+      "title": "The Solo Scale Playbook",
+      "slug": "solo-scale-playbook",
+      "subtitle": "How to grow a one-person business past six figures without hiring a team.",
+      "description": "The exact playbook for staying solo and scaling anyway. Productize your offer, automate the busywork, and build a business that earns like a team but runs like a solopreneur.",
+      "price": 15,
+      "originalPrice": 29,
+      "pages": 96,
+      "category": "Freelancing",
+      "accent": "#b45309",
+      "coverStyle": "duotone",
+      "badge": "Popular",
+      "featured": false,
+      "rating": 4.8,
+      "reviewsCount": 286,
+      "buyers": 1940,
+      "accessType": "paid",
+      "status": "published",
+      "whatYouLearn": [
+        "Productizing a service so it sells while you sleep",
+        "Automation stacks that replace a junior hire",
+        "Pricing for leverage instead of hours",
+        "The 3-client model that replaces a full roster"
+      ],
+      "chapters": [
+        {
+          "title": "The Solo Advantage",
+          "pages": 14
+        },
+        {
+          "title": "Productize or Perish",
+          "pages": 20
+        },
+        {
+          "title": "The Automation Stack",
+          "pages": 22
+        },
+        {
+          "title": "Pricing for Leverage",
+          "pages": 18
+        },
+        {
+          "title": "The 3-Client Model",
+          "pages": 12
+        },
+        {
+          "title": "Staying Sane at Scale",
+          "pages": 10
+        }
+      ],
+      "faq": [
+        {
+          "q": "I already have clients. Will this help?",
+          "a": "Yes — the playbook is built for working solopreneurs who want fewer clients, higher rates, and more leverage."
+        },
+        {
+          "q": "Do I need to know how to code to automate?",
+          "a": "No. Every automation uses no-code tools and clear recipes."
+        }
+      ],
+      "highlights": [
+        "96 pages",
+        "10 no-code automation recipes",
+        "Pricing calculator included"
+      ],
+      "seoTitle": null,
+      "seoDesc": null
+    },
+    {
+      "id": "cmqkseche0006rtpkqpucpowg",
+      "title": "The $10K Month System",
+      "slug": "10k-month-system",
+      "subtitle": "A 90-day plan to your first consistent five-figure month as a solo operator.",
+      "description": "A 90-day operating plan to reach and sustain a $10,000/month run rate. Week-by-week actions, the exact offers, and the math that makes it work.",
+      "price": 18,
+      "originalPrice": 35,
+      "pages": 110,
+      "category": "Freelancing",
+      "accent": "#15803d",
+      "coverStyle": "editorial",
+      "badge": "Popular",
+      "featured": false,
+      "rating": 4.7,
+      "reviewsCount": 233,
+      "buyers": 1670,
+      "accessType": "paid",
+      "status": "published",
+      "whatYouLearn": [
+        "The math of a $10k month",
+        "Offers priced to hit the number",
+        "A 90-day demand plan",
+        "The retention loop that locks it in"
+      ],
+      "chapters": [
+        {
+          "title": "The Math",
+          "pages": 14
+        },
+        {
+          "title": "Offers That Hit",
+          "pages": 22
+        },
+        {
+          "title": "The 90-Day Plan",
+          "pages": 30
+        },
+        {
+          "title": "Demand Generation",
+          "pages": 20
+        },
+        {
+          "title": "The Retention Loop",
+          "pages": 16
+        },
+        {
+          "title": "Sustaining It",
+          "pages": 8
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is $10k realistic in 90 days?",
+          "a": "For an established skill, yes. For a brand-new skill, expect 6 months using the same system."
+        }
+      ],
+      "highlights": [
+        "110 pages",
+        "90-day week-by-week plan",
+        "Pricing & offer calculator"
+      ],
+      "seoTitle": null,
+      "seoDesc": null
+    },
+    {
+      "id": "cmqksecha0002rtpktn76hcqd",
+      "title": "Content OS",
+      "slug": "content-os",
+      "subtitle": "The framework for turning content into a client pipeline that compounds.",
+      "description": "A complete content operating system. Define your pillars, build a repeatable production engine, and turn every post into a step in your sales funnel.",
+      "price": 17,
+      "originalPrice": null,
+      "pages": 88,
+      "category": "Marketing",
+      "accent": "#0f766e",
+      "coverStyle": "grid",
+      "badge": "New",
+      "featured": false,
+      "rating": 4.7,
+      "reviewsCount": 174,
+      "buyers": 1210,
+      "accessType": "paid",
+      "status": "published",
+      "whatYouLearn": [
+        "The 4 content pillars that feed a pipeline",
+        "A production system that runs on schedule, not inspiration",
+        "Repurposing one idea into ten assets",
+        "The framework-first content strategy"
+      ],
+      "chapters": [
+        {
+          "title": "Content as a System",
+          "pages": 12
+        },
+        {
+          "title": "The Four Pillars",
+          "pages": 18
+        },
+        {
+          "title": "Production Engine",
+          "pages": 20
+        },
+        {
+          "title": "Repurposing at Scale",
+          "pages": 16
+        },
+        {
+          "title": "Framework-First Strategy",
+          "pages": 14
+        },
+        {
+          "title": "Measuring What Matters",
+          "pages": 8
+        }
+      ],
+      "faq": [
+        {
+          "q": "I am not a writer. Will this work?",
+          "a": "The system is built around frameworks and templates, not prose talent. AI handles first drafts; you refine."
+        }
+      ],
+      "highlights": [
+        "88 pages",
+        "Content calendar template",
+        "30-day content plan"
+      ],
+      "seoTitle": null,
+      "seoDesc": null
+    },
+    {
+      "id": "cmqkseche0007rtpku37cfv94",
+      "title": "Systems Thinking for Founders",
+      "slug": "systems-thinking-for-founders",
+      "subtitle": "See the loops, leverage points, and bottlenecks that run your business.",
+      "description": "A founder's guide to systems thinking. Learn to see your business as a set of loops, find the leverage points, and make changes that compound instead of changes that fade.",
+      "price": 16,
+      "originalPrice": null,
+      "pages": 98,
+      "category": "Systems",
+      "accent": "#4c1d95",
+      "coverStyle": "stack",
+      "badge": null,
+      "featured": false,
+      "rating": 4.8,
+      "reviewsCount": 167,
+      "buyers": 1120,
+      "accessType": "paid",
+      "status": "published",
+      "whatYouLearn": [
+        "Reading your business as a system of loops",
+        "Finding leverage points that compound",
+        "Distinguishing fixes from fundamentals",
+        "Designing feedback into everything"
+      ],
+      "chapters": [
+        {
+          "title": "The Founder's Lens",
+          "pages": 14
+        },
+        {
+          "title": "Loops & Stocks",
+          "pages": 22
+        },
+        {
+          "title": "Leverage Points",
+          "pages": 24
+        },
+        {
+          "title": "Fixes vs Fundamentals",
+          "pages": 18
+        },
+        {
+          "title": "Designing Feedback",
+          "pages": 14
+        },
+        {
+          "title": "The Compound Founder",
+          "pages": 6
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is this too abstract for a busy founder?",
+          "a": "No — every concept is tied to a concrete business decision you have probably already faced."
+        }
+      ],
+      "highlights": [
+        "98 pages",
+        "System-mapping worksheets",
+        "Leverage point checklist"
+      ],
+      "seoTitle": null,
+      "seoDesc": null
+    },
+    {
+      "id": "cmqksechd0005rtpky3gw90ty",
+      "title": "Landing Pages That Convert",
+      "slug": "landing-pages-that-convert",
+      "subtitle": "The anatomy of pages that turn strangers into buyers.",
+      "description": "A teardown-driven guide to high-converting landing pages. Learn the architecture of pages that sell, with annotated examples and a copy-and-paste framework.",
+      "price": 14,
+      "originalPrice": null,
+      "pages": 64,
+      "category": "Marketing",
+      "accent": "#9d174d",
+      "coverStyle": "grid",
+      "badge": null,
+      "featured": false,
+      "rating": 4.6,
+      "reviewsCount": 142,
+      "buyers": 980,
+      "accessType": "paid",
+      "status": "published",
+      "whatYouLearn": [
+        "The 7-block landing page architecture",
+        "Writing headlines that stop the scroll",
+        "Proof stacks that remove objections",
+        "The single-ask principle"
+      ],
+      "chapters": [
+        {
+          "title": "The Conversion Brief",
+          "pages": 8
+        },
+        {
+          "title": "The 7-Block Architecture",
+          "pages": 16
+        },
+        {
+          "title": "Headlines That Stop",
+          "pages": 12
+        },
+        {
+          "title": "Proof Stacks",
+          "pages": 12
+        },
+        {
+          "title": "The Single Ask",
+          "pages": 8
+        },
+        {
+          "title": "Testing What Matters",
+          "pages": 8
+        }
+      ],
+      "faq": [
+        {
+          "q": "Do I need to know how to design?",
+          "a": "No. The framework works with any page builder."
+        }
+      ],
+      "highlights": [
+        "64 pages",
+        "Annotated teardowns",
+        "7-block page template"
+      ],
+      "seoTitle": null,
+      "seoDesc": null
+    }
+  ]
+}

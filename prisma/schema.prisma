@@ -1,0 +1,214 @@
+// Prisma schema for Tasbir Kabir — Digital HQ platform
+// SQLite — nested arrays stored as JSON strings.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Content (sellable) ----------
+
+model Book {
+  id           String   @id @default(cuid())
+  title        String
+  slug         String   @unique
+  subtitle     String
+  description  String
+  price        Float
+  originalPrice Float?
+  pages        Int
+  category     String
+  accent       String
+  coverStyle   String
+  badge        String?
+  featured     Boolean  @default(false)
+  rating       Float    @default(5)
+  reviewsCount Int      @default(0)
+  buyers       Int      @default(0)
+  accessType   String   @default("paid") // public | free | email-gate | paid | members
+  status       String   @default("published") // draft | published | scheduled
+  whatYouLearn String   @default("[]") // JSON: string[]
+  chapters     String   @default("[]") // JSON: { title: string; pages: number }[]
+  faq          String   @default("[]") // JSON: { q: string; a: string }[]
+  highlights   String   @default("[]") // JSON: string[]
+  content      String   @default("[]") // JSON: Chapter[] for the reader
+  seoTitle     String?
+  seoDesc      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Resource {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  type        String   // pdf | template | checklist | prompt-pack | guide | framework | swipe-file | toolkit
+  category    String
+  accent      String
+  price       Float    @default(0)
+  accessType  String   @default("free") // public | free | email-gate | paid | members
+  status      String   @default("published")
+  downloads   Int      @default(0)
+  pages       Int?
+  fileUrl     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String
+  category    String
+  tags        String   @default("[]") // JSON: string[]
+  readTime    Int
+  cover       String
+  featured    Boolean  @default(false)
+  status      String   @default("published") // draft | published | scheduled
+  seoTitle    String?
+  seoDesc     String?
+  publishedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id     String @id @default(cuid())
+  name   String
+  role   String
+  quote  String
+  rating Int    @default(5)
+  bookSlug String?
+  avatar String?
+}
+
+// ---------- Users & Auth ----------
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String   // hashed (demo: stored plainly for the sandbox)
+  role      String   @default("user") // user | admin
+  banned    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model LibraryAccess {
+  id        String   @id @default(cuid())
+  userId    String
+  userEmail String
+  itemType  String   // book | resource
+  itemSlug  String
+  createdAt DateTime @default(now())
+
+  @@unique([userEmail, itemType, itemSlug])
+}
+
+model ReadingProgress {
+  id           String  @id @default(cuid())
+  userId       String
+  bookSlug     String
+  chapterIndex Int     @default(0)
+  progress     Float   @default(0) // 0..100
+  updatedAt    DateTime @updatedAt
+
+  @@unique([userId, bookSlug])
+}
+
+// ---------- Commerce ----------
+
+model Order {
+  id          String   @id @default(cuid())
+  userId      String?
+  userEmail   String
+  userName    String?
+  items       String   // JSON: { slug, title, type, price }[]
+  total       Float
+  currency    String   @default("USD")
+  method      String   // bkash | nagad | rocket | card
+  status      String   @default("paid") // pending | paid | failed | refunded
+  txnId       String?
+  createdAt   DateTime @default(now())
+}
+
+// ---------- Marketing ----------
+
+model NewsletterSub {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  segment   String   @default("all") // all | buyers | readers | vip
+  createdAt DateTime @default(now())
+}
+
+model Broadcast {
+  id        String   @id @default(cuid())
+  subject   String
+  body      String
+  segment   String   @default("all")
+  status    String   @default("draft") // draft | sent
+  sentAt    DateTime?
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  topic     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+// ---------- Platform config & analytics ----------
+
+model SiteSettings {
+  id            String   @id @default("singleton")
+  // Hero
+  heroEyebrow   String   @default("AI Consultant · Web Developer · Media Buyer — Dhaka, Bangladesh")
+  heroTitle     String   @default("I build the future. Digital systems.")
+  heroSubtitle  String   @default("Hey, I'm Tasbir. I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.")
+  heroCta1      String   @default("Explore the books")
+  heroCta2      String   @default("Work with me")
+  heroImage     String   @default("/images/logo.png")
+  // Brand
+  brandName     String   @default("Tasbir Kabir")
+  brandTagline  String   @default("Build · Automate · Scale · Optimize · Repeat")
+  logoUrl       String   @default("/images/logo.png")
+  faviconUrl    String   @default("/images/logo.png")
+  ogImageUrl    String   @default("/images/logo.png")
+  // Theme
+  accentColor   String   @default("#b45309")
+  // Footer
+  footerBio     String   @default("AI Consultant, Web Developer & Media Buyer based in Dhaka, Bangladesh. I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.")
+  footerCopyright String @default("Tasbir Kabir — AI Consultant & Web Developer")
+  // Socials
+  socialLinkedin  String @default("https://www.linkedin.com/in/tasbirrkabir")
+  socialTwitter   String @default("https://x.com/tasbirrkabir")
+  socialGithub    String @default("https://github.com/tasbirkabir")
+  socialFacebook  String @default("https://www.facebook.com/share/1Tf65s6PB7/")
+  socialEmail     String @default("mailto:tasbirrkabir@gmail.com")
+  // SEO defaults
+  seoTitle      String   @default("Tasbir Kabir — AI Consultant, Web Developer & Media Buyer")
+  seoDesc       String   @default("I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.")
+  // Nav (JSON: { label, view }[])
+  navItems      String   @default("[]")
+  updatedAt     DateTime @updatedAt
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  type      String   // page_view | book_view | sale | download | email_signup | reading_complete
+  path      String?
+  refSlug   String?
+  value     Float    @default(0)
+  meta      String   @default("{}") // JSON
+  createdAt DateTime @default(now())
+}
