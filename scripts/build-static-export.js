@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const apiPath = path.join(__dirname, "../src/app/api");
-const apiBackupPath = path.join(__dirname, "../src/app/api-backup-temp");
+const apiBackupPath = path.join(__dirname, "../api-backup-temp");
 
 try {
   // 1. Back up the api folder by renaming it
