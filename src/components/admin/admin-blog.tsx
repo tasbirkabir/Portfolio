@@ -34,7 +34,7 @@ export function AdminBlog() {
         <div className="space-y-2">
           {posts.map((p) => (
             <div key={p.slug} className="flex items-center gap-4 rounded-2xl border border-border/60 bg-card p-3">
-              <img src={p.cover} alt="" className="h-12 w-16 shrink-0 rounded-lg object-cover" />
+              <img src={p.cover} alt="" loading="lazy" className="h-12 w-16 shrink-0 rounded-lg object-cover" />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold">{p.title}</p>
                 <p className="truncate text-xs text-muted-foreground">{p.category} · {p.readTime}m · {new Date(p.publishedAt).toLocaleDateString()}</p>

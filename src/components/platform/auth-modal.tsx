@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Mail, Lock, User, ArrowRight, Sparkles } from "lucide-react";
+import { X, Mail, Lock, User, ArrowRight, Sparkles, Eye, EyeOff, Check } from "lucide-react";
 import { useAuth } from "@/lib/store/auth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -12,12 +12,47 @@ export function AuthModal() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [agreeTerms, setAgreeTerms] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const isLogin = authModalMode === "login";
 
+  // Password strength indicator
+  const passwordStrength = (() => {
+    if (!password) return 0;
+    let s = 0;
+    if (password.length >= 8) s++;
+    if (/[A-Z]/.test(password)) s++;
+    if (/[0-9]/.test(password)) s++;
+    if (/[^A-Za-z0-9]/.test(password)) s++;
+    return s;
+  })();
+  const strengthLabels = ["", "Weak", "Fair", "Good", "Strong"];
+  const strengthColors = ["", "#ef4444", "#f59e0b", "#3b82f6", "#10b981"];
+
+  function validate(): string | null {
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return "Please enter a valid email address.";
+    }
+    if (!isLogin) {
+      if (!name.trim()) return "Please enter your name.";
+      if (password.length < 8) return "Password must be at least 8 characters.";
+      if (password !== confirmPassword) return "Passwords do not match.";
+      if (!agreeTerms) return "Please agree to the terms to continue.";
+    }
+    if (!password) return "Please enter your password.";
+    return null;
+  }
+
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    const err = validate();
+    if (err) {
+      toast({ title: "Check your details", description: err, variant: "destructive" });
+      return;
+    }
     setLoading(true);
     const res = isLogin
       ? await login(email, password)
@@ -27,18 +62,10 @@ export function AuthModal() {
       toast({ title: "Could not continue", description: res.error, variant: "destructive" });
     } else {
       toast({
-        title: isLogin ? "Welcome back." : "Account created.",
+        title: isLogin ? "Welcome back." : "Account created successfully.",
         description: isLogin ? undefined : "You're signed in.",
       });
-      setName(""); setEmail(""); setPassword("");
-    }
-  }
-
-  function fillDemo(role: "admin" | "user") {
-    if (role === "admin") {
-      setEmail("admin@tasbirkabir.site"); setPassword("admin123");
-    } else {
-      setEmail("reader@demo.com"); setPassword("demo123");
+      setName(""); setEmail(""); setPassword(""); setConfirmPassword(""); setAgreeTerms(false);
     }
   }
 
@@ -58,11 +85,11 @@ export function AuthModal() {
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md overflow-hidden rounded-3xl border border-border bg-card shadow-2xl"
+            className="relative max-h-[90vh] w-full max-w-md overflow-y-auto thin-scrollbar rounded-3xl border border-border bg-card shadow-2xl"
           >
             <button
               onClick={closeAuthModal}
-              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
+              className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
             >
               <X className="h-4 w-4" />
             </button>
@@ -84,7 +111,7 @@ export function AuthModal() {
 
               <form onSubmit={submit} className="space-y-3">
                 {!isLogin && (
-                  <Field icon={User} label="Name">
+                  <Field icon={User} label="Full name">
                     <input
                       required
                       value={name}
@@ -107,13 +134,98 @@ export function AuthModal() {
                 <Field icon={Lock} label="Password">
                   <input
                     required
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
+                    placeholder={isLogin ? "••••••••" : "At least 8 characters"}
                     className="w-full bg-transparent text-sm focus:outline-none"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((s) => !s)}
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
                 </Field>
+
+                {/* Password strength indicator (register only) */}
+                {!isLogin && password && (
+                  <div className="flex items-center gap-2 px-1">
+                    <div className="flex h-1.5 flex-1 gap-1">
+                      {[1, 2, 3, 4].map((i) => (
+                        <div
+                          key={i}
+                          className="h-full flex-1 rounded-full transition-all"
+                          style={{
+                            background: i <= passwordStrength ? strengthColors[passwordStrength] : "var(--muted)",
+                          }}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-[10px] font-medium" style={{ color: strengthColors[passwordStrength] }}>
+                      {strengthLabels[passwordStrength]}
+                    </span>
+                  </div>
+                )}
+
+                {/* Confirm password (register only) */}
+                {!isLogin && (
+                  <Field icon={Lock} label="Confirm password">
+                    <input
+                      required
+                      type={showPassword ? "text" : "password"}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Re-enter your password"
+                      className="w-full bg-transparent text-sm focus:outline-none"
+                    />
+                    {confirmPassword && confirmPassword === password && (
+                      <Check className="h-4 w-4 text-green-500" />
+                    )}
+                  </Field>
+                )}
+
+                {/* Terms checkbox (register only) */}
+                {!isLogin && (
+                  <label className="flex cursor-pointer items-start gap-2.5 py-1 text-xs text-muted-foreground">
+                    <input
+                      type="checkbox"
+                      checked={agreeTerms}
+                      onChange={(e) => setAgreeTerms(e.target.checked)}
+                      className="mt-0.5 h-4 w-4 rounded border-border"
+                    />
+                    <span>
+                      I agree to the{" "}
+                      <a href="#" className="font-medium text-clay hover:underline">Terms</a>{" "}
+                      and{" "}
+                      <a href="#" className="font-medium text-clay hover:underline">Privacy Policy</a>.
+                    </span>
+                  </label>
+                )}
+
+                {/* Forgot password (login only) */}
+                {isLogin && (
+                  <div className="flex justify-end">
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        if (!email) {
+                          toast({ title: "Enter your email", description: "Type your email above first, then tap forgot password.", variant: "destructive" });
+                          return;
+                        }
+                        const res = await useAuth.getState().requestPasswordReset(email);
+                        toast({
+                          title: res.ok ? "Reset link sent" : "Could not send",
+                          description: res.ok ? "If an account exists for that email, a reset link has been sent." : res.error,
+                        });
+                      }}
+                      className="text-xs font-medium text-clay hover:underline"
+                    >
+                      Forgot password?
+                    </button>
+                  </div>
+                )}
 
                 <button
                   type="submit"
@@ -134,28 +246,6 @@ export function AuthModal() {
                   {isLogin ? "Create an account" : "Sign in"}
                 </button>
               </p>
-
-              <div className="mt-5 rounded-2xl border border-border/60 bg-muted/40 p-3">
-                <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
-                  Demo accounts
-                </p>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => fillDemo("admin")}
-                    className="flex-1 rounded-lg bg-background px-3 py-2 text-left text-xs transition-colors hover:bg-foreground/5"
-                  >
-                    <p className="font-medium">Admin</p>
-                    <p className="text-muted-foreground">admin@tasbirkabir.site</p>
-                  </button>
-                  <button
-                    onClick={() => fillDemo("user")}
-                    className="flex-1 rounded-lg bg-background px-3 py-2 text-left text-xs transition-colors hover:bg-foreground/5"
-                  >
-                    <p className="font-medium">Reader</p>
-                    <p className="text-muted-foreground">reader@demo.com</p>
-                  </button>
-                </div>
-              </div>
             </div>
           </motion.div>
         </motion.div>

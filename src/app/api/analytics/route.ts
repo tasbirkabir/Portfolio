@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { getCurrentUser } from "@/lib/auth/session";
+import { requireAdmin } from "@/lib/auth/session";
+import { errorResponse } from "@/lib/security/validation";
 
 export async function GET() {
-  const user = await getCurrentUser();
+  // SECURITY: Analytics data (revenue, orders, users) is admin-only
+  const admin = await requireAdmin();
+  if (!admin) return errorResponse("Authentication required.", 401);
+
 
   // Aggregate last 30 days of events
   const since = new Date(Date.now() - 30 * 24 * 3600 * 1000);
@@ -52,7 +56,7 @@ export async function GET() {
   }
 
   return NextResponse.json({
-    user,
+    user: admin,
     metrics: {
       revenue: Number(revenue.toFixed(2)),
       orders: orders.length,

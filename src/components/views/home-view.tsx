@@ -133,6 +133,7 @@ export function HomeView() {
                   <img
                     src="/images/logo.png"
                     alt="Tasbir Kabir"
+                    loading="eager"
                     className="aspect-square w-full object-cover"
                   />
                 </div>

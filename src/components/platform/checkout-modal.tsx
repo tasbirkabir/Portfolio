@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Lock, Check, ArrowRight, Shield } from "lucide-react";
+import { X, Lock, ArrowRight, Shield, Loader2 } from "lucide-react";
 import { useAuth } from "@/lib/store/auth";
 import { useToast } from "@/hooks/use-toast";
 import { useNav } from "@/lib/store/nav";
@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 type Method = "bkash" | "nagad" | "rocket" | "card";
 
-const METHODS: { id: Method; label: string; color: string; desc: string }[] = [
+const ALL_METHODS: { id: Method; label: string; color: string; desc: string }[] = [
   { id: "bkash", label: "bKash", color: "#E2136E", desc: "Mobile wallet" },
   { id: "nagad", label: "Nagad", color: "#F37021", desc: "Mobile wallet" },
   { id: "rocket", label: "Rocket", color: "#8B2C8B", desc: "Mobile wallet" },
@@ -40,18 +40,40 @@ export function CheckoutModal({
   const [cardNumber, setCardNumber] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Fetch available payment methods / gateway config
+  const [gatewayInfo, setGatewayInfo] = useState<{
+    active: string;
+    isLive: boolean;
+    methods: string[];
+    gateways: { id: string; name: string; configured: boolean }[];
+  } | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    fetch("/api/payments/methods")
+      .then((r) => r.json())
+      .then(setGatewayInfo)
+      .catch(() => {});
+  }, [open]);
+
+  const availableMethods = ALL_METHODS.filter((m) =>
+    gatewayInfo?.methods?.includes(m.id) ?? true
+  );
+  const activeGatewayName = gatewayInfo?.gateways?.find((g) => g.id === gatewayInfo.active)?.name || "Demo";
+  const isLive = gatewayInfo?.isLive ?? false;
+
   const total = items.reduce((a, i) => a + i.price, 0);
 
   async function pay(e: React.FormEvent) {
     e.preventDefault();
-    if (!user && !email) {
+    if (!email) {
       toast({ title: "Email required", description: "Enter your email or sign in to continue.", variant: "destructive" });
       return;
     }
     setLoading(true);
+
     try {
-      // In static mode (no server), record the purchase in localStorage so the
-      // reader unlocks. In dev (with server), the API grants DB-level access.
+      // Always record in localStorage for reader unlock (static mode fallback)
       try {
         const owned = JSON.parse(localStorage.getItem("tk-owned-books") || "[]");
         for (const it of items) {
@@ -60,23 +82,49 @@ export function CheckoutModal({
         localStorage.setItem("tk-owned-books", JSON.stringify(owned));
       } catch {}
 
-      let ok = true;
-      let txnId = `DEMO_${Date.now().toString(36).toUpperCase()}`;
-      try {
-        const r = await fetch("/api/orders/checkout", {
+      const gateway = gatewayInfo?.active || "mock";
+
+      if (gateway === "sslcommerz") {
+        // SSL Commerz: initiate → redirect to gateway
+        const r = await fetch("/api/payments/sslcommerz/initiate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ items, method, customer: { name, email } }),
+          body: JSON.stringify({ items, method, customer: { name, email, phone } }),
         });
         const j = await r.json();
-        if (!r.ok) throw new Error(j.error || "Payment failed");
-        txnId = j.txnId || txnId;
-      } catch {
-        // Static mode — no server, payment recorded locally only.
-        ok = true;
-      }
+        if (j.redirectUrl) {
+          window.location.href = j.redirectUrl;
+          return; // page will redirect
+        }
+        throw new Error(j.error || "SSL Commerz initiation failed");
+      } else if (gateway === "stripe") {
+        // Stripe: create checkout session → redirect
+        const r = await fetch("/api/payments/stripe/create-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ items, customer: { name, email } }),
+        });
+        const j = await r.json();
+        if (j.redirectUrl) {
+          window.location.href = j.redirectUrl;
+          return;
+        }
+        throw new Error(j.error || "Stripe session creation failed");
+      } else {
+        // Mock / UddoktaPay fallback: simulate payment
+        let txnId = `DEMO_${Date.now().toString(36).toUpperCase()}`;
+        try {
+          const r = await fetch("/api/orders/checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ items, method, customer: { name, email } }),
+          });
+          const j = await r.json();
+          if (r.ok && j.txnId) txnId = j.txnId;
+        } catch {
+          // Static mode — no server
+        }
 
-      if (ok) {
         toast({
           title: "Payment successful!",
           description: `${items.length} item${items.length > 1 ? "s" : ""} unlocked. Transaction: ${txnId}`,
@@ -117,7 +165,10 @@ export function CheckoutModal({
 
             <div className="max-h-[85vh] overflow-y-auto thin-scrollbar p-7 sm:p-8">
               <h2 className="font-display text-2xl tracking-tight">Complete your purchase</h2>
-              <p className="mt-1 text-sm text-muted-foreground">Secure checkout via UddoktaPay · bKash · Nagad · Rocket · Card</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Secure checkout via {activeGatewayName}
+                {!isLive && <span className="ml-1 rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-medium text-amber-600">Demo mode</span>}
+              </p>
 
               {/* Order summary */}
               <div className="mt-5 space-y-2 rounded-2xl border border-border/60 bg-muted/40 p-4">
@@ -136,7 +187,7 @@ export function CheckoutModal({
               {/* Method picker */}
               <p className="mt-5 mb-2 text-xs font-medium text-muted-foreground">Payment method</p>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                {METHODS.map((m) => (
+                {availableMethods.map((m) => (
                   <button
                     key={m.id}
                     type="button"
@@ -166,7 +217,7 @@ export function CheckoutModal({
                 <Input label="Full name" value={name} onChange={setName} placeholder="Your name" required />
                 <Input label="Email" value={email} onChange={setEmail} placeholder="you@studio.com" type="email" required />
                 {method !== "card" ? (
-                  <Input label={`${METHODS.find((m) => m.id === method)?.label} account number`} value={phone} onChange={setPhone} placeholder="01XXXXXXXXX" required />
+                  <Input label={`${ALL_METHODS.find((m) => m.id === method)?.label} account number`} value={phone} onChange={setPhone} placeholder="01XXXXXXXXX" required />
                 ) : (
                   <Input label="Card number" value={cardNumber} onChange={(v) => setCardNumber(v.replace(/[^\d ]/g, ""))} placeholder="4242 4242 4242 4242" required />
                 )}
@@ -177,18 +228,23 @@ export function CheckoutModal({
                   className="group mt-2 flex w-full items-center justify-center gap-2 rounded-full bg-foreground py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.02] active:scale-95 disabled:opacity-60"
                 >
                   {loading ? (
-                    "Processing…"
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      {isLive ? "Redirecting to payment…" : "Processing…"}
+                    </>
                   ) : (
                     <>
                       <Lock className="h-4 w-4" />
-                      Pay ${total.toFixed(2)} with {METHODS.find((m) => m.id === method)?.label}
+                      Pay ${total.toFixed(2)} with {ALL_METHODS.find((m) => m.id === method)?.label}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                     </>
                   )}
                 </button>
                 <p className="flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground">
                   <Shield className="h-3 w-3" />
-                  Secure payment · Instant access · 30-day refund
+                  {isLive
+                    ? `Secure payment via ${activeGatewayName} · Instant access · 30-day refund`
+                    : "Demo mode — configure a payment gateway in .env for live payments"}
                 </p>
               </form>
             </div>
@@ -225,5 +281,3 @@ export function useCheckout() {
   }
   return { open, items, startCheckout, close: () => setOpen(false) };
 }
-
-export { Check };

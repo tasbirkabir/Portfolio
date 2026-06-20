@@ -1,7 +1,7 @@
 {
   "resources": [
     {
-      "id": "cmqksechj000ertpk329k9qiw",
+      "id": "cmqlfzf4l000ert0k3bf73qvs",
       "title": "The Solo Operator's Playbook",
       "slug": "solo-operator-playbook",
       "description": "A free 22-page PDF intro to productizing a service business.",
@@ -14,11 +14,11 @@
       "downloads": 6810,
       "pages": 22,
       "fileUrl": null,
-      "createdAt": "2026-06-19T10:29:32.984Z",
-      "updatedAt": "2026-06-19T10:29:32.984Z"
+      "createdAt": "2026-06-19T21:29:47.350Z",
+      "updatedAt": "2026-06-19T21:29:47.350Z"
     },
     {
-      "id": "cmqksechh000artpk67gtve47",
+      "id": "cmqlfzf4j000art0kqwn4kdrt",
       "title": "AI Agency Prompt Pack",
       "slug": "ai-agency-prompt-pack",
       "description": "24 production prompts for delivery, sales, and content.",
@@ -31,11 +31,11 @@
       "downloads": 5620,
       "pages": 18,
       "fileUrl": null,
-      "createdAt": "2026-06-19T10:29:32.982Z",
-      "updatedAt": "2026-06-19T10:29:32.982Z"
+      "createdAt": "2026-06-19T21:29:47.347Z",
+      "updatedAt": "2026-06-19T21:29:47.347Z"
     },
     {
-      "id": "cmqksechf0008rtpkd7bdbfbt",
+      "id": "cmqlfzf4h0008rt0kud8abrog",
       "title": "The Offer One-Pager",
       "slug": "offer-one-pager",
       "description": "A one-page template to sharpen any offer in under an hour.",
@@ -48,11 +48,11 @@
       "downloads": 4210,
       "pages": 2,
       "fileUrl": null,
-      "createdAt": "2026-06-19T10:29:32.980Z",
-      "updatedAt": "2026-06-19T10:29:32.980Z"
+      "createdAt": "2026-06-19T21:29:47.346Z",
+      "updatedAt": "2026-06-19T21:29:47.346Z"
     },
     {
-      "id": "cmqksechi000crtpkpt2jo480",
+      "id": "cmqlfzf4k000crt0kr7r1gepk",
       "title": "Pricing Calculator",
       "slug": "pricing-calculator",
       "description": "A spreadsheet that prices your work for leverage instead of hours.",
@@ -65,11 +65,11 @@
       "downloads": 3870,
       "pages": 1,
       "fileUrl": null,
-      "createdAt": "2026-06-19T10:29:32.983Z",
-      "updatedAt": "2026-06-19T10:29:32.983Z"
+      "createdAt": "2026-06-19T21:29:47.349Z",
+      "updatedAt": "2026-06-19T21:29:47.349Z"
     },
     {
-      "id": "cmqksechg0009rtpkgukstl9f",
+      "id": "cmqlfzf4i0009rt0kw10qdbkg",
       "title": "Weekly Review Checklist",
       "slug": "weekly-review-checklist",
       "description": "The exact 30-minute Monday ritual that turns numbers into actions.",
@@ -82,11 +82,11 @@
       "downloads": 3380,
       "pages": 1,
       "fileUrl": null,
-      "createdAt": "2026-06-19T10:29:32.980Z",
-      "updatedAt": "2026-06-19T10:29:32.980Z"
+      "createdAt": "2026-06-19T21:29:47.347Z",
+      "updatedAt": "2026-06-19T21:29:47.347Z"
     },
     {
-      "id": "cmqksechj000drtpkiom37424",
+      "id": "cmqlfzf4l000drt0kyw1n5cch",
       "title": "Content Calendar Framework",
       "slug": "content-calendar-framework",
       "description": "The 4-pillar content calendar that turns posting into a pipeline.",
@@ -99,11 +99,11 @@
       "downloads": 2940,
       "pages": 3,
       "fileUrl": null,
-      "createdAt": "2026-06-19T10:29:32.983Z",
-      "updatedAt": "2026-06-19T10:29:32.983Z"
+      "createdAt": "2026-06-19T21:29:47.349Z",
+      "updatedAt": "2026-06-19T21:29:47.349Z"
     },
     {
-      "id": "cmqksechi000brtpk3ylqrknu",
+      "id": "cmqlfzf4j000brt0khlioh7t7",
       "title": "Landing Page Teardown Guide",
       "slug": "landing-page-teardown-guide",
       "description": "A step-by-step guide to auditing any landing page for conversion leaks.",
@@ -116,11 +116,11 @@
       "downloads": 2190,
       "pages": 12,
       "fileUrl": null,
-      "createdAt": "2026-06-19T10:29:32.982Z",
-      "updatedAt": "2026-06-19T10:29:32.982Z"
+      "createdAt": "2026-06-19T21:29:47.348Z",
+      "updatedAt": "2026-06-19T21:29:47.348Z"
     },
     {
-      "id": "cmqksechk000frtpktmcjalpl",
+      "id": "cmqlfzf4m000frt0kn737fych",
       "title": "Focus Environment Checklist",
       "slug": "focus-environment-checklist",
       "description": "Audit your workspace for the friction that quietly kills deep work.",
@@ -133,11 +133,11 @@
       "downloads": 1760,
       "pages": 1,
       "fileUrl": null,
-      "createdAt": "2026-06-19T10:29:32.984Z",
-      "updatedAt": "2026-06-19T10:29:32.984Z"
+      "createdAt": "2026-06-19T21:29:47.350Z",
+      "updatedAt": "2026-06-19T21:29:47.350Z"
     },
     {
-      "id": "cmqksechk000grtpk37leyuse",
+      "id": "cmqlfzf4m000grt0k6a70ovqo",
       "title": "The Systems Swipe File",
       "slug": "systems-swipe-file",
       "description": "30 annotated systems, SOPs and workflows from real agencies.",
@@ -150,11 +150,11 @@
       "downloads": 980,
       "pages": 40,
       "fileUrl": null,
-      "createdAt": "2026-06-19T10:29:32.985Z",
-      "updatedAt": "2026-06-19T10:29:32.985Z"
+      "createdAt": "2026-06-19T21:29:47.351Z",
+      "updatedAt": "2026-06-19T21:29:47.351Z"
     },
     {
-      "id": "cmqksechl000hrtpk1y0znxbe",
+      "id": "cmqlfzf4n000hrt0kqi5dxwpz",
       "title": "Automation Toolkit",
       "slug": "automation-toolkit",
       "description": "The complete n8n + Make blueprint pack for 12 agency workflows.",
@@ -167,8 +167,8 @@
       "downloads": 640,
       "pages": 28,
       "fileUrl": null,
-      "createdAt": "2026-06-19T10:29:32.985Z",
-      "updatedAt": "2026-06-19T10:29:32.985Z"
+      "createdAt": "2026-06-19T21:29:47.351Z",
+      "updatedAt": "2026-06-19T21:29:47.351Z"
     }
   ]
 }

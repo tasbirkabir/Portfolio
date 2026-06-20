@@ -1,6 +1,6 @@
 {
   "book": {
-    "id": "cmqksech80000rtpkhpmycbw4",
+    "id": "cmqlfzf4a0000rt0kiixeq7ef",
     "title": "The AI Agency Operating System",
     "slug": "ai-agency-operating-system",
     "subtitle": "Build, Track, Advertise, Convert — the complete framework for a productized, AI-native agency.",
@@ -15,82 +15,91 @@
     "featured": true,
     "rating": 4.9,
     "reviewsCount": 412,
-    "buyers": 3822,
+    "buyers": 3823,
     "accessType": "paid",
     "status": "published",
     "whatYouLearn": [
       "The outcome-first positioning framework that makes business owners buy",
       "The $1T automation gap and why midmarket businesses are the real opportunity",
       "The Agency Triangle: Service, Client, Operations — and why missing one kills scale",
-      "Choosing your agency model: Custom, Productized, or White-Label",
-      "High-income AI services: voice agents, automations, and chatbots — deep dives",
-      "Pricing AI services with setup fees, retainers, and value-based anchors",
-      "The 30-day first client playbook and the 5-phase discovery call",
-      "Scaling from $10k to $30k/month with productized retainers and referrals"
+      "Choosing your agency model: Custom ($3k–$10k), Productized ($999–$2.5k), or White-Label",
+      "The 7 high-paying niches for AI agencies and the 48-hour niche validation protocol",
+      "High-income AI services: voice agents, automations, and chatbots — full deep dives",
+      "The universal voice agent script template and inbound vs. outbound agent design",
+      "n8n vs. Make — when to use each — and the 5 automations every business needs",
+      "Chatbase vs. ManyChat vs. Voiceflow and the 3-layer handoff architecture",
+      "Value-based vs. cost-based pricing and the complete AI agency rate card",
+      "The $999 starter offer strategy and guarantee structures that reduce buyer risk",
+      "The 5 client acquisition channels and the 30-day first client playbook",
+      "The 5-phase discovery call framework and the PAIN qualification framework",
+      "Onboarding, 7-day delivery sprints, and the 3 rules of project communication",
+      "The 2026 AI agency tech stack directory and SOPs for every service",
+      "Scaling milestones to $10k and $30k/month, team structures, and the growth flywheel",
+      "5 real-world case studies and a 3-month startup execution timeline"
     ],
     "chapters": [
       {
-        "title": "Letter from Tasbir",
-        "pages": 6
-      },
-      {
-        "title": "What Is an AI Agency, Really?",
-        "pages": 6
-      },
-      {
-        "title": "The Founder Mindset",
-        "pages": 8
-      },
-      {
-        "title": "Choosing a Profitable Niche",
-        "pages": 4
-      },
-      {
-        "title": "High-Income AI Services",
+        "title": "LETTER FROM TASBIR",
         "pages": 3
       },
       {
-        "title": "AI Voice Agents — Deep Dive",
+        "title": "WHAT IS AN AI AGENCY, REALLY?",
         "pages": 3
       },
       {
-        "title": "AI Automations — Deep Dive",
-        "pages": 2
-      },
-      {
-        "title": "AI Chatbots — Deep Dive",
-        "pages": 2
-      },
-      {
-        "title": "Pricing AI Services",
-        "pages": 4
-      },
-      {
-        "title": "Creating Offers That Sell",
-        "pages": 2
-      },
-      {
-        "title": "Finding Your First Clients",
-        "pages": 4
-      },
-      {
-        "title": "The Discovery Call & Sales",
-        "pages": 2
-      },
-      {
-        "title": "Delivering Projects & Onboarding",
-        "pages": 5
-      },
-      {
-        "title": "SOPs, Systems & Tech Stack",
-        "pages": 1
-      },
-      {
-        "title": "Scaling to $10K & $30K/Month",
+        "title": "THE FOUNDER MINDSET",
         "pages": 3
       },
       {
-        "title": "Future, Case Studies & Action Plan",
+        "title": "CHOOSING A PROFITABLE NICHE",
+        "pages": 3
+      },
+      {
+        "title": "HIGH-INCOME AI SERVICES",
+        "pages": 3
+      },
+      {
+        "title": "AI VOICE AGENTS — DEEP DIVE",
+        "pages": 3
+      },
+      {
+        "title": "AI AUTOMATIONS — DEEP DIVE",
+        "pages": 3
+      },
+      {
+        "title": "AI CHATBOTS — DEEP DIVE",
+        "pages": 3
+      },
+      {
+        "title": "PRICING AI SERVICES",
+        "pages": 3
+      },
+      {
+        "title": "CREATING OFFERS THAT SELL",
+        "pages": 3
+      },
+      {
+        "title": "FINDING YOUR FIRST CLIENTS",
+        "pages": 3
+      },
+      {
+        "title": "THE DISCOVERY CALL & SALES",
+        "pages": 3
+      },
+      {
+        "title": "DELIVERING PROJECTS & ONBOARDING",
+        "pages": 3
+      },
+      {
+        "title": "SOPS, SYSTEMS & TECH STACK",
+        "pages": 3
+      },
+      {
+        "title": "SCALING TO $10K & $30K/MONTH",
+        "pages": 3
+      },
+      {
+        "title": "FUTURE, CASE STUDIES & ACTION PLAN",
         "pages": 3
       }
     ],
@@ -101,7 +110,7 @@
       },
       {
         "q": "Do I need technical skills to build the AI services?",
-        "a": "No. The deep dives are written for builders using no-code/low-code tools like n8n, Make, and GoHighLevel. If you can follow a recipe, you can deliver these services."
+        "a": "No. The deep dives on voice agents, automations, and chatbots are written for builders using no-code/low-code tools like n8n, Make, and GoHighLevel. If you can follow a recipe, you can deliver these services."
       },
       {
         "q": "What format is the book?",
@@ -109,7 +118,7 @@
       },
       {
         "q": "How long until I see results?",
-        "a": "Most readers complete the Chapter 1 action plan in the first week and run their first outreach by week two. First client typically lands in 30–60 days."
+        "a": "Most readers complete the Chapter 1 action plan in the first week and run their first outreach by week two. First client typically lands in 30–60 days following the 30-day playbook."
       },
       {
         "q": "Is there a guarantee?",
@@ -128,89 +137,1015 @@
     "content": [
       {
         "id": "ch-0",
-        "title": "Letter from Tasbir",
+        "title": "LETTER FROM TASBIR",
         "sections": [
           {
             "heading": "Overview",
             "body": [
-              "Dear Reader, If you've spent more than five minutes on social media recently, you've seen the promises.",
-              "I built this book to be the exact opposite of that hype — a blueprint based on real campaigns, real setups, real client calls, and real software delivery.",
-              "The AI agency opportunity is the most significant B2B leverage point of this decade. But it is only an opportunity for those who build real systems, sell real business outcomes, and deliver professional services."
+              "Dear Reader,",
+              "If you've spent more than five minutes on social media recently, you've seen the promises. Gurus telling you that starting an AI agency is a path to effortless wealth, that you can sign $5,000/month clients by copying and pasting a template, and that you don't need to know anything about the technology you are selling.",
+              "I built this book to be the exact opposite of that hype. I didn't write it to sell you a dream; I wrote it to hand you a blueprint. A blueprint based on real campaigns, real setups, real client calls, and real software delivery. Building a profitable business is never effortless—but it is entirely systematic when you have the right rules.",
+              "\"The AI agency opportunity is the most significant B2B leverage point of this decade. But it is only an opportunity for those who build real systems, sell real business outcomes, and deliver professional services.\"",
+              "This operational blueprint has been stress-tested across numerous global B2B integrations. By treating automation as infrastructure rather than an administrative expense, we have consistently unlocked high-value, auditable outcomes.",
+              "AI voice receptionist with out-of-hours scheduling & SMS text-back. Result:",
+              "38 patient bookings in 30 days, freeing 8 receptionist hours/week.",
+              "Multi-model CV extraction with semantic matching & email automation. Result:",
+              "Reduced candidate screening times by 60%, accelerating placement velocity.",
+              "Cold email DNS optimization, auto-personalization, & HubSpot integration. Result:",
+              "Signed 3 high-ticket accounts in 2.5 months, generating $12,000/mo MRR.",
+              "Retrieval-augmented knowledge base bot with order cancellation webhook. Result:",
+              "Resolved 78% of support tickets automatically, saving $3,000/month."
             ]
           },
           {
             "heading": "The B2B Proof Manifesto",
             "body": [
-              "This operational blueprint has been stress-tested across numerous global B2B integrations. By treating automation as infrastructure rather than an administrative expense, we have consistently unlocked high-value, auditable outcomes.",
-              "Medical Clinic Booking — AI voice receptionist: 38 patient bookings in 30 days, freeing 8 receptionist hours/week.",
-              "Recruitment Agency — multi-model CV extraction: reduced screening times by 60%.",
-              "High-Ticket Lead Gen — cold email automation: signed 3 accounts in 2.5 months, generating $12,000/mo MRR.",
-              "Shopify E-Commerce — RAG support bot: resolved 78% of tickets automatically, saving $3,000/month."
+              "**Medical Clinic Booking**",
+              "**Recruitment Agency**",
+              "**High-Ticket Lead Gen**",
+              "**Shopify E-Commerce**",
+              "▶ 🎯 Key Concept",
+              "◆ Medical Clinic Booking  AI voice receptionist with out-of-hours scheduling & SMS text-back. Result:  38 patient bookings in 30 days, freeing 8 receptionist hours/week.      Recruitment Agency  Multi-model CV extraction with semantic matching & email automation. Result:  Reduced candidate screening times by 60%, accelerating placement velocity.      High-Ticket Lead Gen  Cold email DNS optimization, auto-personalization, & HubSpot integration. Result:  Signed 3 high-ticket accounts in 2.5 months, generating $12,000/mo MRR.      Shopify E-Commerce  Retrieval-augmented knowledge base bot with order cancellation webhook. Result:  Resolved 78% of support tickets automatically, saving $3,000/month.",
+              "A sustainable AI agency is not a linear funnel; it is a closed-loop ecosystem. Every delivered result fuels the next acquisition cycle.",
+              "↳ Refers directly back into Lead Generation"
+            ]
+          },
+          {
+            "heading": "The AI Agency Ecosystem",
+            "body": [
+              "→ 1. Lead Generation",
+              "→ 2. Discovery Calls",
+              "→ 3. Proposal & Closing",
+              "→ 4. Service Delivery",
+              "→ 5. Client Results",
+              "→ 6. Testimonials",
+              "→ 7. Referrals",
+              "🔑 Agency Growth Loop",
+              "When I started in AI automation, I fell into the same traps most beginners do. I spent days designing a logo, setting up a website, and perfecting my email signature. I felt like an agency owner, but I had zero revenue. I was hiding behind administrative activities because the alternative—reaching out to real business owners and asking for money—felt terrifying.",
+              "My shift happened when I stopped looking at tools like n8n and Make as technical toys, and started looking at them as problem-solving engines. I found a local clinic owner who was losing patients because their receptionist couldn't answer calls while assisting dentists. I offered to build a missed-call auto-SMS loop for free for one week. If it captured patients, they would pay me $1,500. If it didn't, they paid nothing.",
+              "In that first week, the system captured four patients who would have gone to competitors. The owner signed the check, set up a maintenance retainer, and referred me to two colleagues. That first client taught me that business owners do not care about n8n nodes, API keys, or AI reasoning loops. They care about appointments, hours saved, and revenue. That is the outcome-first philosophy this book is built on.",
+              "If you are reading this, you are likely standing at the edge of the same decision I made years ago. The leap from technician to founder is terrifying, but the systems in this book will catch you."
             ]
           },
           {
             "heading": "My Origin Story — The First Client",
             "body": [
-              "When I started in AI automation, I fell into the same traps most beginners do. I spent days designing a logo, setting up a website, and perfecting my email signature. I felt like an agency owner, but I had zero revenue.",
-              "My shift happened when I stopped looking at tools like n8n and Make as technical toys, and started looking at them as problem-solving engines. I found a local clinic owner who was losing patients because their receptionist couldn't answer calls.",
-              "I offered to build a missed-call auto-SMS loop for free for one week. It captured four patients who would have gone to competitors. The owner signed the check, set up a maintenance retainer, and referred me to two colleagues.",
-              "That first client taught me that business owners do not care about n8n nodes, API keys, or AI reasoning loops. They care about appointments, hours saved, and revenue. That is the outcome-first philosophy this book is built on."
+              "▶ Tasbir's Note",
+              "— Tasbir Kabir, tasbirkabir.site",
+              "Tasbir Kabir is an AI consultant, automation specialist, and digital entrepreneur who has helped businesses implement AI systems across multiple industries. He writes and teaches about the practical side of building AI agencies — without the hype, and without the shortcuts.",
+              "**About the Author**",
+              "tasbirkabir.site"
             ]
           }
         ]
       },
       {
         "id": "ch-1",
-        "title": "What Is an AI Agency, Really?",
+        "title": "WHAT IS AN AI AGENCY, REALLY?",
         "sections": [
           {
-            "heading": "Dismantling the Myths",
+            "heading": "Overview",
             "body": [
-              "Everyone seems to be talking about 'starting an AI agency' in 2026. The result? Most people start with a completely wrong mental model — and they fail within 60 days, not because they lack intelligence or work ethic, but because they were building on a broken foundation.",
+              "Everyone seems to be talking about 'starting an AI agency' in 2026. YouTube is full of gurus promising you $10,000 months in 30 days. The result? Most people start with a completely wrong mental model of what an AI agency actually is—and they fail within 60 days, not because they lack intelligence or work ethic, but because they were building on a broken foundation.",
               "The biggest misconception is confusing an AI services business (an agency) with an AI software business (a SaaS product). An AI agency does not sell software. An AI agency sells outcomes. You are a service provider who uses AI as your tool to solve specific, expensive operational bottlenecks.",
-              "Business owners are not technical. When you explain n8n, they hear complexity. Complexity represents risk. Risk prevents them from signing. When you explain '5 hours of staff time saved weekly' or 'missed calls answered instantly', they hear efficiency and revenue. These are outcomes they gladly pay for."
+              "Business owners are not technical. When you explain n8n, they hear complexity. Complexity represents risk. Risk prevents them from signing. When you explain '5 hours of staff time saved weekly' or 'missed calls answered instantly', they hear efficiency and revenue. These are outcomes they gladly pay for.",
+              "There is a massive divide in the economy today. Enterprise companies have large budgets to hire consultant firms to build AI integrations. Small-to-midmarket local businesses have no such budgets, yet they suffer from the exact same operational inefficiencies:"
             ]
           },
           {
             "heading": "The $1T Automation Gap",
             "body": [
-              "There is a massive divide in the economy today. Enterprise companies have large budgets to hire consultant firms to build AI integrations. Small-to-midmarket local businesses have no such budgets, yet they suffer from the exact same operational inefficiencies: 62% of calls go unanswered, leads decay 10x after 5 minutes, and 10+ hours a week are lost to manual data entry.",
-              "This is the $1T automation gap — the opportunity sitting between enterprise AI and the local businesses that desperately need it but cannot access it. Your agency fills that gap."
+              "▶ 🎯 Key Concept",
+              "📊 62% Calls Unanswered",
+              "📊 10x Lead Decay >5 Mins",
+              "📊 10+ Hrs Weekly Manual Entry",
+              "📊 Calls Unanswered",
+              "📊 Lead Decay >5 Mins",
+              "📊 Weekly Manual Entry",
+              "📊 62%",
+              "📊 10x",
+              "📊 10+ Hrs",
+              "⚡ Why outcome-first positioning works",
+              "Building automations, chatbots, or voice agents using SOPs.",
+              "Finding leads, running outreach, closing sales, onboarding.",
+              "SOPs, VAs, project tracking, billing, and reporting.",
+              "Before you start, you must choose your business structure. There are three primary models for services:",
+              "Start with Model B (Productized Services)",
+              "If this is your first agency, do not build custom systems. Choose one primary service—like missed-call voice agent or GHL CRM automation. Package it into a single productized offer at a fixed price. Once you have closed 3 clients, you will have the SOPs, confidence, and capital to expand.",
+              "• 70% Profit Margin",
+              "• Custom Integrations",
+              "• Experienced Dev Teams",
+              "• Tailored Data Flows",
+              "• 90% Profit Margin",
+              "• Productized Services",
+              "• Solo Founders / Beginners",
+              "• 1-2 Standard Packages",
+              "• 80% Profit Margin",
+              "• White-Label Partner",
+              "• Technical Builders",
+              "• Bypass Sales/Outreach"
             ]
           },
           {
-            "heading": "The Agency Triangle Framework",
+            "heading": "The 3 Agency Models Explained",
             "body": [
-              "If any pillar is missing, the agency fails to scale. The three pillars are: 1) The Service — building automations, chatbots, or voice agents using SOPs. 2) The Client — finding leads, running outreach, closing sales, onboarding. 3) The Operations — SOPs, VAs, project tracking, billing, and reporting.",
-              "Choose your model: Model A (Custom, $3k–$10k setup, 70% margin), Model B (Productized, $999–$2.5k, 90% margin — recommended for beginners), or Model C (White-Label, rev split, 80% margin).",
-              "Start with Model B. Do not build custom systems. Choose one primary service, package it into a single productized offer at a fixed price. Once you have closed 3 clients, you will have the SOPs, confidence, and capital to expand."
+              "**1. The Service**",
+              "**2. The Client**",
+              "**3. The Operations**",
+              "▶ Tasbir's Note",
+              "💰 Model A",
+              "💰 Model C",
+              "▲ 1. The Service  Building automations, chatbots, or voice agents using SOPs.",
+              "▲ 2. The Client  Finding leads, running outreach, closing sales, onboarding.",
+              "▲ 3. The Operations  SOPs, VAs, project tracking, billing, and reporting.",
+              "| Model A",
+              "| $3k-$10k",
+              "| Setup Fee",
+              "| Model B (Recommended)",
+              "| $999-$2.5k",
+              "| Setup Fee",
+              "| Model C",
+              "| Rev Split",
+              "| Wholesale Rates",
+              "🔑 If any pillar is missing, the agency fails to scale.",
+              "— Tasbir Kabir",
+              "Complete these before moving to Chapter 2:",
+              "Model A (Custom)",
+              "Model B (Productized)",
+              "Model C (White-Label)"
+            ]
+          },
+          {
+            "heading": "Action Plan & Worksheet",
+            "body": [
+              "▶ ✅ Action Step: Your Chapter 1 Action Items",
+              "⚡ 1. Write your outcome-first positioning statement.",
+              "⚡ 3. Set your target setup fee and retainer range.",
+              "Template: 'I help [Niche] businesses save [Hours] and capture [Result] using automated systems.'",
+              "2. Select your starting agency model."
             ]
           }
         ]
       },
       {
         "id": "ch-2",
-        "title": "The Founder Mindset",
+        "title": "THE FOUNDER MINDSET",
         "sections": [
           {
-            "heading": "Freelancer Brain vs. Founder Brain",
+            "heading": "Overview",
             "body": [
-              "The most common reason AI agencies fail is a mindset that was built for employment — never updated for ownership. A freelancer waits to be told what to work on, trades time for money, and sees marketing as an expense. A founder decides what matters, prices for leverage, and sees marketing as the engine.",
-              "The shift feels uncomfortable. You will catch yourself doing busywork because it feels productive. The test: if the task does not lead to a client, a deliverable, or a system, it is not founder work."
+              "The most common reason AI agencies fail is a mindset that was built for employment—never updated for ownership. Most people who try to start an AI agency have spent years in environments where someone else set the direction, assigned the tasks, defined success, and paid them on a schedule regardless of output.",
+              "A freelancer solves the problems given to them. A founder creates the systems that generate problems worth solving—and builds teams to solve them.",
+              "What the shift actually feels like",
+              "The clearest signal that your mindset is still in freelancer mode is this: you spend more time thinking about how to deliver work than thinking about how to get work. Delivery thinking is comfortable. Acquisition is uncomfortable. Lean into acquisition until it becomes as natural as delivery. That is the shift.",
+              "• • Waits to be told what to work on",
+              "• • Measures success by tasks completed",
+              "• • Avoids decisions without full info",
+              "• • Protective of time and energy",
+              "• • Pricing is hours multiplied by rate",
+              "• • Goal: finish the project",
+              "• • Sets direction; creates the agenda",
+              "• • Measures success by outcomes generated",
+              "• • Decides with incomplete information",
+              "• • Invests time as capital into systems",
+              "• • Pricing is value delivered to client",
+              "• • Goal: build a system that produces results"
+            ]
+          },
+          {
+            "heading": "The Identity Shift Nobody Warns You About",
+            "body": [
+              "**FREELANCER BRAIN**",
+              "**FOUNDER BRAIN**",
+              "▶ Tasbir's Note",
+              "🔑 Freelancer Brain vs. Founder Brain",
+              "— Tasbir Kabir",
+              "To scale, you must transition from working in your business to working on your business. This requires a layered enterprise architecture."
+            ]
+          },
+          {
+            "heading": "The Agency Operating System Architecture",
+            "body": [
+              "🔑 Enterprise Layered System",
+              "⬡ MARKETING LAYER (Content, Outreach, Lead Gen)",
+              "⬡ SALES LAYER (Discovery, Proposals, CRM, Closing)",
+              "⬡ OPERATIONS LAYER (SOPs, VAs, Project Management)",
+              "⬡ FINANCE LAYER (Invoicing, Retainers, Margins)",
+              "CEO DASHBOARD (KPIs & Strategic Oversight)",
+              "DELIVERY LAYER (Builds, QA, Voice/Chat/Auto Stacks)",
+              "AUTOMATION & AI INFRASTRUCTURE (n8n, Vapi, OpenAI, Pinecone)",
+              "Symptom:",
+              "Consuming tutorials instead of cold outreach.",
+              "Antidote:",
+              "Set a hard deadline to send 10 audits within 7 days.",
+              "Symptom:",
+              "Tweaking logos, web design, or pricing without calls.",
+              "Antidote:",
+              "Ship a 'good enough' offer and iterate based on feedback.",
+              "Symptom:",
+              "Planning how to spend $10k/mo before landing a client.",
+              "Antidote:",
+              "Focus on inputs: 10 Loom audits sent daily.",
+              "Symptom:",
+              "Stalling outreach because competitors look established.",
+              "Antidote:",
+              "Focus on local, underserved niches where giants don't play.",
+              "Symptom:",
+              "Trying to build, sell, and do bookkeeping alone.",
+              "Antidote:",
+              "Build standard SOPs early and hire developer contractors."
             ]
           },
           {
             "heading": "The 5 Mental Traps that Stall Agency Growth",
             "body": [
-              "1. The Learning Loop — consuming tutorials instead of collecting clients. 2. The Perfectionism Trap — refining the brand instead of running outreach. 3. The Tool Addiction — chasing every new AI tool instead of mastering one stack. 4. The Discount Reflex — lowering prices to avoid rejection. 5. The Solo Trap — refusing to delegate because 'it's faster to do it myself.'",
-              "Each trap feels productive in the moment and costs you months. The antidote is the same for all five: ship to real clients and let their feedback rewire your priorities."
+              "**1. The Learning Loop**",
+              "**2. Perfectionism**",
+              "**3. Revenue Fantasy**",
+              "**4. Comparison Paralysis**",
+              "**5. Lone Wolf Syndrome**",
+              "◆ 1. The Learning Loop  Symptom:  Consuming tutorials instead of cold outreach. Antidote:  Set a hard deadline to send 10 audits within 7 days.      2. Perfectionism  Symptom:  Tweaking logos, web design, or pricing without calls. Antidote:  Ship a 'good enough' offer and iterate based on feedback.      3. Revenue Fantasy  Symptom:  Planning how to spend $10k/mo before landing a client. Antidote:  Focus on inputs: 10 Loom audits sent daily.      4. Comparison Paralysis  Symptom:  Stalling outreach because competitors look established. Antidote:  Focus on local, underserved niches where giants don't play.      5. Lone Wolf Syndrome  Symptom:  Trying to build, sell, and do bookkeeping alone. Antidote:  Build standard SOPs early and hire developer contractors.",
+              "Scrape and qualify 50 niche contacts. Add leads to CRM.",
+              "Record and dispatch 10 personalized Loom audits. Track clicks and replies.",
+              "Configure n8n/Make blueprints, build Vapi voice sandbox. Deploy workflows.",
+              "Call warm replies, follow up on sent proposals. Book discovery calls.",
+              "Verify campaign deliverable metrics, build next-day list.",
+              "Write honest answers to these three questions right now:",
+              "1. What am I most afraid will happen when I start reaching out to clients?",
+              "2. What is the realistic worst-case outcome if that fear comes true?",
+              "3. If that worst case happened, could I recover from it?"
             ]
           },
           {
-            "heading": "High-Performance Scheduling System",
+            "heading": "The Daily Founder Activity Tracker",
             "body": [
-              "08:00–10:00 Outbound Prospecting — scrape and qualify 50 niche contacts, add leads to CRM. 10:00–12:00 Custom Video Audits — record and dispatch 10 personalized Loom audits. 13:00–15:00 Core System Delivery — configure n8n/Make blueprints, build Vapi voice sandbox. 15:00–16:30 Follow-ups & CRM Hygiene — call warm replies, book discovery calls. 16:30–17:30 EOD Review & Prep — verify metrics, build next-day list.",
-              "The schedule is the system. Protect the morning for acquisition; the afternoon can absorb delivery. Never let delivery crowd out prospecting — that is how agencies starve in 90 days."
+              "**Outbound Prospecting**",
+              "**Custom Video Audits**",
+              "**Core System Delivery**",
+              "**Follow-ups & CRM Hygiene**",
+              "**EOD Review & Prep**",
+              "▶ ✅ Action Step: Fear Audit Worksheet",
+              "🔑 High-Performance Scheduling System",
+              "⏰ 08:00 - 10:00",
+              "⏰ 10:00 - 12:00",
+              "⏰ 13:00 - 15:00",
+              "⏰ 15:00 - 16:30",
+              "⏰ 16:30 - 17:30"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-3",
+        "title": "CHOOSING A PROFITABLE NICHE",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "When you sell to everyone, your messaging is diluted, your outreach response rate drops to zero, and you are forced to compete on price with thousands of other freelancers.",
+              "\"We build AI chatbots and custom Make.com automations for businesses.\"",
+              "• Focuses on technology",
+              "• Client figures out application",
+              "• Feels like a risky project",
+              "• Competes on hourly rate",
+              "\"We build automated booking assistants specifically for dental clinics.\"",
+              "• Focuses on outcome",
+              "• Directly addresses pain points",
+              "• Feels like an industry solution",
+              "• Commands premium packages",
+              "High-ticket industry. Core Service: Missed-call text-back and lead-qualification voice agents.",
+              "Live and die by booking calendars. Core Service: Out-of-hours booking assistants.",
+              "High hourly rates wasted on admin. Core Service: Intake voice agents and document-summarization.",
+              "Need capacity scaling. Core Service: Automated client reporting dashboards.",
+              "Hundreds of repetitive queries. Core Service: Shopify-integrated support bots.",
+              "Spend days vetting leads. Core Service: Social media lead-qualification bots."
+            ]
+          },
+          {
+            "heading": "The 7 High-Paying Niches for AI Agencies",
+            "body": [
+              "**Generic Agency Pitch (Avoid)**",
+              "**Specialized Agency Pitch (Use)**",
+              "**1. Real Estate Brokerages**",
+              "**2. Dental & Medical Clinics**",
+              "**3. Law Firms**",
+              "**4. Marketing Agencies**",
+              "**5. E-commerce Brands**",
+              "**6. High-Ticket Coaches**",
+              "◆ Generic Agency Pitch (Avoid)  \"We build AI chatbots and custom Make.com automations for businesses.\" • Focuses on technology • Client figures out application • Feels like a risky project • Competes on hourly rate      Specialized Agency Pitch (Use)  \"We build automated booking assistants specifically for dental clinics.\" • Focuses on outcome • Directly addresses pain points • Feels like an industry solution • Commands premium packages",
+              "◆ 1. Real Estate Brokerages  High-ticket industry. Core Service: Missed-call text-back and lead-qualification voice agents.      2. Dental & Medical Clinics  Live and die by booking calendars. Core Service: Out-of-hours booking assistants.      3. Law Firms  High hourly rates wasted on admin. Core Service: Intake voice agents and document-summarization.      4. Marketing Agencies  Need capacity scaling. Core Service: Automated client reporting dashboards.      5. E-commerce Brands  Hundreds of repetitive queries. Core Service: Shopify-integrated support bots.      6. High-Ticket Coaches  Spend days vetting leads. Core Service: Social media lead-qualification bots.",
+              "= Charity",
+              "= Consulting Drag",
+              "= Premium Growth",
+              "Build micro-list of 20 leads.",
+              "\"Feather\" value-first message.",
+              "Maintain authority in replies.",
+              "15% reply rate = proceed.",
+              "Subject:",
+              "Quick make.com blueprint for [Company Name]",
+              "\"Hi [First Name], I was looking at your website and noticed your contact form doesn't automatically trigger an SMS follow-up, causing a 15% lead drop-off. I built a pre-configured Make.com template that automatically syncs contact form entries to HubSpot and sends an instant SMS link. Do you want me to send over a screenshot of the canvas? No cost or sales pitch, just thought you'd find it useful.\""
+            ]
+          },
+          {
+            "heading": "The 48-Hour Niche Validation Protocol",
+            "body": [
+              "**High Pain + Low Budget**",
+              "**Low Pain + High Budget**",
+              "**High Pain + High Budget**",
+              "**1. Scrape**",
+              "**2. Outreach**",
+              "**3. Handle**",
+              "**4. Validate**",
+              "▶ ✅ Action Step: Feather Outreach Template",
+              "🔑 The Niche Profitability Matrix"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-4",
+        "title": "HIGH-INCOME AI SERVICES",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "Quick to deliver (1-3 days). Easy to explain. Ideal for warming up a new niche.",
+              "Reliable monthly revenue. Requires discovery call and 1-2 weeks to build.",
+              "Long game, higher margins. Requires significant scoping and multi-system integration.",
+              "• Month 1–2:\n Close on Starter services. Get cash in. Get testimonials.",
+              "• Month 2–4:\n Upsell existing clients to Core. Close first Core-tier new clients.",
+              "• Month 4+:\n Build one Premium service as your 'anchor' offer. This is your referral magnet."
+            ]
+          },
+          {
+            "heading": "The Three Service Tiers",
+            "body": [
+              "**Starter Tier ($300 - $1,000)**",
+              "**Core Tier ($1,000 - $4,000)**",
+              "**Premium Tier ($4,000 - $12,000+)**",
+              "▶ 🎯 Key Concept",
+              "◆ Starter Tier ($300 - $1,000)  Quick to deliver (1-3 days). Easy to explain. Ideal for warming up a new niche.      Core Tier ($1,000 - $4,000)  Reliable monthly revenue. Requires discovery call and 1-2 weeks to build.      Premium Tier ($4,000 - $12,000+)  Long game, higher margins. Requires significant scoping and multi-system integration.",
+              "⚡ CRM Workflow Sync",
+              "⚡ AI Voice Receptionist",
+              "⚡ RAG Knowledge Chatbot",
+              "⚡ The starter-to-anchor progression",
+              "Service Area",
+              "Setup Price",
+              "Retainer",
+              "Margins",
+              "Tech Stack",
+              "$999 - $2,500",
+              "$250 - $500/mo",
+              "n8n, Make.com, HubSpot, Twilio SMS.",
+              "$2,500 - $6,000",
+              "$500 - $1,500/mo",
+              "Vapi / Retell AI, Twilio APIs, ElevenLabs.",
+              "$1,500 - $4,500",
+              "$300 - $800/mo",
+              "Pinecone, OpenAI API, LangGraph, Python.",
+              "Your agency is the central orchestrator of a hub-and-spoke ecosystem. Don't sell isolated bots; sell integrated infrastructure.",
+              "Central Orchestrator"
+            ]
+          },
+          {
+            "heading": "The AI Agency Service Stack",
+            "body": [
+              "**AI Agency Core**",
+              "→ AI Voice Agents",
+              "→ AI Automations",
+              "→ AI Chatbots",
+              "→ CRM Systems",
+              "→ Lead Generation",
+              "→ Analytics / Reporting",
+              "🔑 Platform Architecture Map"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-5",
+        "title": "AI VOICE AGENTS — DEEP DIVE",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "Triggered by incoming call. Answers missed calls. Always-on. Complexity: Low-Med. Setup: 1-5 days.",
+              "Triggered by CRM event. Calls contacts on schedule. High-volume sequences. Complexity: Med-High. Setup: 1-3 weeks.",
+              "Start with Bland AI, graduate to VAPI",
+              "Bland AI has the lowest barrier to entry. Build your first 2-3 client agents on Bland AI. Once you understand call flows, interruption handling, and prompt engineering deeply, move to VAPI for clients who need custom LLM routing or complex tool calls."
+            ]
+          },
+          {
+            "heading": "VAPI vs. Bland AI vs. Retell AI",
+            "body": [
+              "**Inbound Agent**",
+              "**Outbound Agent**",
+              "▶ 💡 Pro Tip",
+              "◆ Inbound Agent  Triggered by incoming call. Answers missed calls. Always-on. Complexity: Low-Med. Setup: 1-5 days.      Outbound Agent  Triggered by CRM event. Calls contacts on schedule. High-volume sequences. Complexity: Med-High. Setup: 1-3 weeks.",
+              "⚡ Customization",
+              "Criteria",
+              "Best for",
+              "Developers, complex flows",
+              "Speed, scale, affordability",
+              "Polished UX, easier setup",
+              "Latency",
+              "Low (~600–900ms)",
+              "Very Low (~400ms)",
+              "Low (~500–800ms)",
+              "Pricing",
+              "~$0.05–$0.12 / min",
+              "~$0.03–$0.09 / min",
+              "~$0.05–$0.13 / min",
+              "Very High (full API)",
+              "Medium (simplified)",
+              "High (GUI + API)",
+              "Every high-performing voice agent script follows the same structural architecture.",
+              "Ask the client: 'How many inbound calls do you receive per month?' A dental clinic receiving 300 calls/month at 2 mins per call = 600 mins. At $0.08/min (Bland AI), that's $48/month in API costs. Add your 30% buffer and include it in retainer. Structure your contract with a clear call volume tier and an overage rate from day one."
+            ]
+          },
+          {
+            "heading": "The Universal Agent Script Template",
+            "body": [
+              "▶ ⚠️ Common Mistake",
+              "⚡ Never price a voice retainer without estimating call volume first",
+              "SYSTEM PROMPT TEMPLATE",
+              "— AI VOICE AGENT",
+              "─────────────────────────────────────────────────────────────",
+              "You are [Agent Name]",
+              ", the AI assistant for [Business Name]",
+              "Your role is to answer inbound calls and [PRIMARY OBJECTIVE]",
+              "PERSONALITY:",
+              "- Warm, professional, and concise.",
+              "- Never robotic. Use natural filler phrases ('Of course!', 'Great choice.').",
+              "- If you don't know an answer, say: 'Let me connect you with our team.'",
+              "CALL FLOW:",
+              "1. Greet the caller and identify their intent.",
+              "2. Ask only ONE question at a time.",
+              "3. Qualify: [LIST YOUR 3 KEY QUALIFICATION QUESTIONS]",
+              "4. Book using the calendar tool OR route to human if flagged.",
+              "5. Confirm the outcome and end warmly.",
+              "RULES:",
+              "- Never discuss pricing in detail.",
+              "- Never make promises outside your listed services.",
+              "- If the caller is angry or distressed, ALWAYS transfer to a human.",
+              "- Maximum call duration: 5 minutes before offering a callback.",
+              "TOOLS AVAILABLE:",
+              "- check_calendar(date, time)",
+              "- book_appointment(name, phone, date, time, reason)",
+              "- send_sms(phone, message)",
+              "- escalate_to_human(reason)"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-6",
+        "title": "AI AUTOMATIONS — DEEP DIVE",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "Speed-to-lead is the biggest driver of conversion. (Worth $1,500–$3,000)",
+              "Route positive to Google, negative to internal alert.",
+              "48hr reminder, 2hr reminder, no-show re-booking flow.",
+              "Auto-invoice milestones, escalating overdue reminders.",
+              "Transcribe long-form content, AI extracts insights, generates multi-platform posts.",
+              "Standard automation:",
+              "IF [new lead] → THEN [send email]",
+              "AI-enhanced automation:",
+              "IF [new lead] → AI reads their LinkedIn, company size, and website → THEN [generates a personalised first email referencing their specific recent company news]"
+            ]
+          },
+          {
+            "heading": "The 5 Automations Every Business Needs",
+            "body": [
+              "**1. Lead Capture → CRM → Follow-Up**",
+              "**2. Review Request Automation**",
+              "**3. Appointment Reminder & No-Show**",
+              "**4. Invoice & Payment Follow-Up**",
+              "**5. AI Content Repurposing Pipeline**",
+              "▶ 🎯 Key Concept",
+              "◆ 1. Lead Capture → CRM → Follow-Up  Speed-to-lead is the biggest driver of conversion. (Worth $1,500–$3,000)      2. Review Request Automation  Route positive to Google, negative to internal alert.      3. Appointment Reminder & No-Show  48hr reminder, 2hr reminder, no-show re-booking flow.      4. Invoice & Payment Follow-Up  Auto-invoice milestones, escalating overdue reminders.      5. AI Content Repurposing Pipeline  Transcribe long-form content, AI extracts insights, generates multi-platform posts.",
+              "⚡ Visual builder",
+              "⚡ AI/LLM integration",
+              "⚡ What makes a workflow 'AI-enhanced'?",
+              "Criteria",
+              "Make (Integromat)",
+              "Hosting",
+              "Self-hosted (VPS) or n8n Cloud",
+              "Cloud only (Make servers)",
+              "Node-based canvas (steeper curve)",
+              "Module-based, highly visual (easy)",
+              "Native LLM + Langchain nodes",
+              "HTTP calls to OpenAI; less native AI",
+              "Best for",
+              "Complex, AI-powered, custom workflows",
+              "Simple-to-medium multi-app workflows"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-7",
+        "title": "AI CHATBOTS — DEEP DIVE",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "WRONG: 'Someone will get back to you soon.'",
+              "RIGHT: 'You'll hear from us within 2 business hours.'",
+              "Vague handoffs destroy trust. A specific time commitment builds it."
+            ]
+          },
+          {
+            "heading": "3-Layer Handoff Architecture",
+            "body": [
+              "▶ ⚠️ Common Mistake",
+              "⚡ Core strength",
+              "⚡ AI capability",
+              "⚡ Setup speed",
+              "⚡ Best used for",
+              "⚡ Layer 1: AI Retry",
+              "⚡ Layer 2: Async Hand",
+              "⚡ Layer 3: Live Hand",
+              "⚡ Never leave a handoff without a time commitment",
+              "Criteria",
+              "AI-powered FAQ & knowledge bots",
+              "Social media & messenger marketing",
+              "Complex conversational flows & voice",
+              "Very High (GPT-4o native)",
+              "Medium (AI Step add-on)",
+              "High (custom LLM integrations)",
+              "Very Fast (minutes to live bot)",
+              "Fast (1–3 hours for basic flows)",
+              "Medium (1–3 days for complex flows)",
+              "Knowledge bases, support bots",
+              "Social DM automation, e-commerce",
+              "Complex qualification, voice/web hybrid",
+              "Script Template:",
+              "Real Estate Enquiry Bot",
+              "BOT: Hi there! I'm [Agent Name]'s AI assistant. Are you looking to buy, sell, or explore the market today?",
+              "USER: [Buy / Sell / Just looking]",
+              "BOT: Great! To point you in the right direction — what's your approximate timeline? (Within 3 months / 3–6 months / 12+ months)",
+              "USER: [Timeline selection]",
+              "BOT: Perfect. And what's your rough budget range? ($200k–$400k / $400k–$700k / $700k+ / Not sure yet)",
+              "USER: [Budget selection]",
+              "BOT: Last one — what area or neighbourhood are you most interested in?",
+              "USER: [Free text response]",
+              "BOT: Thanks! Based on what you've told me, [Agent] has 3 listings that might be a great fit. Want me to book a 15-min call to walk you through them? [Book a call] [Send me listings by email]",
+              "- Rephrase and try again. Offer button options. (Instant)",
+              "- Collect details, promise callback. (Within biz hours)",
+              "- Transfer to live chat. (Immediate)"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-8",
+        "title": "PRICING AI SERVICES",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "How price is set: Your hours × hourly rate + tool costs. Typical result: Chronic undercharging. Capped by your own time.",
+              "How price is set: % of the value created for the client. Typical result: Premium margins. Capped only by the value you create.",
+              "Always use the client's own numbers",
+              "Do not make up the ROI figures. Ask for them during the discovery call. When clients calculate the ROI with their own numbers, they own the conclusion. You are not selling — you are helping them see what they are already losing.",
+              "• Missed-Call Text-Back",
+              "• Review Automation",
+              "• Lead Capture Bot",
+              "• $150-$350/mo Retainer",
+              "• Appt Booking System",
+              "• Lead Nurture Auto",
+              "• Inbound Voice Agent",
+              "• $400-$1.2k/mo Retainer",
+              "• AI Outbound Sales",
+              "• RAG Document System",
+              "• Full AI Ops Transform",
+              "• $1.5k-$4k/mo Retainer"
+            ]
+          },
+          {
+            "heading": "The Complete AI Agency Rate Card",
+            "body": [
+              "**Cost-Based Pricing (Internal Only)**",
+              "**Value-Based Pricing (Client-Facing)**",
+              "▶ 💡 Pro Tip",
+              "◆ Cost-Based Pricing (Internal Only)  How price is set: Your hours × hourly rate + tool costs. Typical result: Chronic undercharging. Capped by your own time.      Value-Based Pricing (Client-Facing)  How price is set: % of the value created for the client. Typical result: Premium margins. Capped only by the value you create.",
+              "💰 Starter ★",
+              "💰 Premium ★★★",
+              "| Starter ★",
+              "| $300+",
+              "| Setup Fee",
+              "| Core ★★",
+              "| $1.2k+",
+              "| Setup Fee",
+              "| Premium ★★★",
+              "| $4k+",
+              "| Setup Fee",
+              "Guide clients naturally up a staircase of revenue. Each step builds trust and increases lifetime value."
+            ]
+          },
+          {
+            "heading": "The AI Agency Value Ladder",
+            "body": [
+              "🔑 Revenue Progression Architecture",
+              "AI Audit",
+              "$500",
+              "Automation Setup",
+              "$2,000",
+              "Monthly Retainer",
+              "Custom AI System",
+              "$5,000",
+              "Enterprise Solution",
+              "$10,000+"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-9",
+        "title": "CREATING OFFERS THAT SELL",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "The $999 offer is deliberately priced below the business owner's internal approval threshold. Below $1,000, most business owners can approve a purchase without a board meeting or accountant sign-off.",
+              "• Missed-call text-back system (SMS within 60 seconds)",
+              "• Lead-capture chatbot on your website homepage",
+              "• CRM entry for every captured lead",
+              "• Automated SMS follow-up sequence (3 messages over 48 hours)",
+              "• 30-day performance report showing leads captured vs. missed"
+            ]
+          },
+          {
+            "heading": "Guarantee Structures That Reduce Buyer Risk",
+            "body": [
+              "| AI Lead Capture Sprint",
+              "| For real estate agents, home service businesses, and local clinics",
+              "⚡ Outcome guarantee",
+              "⚡ Extension guarantee",
+              "GUARANTEE:",
+              "If your system doesn't capture at least 5 new leads in your first 30 days, I'll extend your setup and optimise it at no charge until it does.",
+              "Guarantee Type",
+              "Best For",
+              "If X doesn't happen within Y days, we do Z",
+              "Services with measurable results",
+              "Money-back",
+              "Full refund within 30 days, no questions asked",
+              "Entry-level offers, new clients",
+              "We keep working at no charge until results are met",
+              "Implementation-heavy projects"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-10",
+        "title": "FINDING YOUR FIRST CLIENTS",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "Do not send a cold email on Day 1. Your fastest path to a first client is a message to someone who already knows and trusts you. They do not need to be convinced you are credible. The trust is already there. Channel 1 produces first clients in days, not weeks. Do it first."
+            ]
+          },
+          {
+            "heading": "The 5 Client Acquisition Channels",
+            "body": [
+              "▶ 🎯 Key Concept",
+              "⚡ 1. Warm outreach",
+              "⚡ 2. Referral requests",
+              "⚡ 3. LinkedIn direct message",
+              "⚡ 4. Cold email",
+              "⚡ 5. Content marketing",
+              "⚡ Your Week 1 priority is Channel 1 only",
+              "Effort Level",
+              "Expected Reply Rate",
+              "(contacts you know)",
+              "15–40%",
+              "Low–Med",
+              "20–50%",
+              "Medium",
+              "5–15%",
+              "Med–High",
+              "2–8%",
+              "Indirect / months",
+              "Agency growth is a math equation. Monitor conversion rates at every stage to identify bottlenecks."
+            ]
+          },
+          {
+            "heading": "The Client Acquisition Funnel",
+            "body": [
+              "🔑 SaaS Analytics Dashboard View",
+              "⚡ 1000 Prospects",
+              "⚡ 200 Responses",
+              "⚡ 50 Conversations",
+              "⚡ 5 Proposals",
+              "Cold Email / Social",
+              "20% Open/Reply Rate",
+              "Value Drop / Loom",
+              "20 Calls",
+              "Discovery Booked",
+              "Custom Pitch",
+              "2 Clients",
+              "Closed Won",
+              "Offer doc + 50 names on paper. Set up LinkedIn Creator profile.",
+              "50 messages sent. Track replies.",
+              "100 connections sent. 5–15 replies.",
+              "100 emails sent. 3–8 replies.",
+              "20–30 follow-ups sent on previous weeks' threads.",
+              "1 signed client. 1 referral ask.",
+              "They send 5–10 messages in Week 1, get no instant replies, and conclude that outreach 'doesn't work for them.' This is a volume problem. 50 warm messages + 100 LinkedIn requests + 100 cold emails = 250 total touches. At a 5% positive response, that is 12–15 conversations. At a 25% close rate, that is 3 new clients. The math works. The question is whether you will do the work."
+            ]
+          },
+          {
+            "heading": "The 30-Day First Client Playbook",
+            "body": [
+              "▶ ⚠️ Common Mistake",
+              "🔑 Execution Schedule",
+              "⏰ Days 1–3: Preparation",
+              "⏰ Days 4–7: Warm Outreach",
+              "⏰ Days 8–14: LinkedIn Launch",
+              "⏰ Days 15–21: Cold Email",
+              "⏰ Days 22–28: Follow-ups",
+              "⏰ Days 29–30: Close & Activate",
+              "⚡ The #1 reason people don't get clients in 30 days"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-11",
+        "title": "THE DISCOVERY CALL & SALES",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "Make comfortable, establish conversation.",
+              "Understand problem, quantify cost of inaction.",
+              "Get them to describe ideal outcome.",
+              "Match offer directly to pain. No features.",
+              "Response:",
+              "\"I understand — and I want to make sure the investment makes sense for you. Let me ask — if this system captures just [X] extra leads per month, and each client is worth [$Y] to you, what does that look like over 12 months? ... The way most of my clients think about it is: this pays itself back in the first [X weeks] of captured leads. If budget is the constraint, I do have a Starter package at $[lower price]. Would that make more sense?\""
+            ]
+          },
+          {
+            "heading": "The PAIN Qualification Framework",
+            "body": [
+              "**1. Rapport**",
+              "**2. Diagnose**",
+              "**3. Vision**",
+              "**4. Solution**",
+              "▶ ✅ Action Step: Objection Script",
+              "5. Close & Propose → Move toward a decision. Never leave without a specific follow-up.",
+              "Letter",
+              "Element",
+              "Qualifying Question",
+              "Green Flag",
+              "Problem",
+              "Do they have a clear, specific problem?",
+              "They describe it with emotion",
+              "Authority",
+              "Is this person the decision maker?",
+              "Yes — they own the business",
+              "Impact",
+              "What is the financial cost of the problem?",
+              "They know the number",
+              "Need now",
+              "Is there urgency to solve this soon?",
+              "'We need this fixed before [month]'",
+              "Objection:",
+              "\"That's too expensive. / I can't afford that right now.\""
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-12",
+        "title": "DELIVERING PROJECTS & ONBOARDING",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "Clients who receive a prompt, professional onboarding sequence are 3x more likely to stay past month 3.",
+              "Subject:",
+              "Welcome to [Agency Name] — here's what happens next",
+              "\"Hi [Name], Brilliant — it's official. Welcome to [Agency Name]. I'm genuinely excited about what we're going to build for [Business Name]. Here's exactly what happens over the next few days:",
+              "Day 1: You'll receive a short onboarding form — takes about 10 minutes.",
+              "Day 2: We'll have a 30-min kick-off call to align on the details.",
+              "Day [X]: Your [service] will be live and we'll walk through it together.",
+              "In the meantime, if anything comes to mind, just reply to this email. Looking forward to it.\"",
+              "Kick-off + Onboarding form received. Collect all access, credentials, brand assets.",
+              "System architecture design. Map call flow or chatbot flow. Draft agent script.",
+              "Build phase. Configure automation/agent. Connect to CRM. Set up triggers.",
+              "Internal testing. Run 20+ test scenarios. Document failures. Fix edge cases.",
+              "Client review session. Live walkthrough. Client tests system. Final adjustments.",
+              "Go-live + handover call. Launch system. Deliver SOP doc. Book 30-day check-in.",
+              "• Rule 1: Never let 5 days pass without contact during an active project.",
+              "• Rule 2: Always end every update with a clear next step — what YOU are doing next.",
+              "• Rule 3: Any delay, no matter how small, is communicated BEFORE the deadline — not after."
+            ]
+          },
+          {
+            "heading": "Project Timeline Templates",
+            "body": [
+              "▶ ✅ Action Step: Welcome Email Template",
+              "▶ 🎯 Key Concept",
+              "🔑 7-Day Delivery Sprint Roadmap",
+              "⏰ Day 1",
+              "⏰ Day 2",
+              "⏰ Day 3–4",
+              "⏰ Day 5",
+              "⏰ Day 6",
+              "⏰ Day 7",
+              "⚡ The 3 rules of project communication",
+              "Map every touchpoint. Operational excellence is what turns a one-off project into a multi-year retainer."
+            ]
+          },
+          {
+            "heading": "The Client Journey Map",
+            "body": [
+              "🔑 End-to-End Client Lifecycle",
+              "⚡ Implementation",
+              "⚡ Optimization",
+              "Discovery",
+              "Audit Call",
+              "Proposal",
+              "Custom Pitch",
+              "Payment",
+              "Stripe Invoice",
+              "Onboarding",
+              "Kickoff Call",
+              "Build Phase",
+              "Delivery",
+              "Go-Live QA",
+              "Retainer Tuning",
+              "Retention",
+              "Monthly Reports",
+              "Referral",
+              "Loop Back"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-13",
+        "title": "SOPS, SYSTEMS & TECH STACK",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "Never send a report showing technical metrics. Translate every technical action into a business metric.",
+              "• Make runs",
+              "• Bot queries",
+              "• VAPI calls",
+              "• Database entries",
+              "• Leads processed & synchronized",
+              "• Customer questions resolved",
+              "• Inbound calls answered instantly",
+              "• New CRM contacts added"
+            ]
+          },
+          {
+            "heading": "Monthly Reporting — How to Retain Clients",
+            "body": [
+              "**Technical Metric (Avoid)**",
+              "**Business Metric (Use)**",
+              "◆ Technical Metric (Avoid)    Make runs  Bot queries  VAPI calls  Database entries        Business Metric (Use)    Leads processed & synchronized  Customer questions resolved  Inbound calls answered instantly  New CRM contacts added",
+              "⚡ AI Voice Agents",
+              "⚡ AI Chatbots",
+              "⚡ Workflow Auto",
+              "Category",
+              "Industry Standards",
+              "Our Recommendation",
+              "VAPI, Bland AI, Retell AI",
+              "— easiest API, lowest latency, superb docs.",
+              "Chatbase, Voiceflow, Botpress",
+              "— fastest to build, easiest white-label.",
+              "n8n, Make, Zapier",
+              "(beginners), n8n",
+              "(complex enterprise).",
+              "Cold Email",
+              "Instantly, Smartlead.ai",
+              "— unlimited accounts, built-in warmup.",
+              "Payments",
+              "Stripe, Wise, PayPal",
+              "— standard billing, supports subscriptions."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-14",
+        "title": "SCALING TO $10K & $30K/MONTH",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "Never assume your business is stable because you have one $5,000/month client. If that single client cancels, your revenue drops by 100%. You do not have a real agency until you have at least three separate clients. The 3-client minimum distributes risk so that no single contract accounts for more than 35% of your business revenue.",
+              "• Founder (You):\n 90% of ops. Sales, solution design, builds, comms.",
+              "• General VA (1 PT):\n Sources lead lists, drafts reports, basic admin.",
+              "• Founder (You):\n Growth, high-end sales, strategy.",
+              "• Project Manager (1 PT/FT):\n Primary client contact, manages contractors.",
+              "• Delivery Contractors (2):\n 1 x n8n dev, 1 x VAPI specialist.",
+              "• General VA (1 PT):\n Admin and lead sourcing."
+            ]
+          },
+          {
+            "heading": "Milestone 2 — Scaling to $30,000/Month",
+            "body": [
+              "**The $10K Agency Team**",
+              "**The $30K Agency Team**",
+              "▶ 🎯 Key Concept",
+              "◆ The $10K Agency Team    Founder (You):  90% of ops. Sales, solution design, builds, comms.  General VA (1 PT):  Sources lead lists, drafts reports, basic admin.        The $30K Agency Team    Founder (You):  Growth, high-end sales, strategy.  Project Manager (1 PT/FT):  Primary client contact, manages contractors.  Delivery Contractors (2):  1 x n8n dev, 1 x VAPI specialist.  General VA (1 PT):  Admin and lead sourcing.",
+              "⚡ Option A: Core + Retainers",
+              "⚡ Option B: High-end builds",
+              "⚡ Option C: Productized",
+              "⚡ The 3-Client Minimum Rule",
+              "Client Mix Strategy",
+              "Client Count & Pricing",
+              "Total Revenue",
+              "4 projects @ $2,000 + 4 retainers @ $500/mo",
+              "$10,000 / mo",
+              "2 enterprise @ $5,000 + 2 retainers @ $1,000/mo",
+              "$12,000 / mo",
+              "8 starter @ $999 + 8 retainers @ $250/mo",
+              "$9,992 / mo",
+              "Sustainable scale comes from compounding momentum. Every result feeds the next acquisition loop."
+            ]
+          },
+          {
+            "heading": "The Agency Growth Flywheel",
+            "body": [
+              "→ 1. Content",
+              "→ 2. Authority",
+              "→ 3. Calls",
+              "→ 4. Clients",
+              "→ 5. Results",
+              "→ 6. Testimonials",
+              "→ 7. Referrals",
+              "→ ↳ More Content",
+              "🔑 Compounding Growth Loop"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ch-15",
+        "title": "FUTURE, CASE STUDIES & ACTION PLAN",
+        "sections": [
+          {
+            "heading": "Overview",
+            "body": [
+              "Problem:",
+              "Losing 15-20 patient calls per week after-hours.",
+              "Solution:",
+              "VAPI inbound voice agent + Google Calendar.",
+              "Results:",
+              "38 bookings in month 1 ($11,400 value). 8 hrs/week saved.",
+              "Pricing:",
+              "$2,500 setup + $600/mo retainer.",
+              "Problem:",
+              "4-hour response times to Zillow inquiries.",
+              "Solution:",
+              "Instant SMS trigger, chatbot qualification.",
+              "Results:",
+              "Conversion up from 8% to 27%. Response time Pricing:",
+              "$1,800 setup + $400/mo retainer."
+            ]
+          },
+          {
+            "heading": "5 Real-World Implementation Case Studies",
+            "body": [
+              "**Case Study 1: Dental Clinic Voice Agent**",
+              "**Case Study 2: Real Estate Lead Flow**",
+              "◆ Case Study 1: Dental Clinic Voice Agent  Problem:  Losing 15-20 patient calls per week after-hours. Solution:  VAPI inbound voice agent + Google Calendar. Results:  38 bookings in month 1 ($11,400 value). 8 hrs/week saved. Pricing:  $2,500 setup + $600/mo retainer.      Case Study 2: Real Estate Lead Flow  Problem:  4-hour response times to Zillow inquiries. Solution:  Instant SMS trigger, chatbot qualification. Results:  Conversion up from 8% to 27%. Response time Pricing:  $1,800 setup + $400/mo retainer.",
+              "Execution over theory. Follow this exact timeline to launch, land, and scale.",
+              "\"The AI agency opportunity is real, but it is not magic. The market does not reward those who want easy money. It rewards practitioners who solve real, annoying problems for real business owners. Find a niche. Pick a service. Document your steps. Send the outreach. Deliver exceptional results. That is the blueprint. Go build it.\"",
+              "• Choose Niche",
+              "• Setup Notion/Domain",
+              "• Build Warm 50 List",
+              "• Warm Outreach",
+              "• LinkedIn/Cold Email",
+              "• Land First Client",
+              "• Build & QA SOPs",
+              "• Secure Retainer",
+              "• Hire VA / Delegate"
+            ]
+          },
+          {
+            "heading": "The 90-Day AI Agency Roadmap",
+            "body": [
+              "**Month 1: Foundation**",
+              "**Month 2: Acquisition**",
+              "**Month 3: Delivery & Scaling**",
+              "▶ Final Note",
+              "🔑 Startup Execution Timeline",
+              "— Tasbir Kabir",
+              "Tasbir Kabir is an AI consultant, automation specialist, and digital entrepreneur who has helped businesses implement AI systems across multiple industries. He writes and teaches about the practical side of building AI agencies — without the hype, and without the shortcuts.",
+              "**About the Author**",
+              "tasbirkabir.site"
             ]
           }
         ]
@@ -219,7 +1154,7 @@
   },
   "testimonials": [
     {
-      "id": "cmqksechq000qrtpk7fawhtci",
+      "id": "cmqlfzf4s000qrt0ky4u3crqx",
       "name": "Marcus Lee",
       "role": "Founder, Northwind Studio",
       "quote": "I read a lot of business books. Most are 90% filler. This one is the opposite — every page had something I wanted to implement.",
@@ -228,7 +1163,7 @@
       "avatar": null
     },
     {
-      "id": "cmqksechq000rrtpkkfcs0gqf",
+      "id": "cmqlfzf4s000rrt0ktszxrm46",
       "name": "Priya Nair",
       "role": "Solo Consultant",
       "quote": "The weekly review ritual is the single highest-leverage habit I have ever adopted. Three months in, I can actually see my business.",

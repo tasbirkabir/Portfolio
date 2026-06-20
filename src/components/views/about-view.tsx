@@ -80,7 +80,7 @@ export function AboutView() {
               <div className="relative mx-auto max-w-sm">
                 <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-clay/10 blur-2xl" />
                 <div className="overflow-hidden rounded-[1.75rem] shadow-premium ring-1 ring-black/5">
-                  <img src="/images/logo.png" alt="Tasbir Kabir" className="aspect-square w-full object-cover" />
+                  <img src="/images/logo.png" alt="Tasbir Kabir" loading="lazy" className="aspect-square w-full object-cover" />
                 </div>
               </div>
             </motion.div>

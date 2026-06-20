@@ -38,8 +38,23 @@ model Book {
   content      String   @default("[]") // JSON: Chapter[] for the reader
   seoTitle     String?
   seoDesc      String?
+  assets       Asset[]  // downloadable files attached to this book
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
+
+model Asset {
+  id          String   @id @default(cuid())
+  bookId      String
+  book        Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  type        String   // pdf | epub | mobi | zip | docx | xlsx | pptx | png | jpg | svg | bonus | template | worksheet | prompt-pack | checklist | source
+  label       String   // display name, e.g. "PDF Version", "Bonus Templates"
+  filename    String   // original filename
+  fileSize    Int      // bytes
+  fileType    String   // MIME type
+  storagePath String   // path in storage (for signed URL generation)
+  downloads   Int      @default(0)
+  createdAt   DateTime @default(now())
 }
 
 model Resource {
@@ -91,13 +106,16 @@ model Testimonial {
 // ---------- Users & Auth ----------
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  password  String   // hashed (demo: stored plainly for the sandbox)
-  role      String   @default("user") // user | admin
-  banned    Boolean  @default(false)
-  createdAt DateTime @default(now())
+  id                  String   @id @default(cuid())
+  email               String   @unique
+  name                String?
+  password            String   // bcrypt hash
+  role                String   @default("user") // user | admin
+  banned              Boolean  @default(false)
+  emailVerified       Boolean  @default(false)
+  passwordResetToken  String?
+  passwordResetExpiry DateTime?
+  createdAt           DateTime @default(now())
 }
 
 model LibraryAccess {

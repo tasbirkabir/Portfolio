@@ -1,17 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Save, Loader2 } from "lucide-react";
+import { X, Save, Loader2, Upload, Trash2, FileText, File, ImageIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 
 const CATEGORIES = ["AI Business", "Automation", "Marketing", "Freelancing", "Productivity", "Systems", "Mindset"];
 const COVER_STYLES = ["editorial", "mono", "duotone", "grid", "stack"];
 const ACCESS = ["public", "free", "email-gate", "paid", "members"];
 
+const ASSET_TYPES = [
+  { value: "pdf", label: "PDF Version" },
+  { value: "epub", label: "EPUB Version" },
+  { value: "mobi", label: "MOBI Version" },
+  { value: "zip", label: "ZIP File" },
+  { value: "bonus", label: "Bonus Resource" },
+  { value: "template", label: "Template" },
+  { value: "worksheet", label: "Worksheet" },
+  { value: "prompt-pack", label: "Prompt Pack" },
+  { value: "checklist", label: "Checklist" },
+  { value: "source", label: "Source Files" },
+];
+
 export function BookEditor({ book, onClose, onSaved }: { book: any | null; onClose: () => void; onSaved: () => void }) {
   const { toast } = useToast();
   const [saving, setSaving] = useState(false);
+  const [assets, setAssets] = useState<any[]>([]);
+  const [uploading, setUploading] = useState(false);
+  const [assetType, setAssetType] = useState("pdf");
+  const [assetLabel, setAssetLabel] = useState("");
   const [form, setForm] = useState<any>(
     book || {
       title: "", slug: "", subtitle: "", description: "",
@@ -22,6 +40,51 @@ export function BookEditor({ book, onClose, onSaved }: { book: any | null; onClo
       seoTitle: "", seoDesc: "",
     }
   );
+
+  // Fetch assets when editing an existing book
+  useEffect(() => {
+    if (book?.id) {
+      fetch(`/api/books/${book.slug}`).then(r => r.json()).then(d => {
+        setAssets(d.assets || []);
+      }).catch(() => {});
+    }
+  }, [book]);
+
+  async function uploadAsset(file: File) {
+    if (!book?.id) {
+      toast({ title: "Save the book first", description: "Create or save the ebook before uploading files.", variant: "destructive" });
+      return;
+    }
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      fd.append("bookId", book.id);
+      fd.append("type", assetType);
+      fd.append("label", assetLabel || ASSET_TYPES.find(t => t.value === assetType)?.label || "File");
+      const r = await fetch("/api/admin/assets/upload", { method: "POST", body: fd });
+      const j = await r.json();
+      if (!r.ok) throw new Error(j.error);
+      setAssets([...assets, j.asset]);
+      toast({ title: "File uploaded", description: file.name });
+      setAssetLabel("");
+    } catch (e: any) {
+      toast({ title: "Upload failed", description: e.message, variant: "destructive" });
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  async function deleteAsset(id: string) {
+    if (!confirm("Delete this file?")) return;
+    try {
+      await fetch(`/api/admin/assets/${id}`, { method: "DELETE" });
+      setAssets(assets.filter(a => a.id !== id));
+      toast({ title: "File deleted" });
+    } catch {
+      toast({ title: "Delete failed", variant: "destructive" });
+    }
+  }
 
   function set<K extends keyof any>(k: K, v: any) {
     setForm((f: any) => ({ ...f, [k]: v }));
@@ -92,6 +155,61 @@ export function BookEditor({ book, onClose, onSaved }: { book: any | null; onClo
             <TA label="Reader content (JSON: [{id, title, sections:[{heading, body:[]}]}])" value={JSON.stringify(form.content || [], null, 0)} onChange={(v) => { try { set("content", JSON.parse(v)); } catch {} }} rows={5} className="font-mono text-xs" />
             <TF label="SEO title" value={form.seoTitle ?? ""} onChange={(v) => set("seoTitle", v)} />
             <TF label="SEO description" value={form.seoDesc ?? ""} onChange={(v) => set("seoDesc", v)} />
+
+            {/* Downloadable Assets Management */}
+            <div className="rounded-2xl border border-border bg-muted/30 p-4">
+              <div className="mb-3 flex items-center gap-2">
+                <Upload className="h-4 w-4 text-clay" />
+                <h4 className="text-sm font-semibold">Downloadable Assets</h4>
+                <span className="text-xs text-muted-foreground">({assets.length} files)</span>
+              </div>
+
+              {book?.id ? (
+                <>
+                  {/* Existing assets list */}
+                  {assets.length > 0 && (
+                    <div className="mb-3 space-y-1.5">
+                      {assets.map((a) => (
+                        <div key={a.id} className="flex items-center gap-2 rounded-lg bg-background px-3 py-2 text-xs">
+                          {a.type === "pdf" ? <FileText className="h-4 w-4 text-red-500" /> :
+                           a.type === "epub" || a.type === "mobi" ? <FileText className="h-4 w-4 text-blue-500" /> :
+                           a.type === "png" || a.type === "jpg" || a.type === "svg" ? <ImageIcon className="h-4 w-4 text-green-500" /> :
+                           <File className="h-4 w-4 text-muted-foreground" />}
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate font-medium">{a.label}</p>
+                            <p className="truncate text-muted-foreground">{a.filename} · {(a.fileSize / 1024 / 1024).toFixed(1)}MB · {a.downloads} downloads</p>
+                          </div>
+                          <button onClick={() => deleteAsset(a.id)} className="text-muted-foreground hover:text-destructive"><Trash2 className="h-3.5 w-3.5" /></button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Upload new asset */}
+                  <div className="space-y-2">
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      <select value={assetType} onChange={(e) => setAssetType(e.target.value)} className="rounded-lg border border-border bg-background px-3 py-2 text-xs focus:outline-none">
+                        {ASSET_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
+                      </select>
+                      <input value={assetLabel} onChange={(e) => setAssetLabel(e.target.value)} placeholder="Custom label (optional)" className="rounded-lg border border-border bg-background px-3 py-2 text-xs focus:outline-none" />
+                    </div>
+                    <label className={cn("flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-border px-4 py-3 text-xs text-muted-foreground transition-colors hover:border-clay hover:text-clay", uploading && "opacity-60")}>
+                      {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
+                      {uploading ? "Uploading…" : "Choose file to upload"}
+                      <input
+                        type="file"
+                        className="hidden"
+                        accept=".pdf,.epub,.mobi,.zip,.docx,.xlsx,.pptx,.png,.jpg,.jpeg,.svg"
+                        onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadAsset(f); e.target.value = ""; }}
+                      />
+                    </label>
+                    <p className="text-[10px] text-muted-foreground">Supported: PDF, EPUB, MOBI, ZIP, DOCX, XLSX, PPTX, PNG, JPG, SVG · Max 50MB</p>
+                  </div>
+                </>
+              ) : (
+                <p className="text-xs text-muted-foreground">Save the book first to upload downloadable files.</p>
+              )}
+            </div>
 
             <div className="flex justify-end gap-3 border-t border-border pt-4">
               <button onClick={onClose} className="rounded-full border border-border px-5 py-2.5 text-sm transition-colors hover:bg-foreground/5">Cancel</button>

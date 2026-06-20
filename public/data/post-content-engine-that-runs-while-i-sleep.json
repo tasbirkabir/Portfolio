@@ -1,6 +1,6 @@
 {
   "post": {
-    "id": "cmqksechm000jrtpk9efl5374",
+    "id": "cmqlfzf4o000jrt0k590nwnp2",
     "title": "How I Built a Content Engine That Runs While I Sleep",
     "slug": "content-engine-that-runs-while-i-sleep",
     "excerpt": "Content is the cheapest advertising you will ever produce — if it is built as a system, not a side project. Here is the exact engine behind every post on this site.",
@@ -17,7 +17,7 @@
     "status": "published",
     "seoTitle": null,
     "seoDesc": null,
-    "publishedAt": "2026-06-19T10:29:32.986Z",
-    "updatedAt": "2026-06-19T10:29:32.986Z"
+    "publishedAt": "2026-06-19T21:29:47.352Z",
+    "updatedAt": "2026-06-19T21:29:47.352Z"
   }
 }

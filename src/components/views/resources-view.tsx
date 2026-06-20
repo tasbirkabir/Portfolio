@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { Download, FileText, CheckSquare, LayoutTemplate, Bot, BookMarked, ArrowUpRight, Layers } from "lucide-react";
 import { useData } from "@/hooks/use-data";
 import { useToast } from "@/hooks/use-toast";
+import { useNav } from "@/lib/store/nav";
 import { ExpandableTabs } from "@/components/site/expandable-tabs";
 import { cn } from "@/lib/utils";
 
@@ -32,6 +33,7 @@ export function ResourcesView() {
   const { data, loading } = useData<{ resources: any[] }>("/api/resources");
   const [filter, setFilter] = useState<string>("All");
   const { toast } = useToast();
+  const navigate = useNav((s) => s.navigate);
 
   const resources = data?.resources ?? [];
   const filtered = filter === "All" ? resources : resources.filter((r) => r.type === filter);
@@ -175,7 +177,7 @@ export function ResourcesView() {
           </p>
         </div>
         <button
-          onClick={() => useNav.getState().navigate("books")}
+          onClick={() => navigate("books")}
           className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.03] active:scale-95"
         >
           Browse the books

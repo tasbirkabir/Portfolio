@@ -71,8 +71,8 @@ export function EbookReader({ slug }: { slug: string }) {
     return [];
   }, [book]);
 
-  // Preview = Chapter 1 free + first 5% of the book (at least 1 chapter).
-  const previewLimitIndex = Math.max(0, Math.ceil(chapters.length * 0.05) - 1);
+  // Preview = first 3 chapters free (or 20% of the book, whichever is more)
+  const previewLimitIndex = Math.max(2, Math.ceil(chapters.length * 0.2) - 1);
 
   const [chapterIndex, setChapterIndex] = useState(0);
   const [chapterScrollRatio, setChapterScrollRatio] = useState(0);
@@ -155,11 +155,11 @@ export function EbookReader({ slug }: { slug: string }) {
     };
   }, [fullscreen]);
 
-  // Track book view analytics
+  // Track book view analytics (admin only — avoids 401 errors for logged-out users)
   useEffect(() => {
-    if (!book) return;
+    if (!book || !user) return;
     fetch("/api/analytics", { method: "GET" }).catch(() => {});
-  }, [book]);
+  }, [book, user]);
 
   const goNext = useCallback(() => {
     // Preview gate: block navigation beyond the free preview for non-purchasers.
@@ -369,6 +369,7 @@ export function EbookReader({ slug }: { slug: string }) {
   return (
     <AnimatePresence>
       <motion.div
+        key="reader-overlay"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 30 }}
@@ -529,28 +530,83 @@ export function EbookReader({ slug }: { slug: string }) {
               style={{ fontSize: `${fontSize}px`, lineHeight: 1.75 }}
             >
               {currentChapter?.sections.map((section, si) => (
-                <section key={si}>
+                <section key={`sec-${si}`}>
                   <h2 className="mb-4 font-display text-xl tracking-tight sm:text-2xl">{section.heading}</h2>
                   <div className="space-y-5">
-                    {section.body.map((para, pi) => (
-                      <p
-                        key={pi}
-                        data-para
-                        data-chapter-id={currentChapter.id}
-                        data-section-index={si}
-                        data-para-index={pi}
-                        className={cn(
-                          "text-foreground/85 text-pretty",
-                          si === 0 && pi === 0 && "reader-dropcap"
-                        )}
-                      >
-                        {renderParagraphWithHighlights(para, si, pi, currentChapter.id, highlights, (hId) => {
-                          const h = highlights.find((x) => x.id === hId);
-                          if (h?.note) toast({ title: "Your note", description: h.note });
-                          else toast({ title: "Highlight", description: h.text.slice(0, 80) });
-                        })}
-                      </p>
-                    ))}
+                    {section.body.map((para, pi) => {
+                      // Check if this paragraph contains HTML (from ZIP import — <img>, <table>, etc.)
+                      const isHtml = para.startsWith("<") && (para.includes("<img") || para.includes("<table") || para.includes("<div"));
+
+                      if (isHtml) {
+                        return (
+                          <div
+                            key={`para-${si}-${pi}`}
+                            className="text-foreground/85 [&_img]:mt-4 [&_img]:max-w-full [&_img]:rounded-xl [&_img]:shadow-md [&_img]:mx-auto [&_blockquote]:border-l-2 [&_blockquote]:border-clay [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_table]:w-full [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:p-2 [&_th]:border [&_th]:border-border [&_th]:p-2 [&_th]:font-semibold [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_pre]:rounded-xl [&_pre]:bg-muted [&_pre]:p-4 [&_pre]:overflow-x-auto [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5"
+                            dangerouslySetInnerHTML={{ __html: para }}
+                          />
+                        );
+                      }
+
+                      // Check for blockquote prefix ("> text")
+                      if (para.startsWith("> ")) {
+                        return (
+                          <blockquote
+                            key={`para-${si}-${pi}`}
+                            className="border-l-2 border-clay pl-4 italic text-foreground/70"
+                          >
+                            {renderParagraphWithHighlights(para.slice(2), si, pi, currentChapter.id, highlights, (hId) => {
+                              const h = highlights.find((x) => x.id === hId);
+                              if (h?.note) toast({ title: "Your note", description: h.note });
+                              else toast({ title: "Highlight", description: h.text.slice(0, 80) });
+                            })}
+                          </blockquote>
+                        );
+                      }
+
+                      // Check for bullet point prefix ("• text")
+                      if (para.startsWith("• ")) {
+                        return (
+                          <div key={`para-${si}-${pi}`} className="flex gap-2 text-foreground/85">
+                            <span className="text-clay">•</span>
+                            <span>{renderParagraphWithHighlights(para.slice(2), si, pi, currentChapter.id, highlights, (hId) => {
+                              const h = highlights.find((x) => x.id === hId);
+                              if (h?.note) toast({ title: "Your note", description: h.note });
+                              else toast({ title: "Highlight", description: h.text.slice(0, 80) });
+                            })}</span>
+                          </div>
+                        );
+                      }
+
+                      // Check for bold heading prefix ("**text**")
+                      if (para.startsWith("**") && para.endsWith("**")) {
+                        return (
+                          <h3 key={`para-${si}-${pi}`} className="font-display text-lg font-semibold tracking-tight">
+                            {para.slice(2, -2)}
+                          </h3>
+                        );
+                      }
+
+                      // Regular paragraph
+                      return (
+                        <p
+                          key={`para-${si}-${pi}`}
+                          data-para
+                          data-chapter-id={currentChapter.id}
+                          data-section-index={si}
+                          data-para-index={pi}
+                          className={cn(
+                            "text-foreground/85 text-pretty",
+                            si === 0 && pi === 0 && "reader-dropcap"
+                          )}
+                        >
+                          {renderParagraphWithHighlights(para, si, pi, currentChapter.id, highlights, (hId) => {
+                            const h = highlights.find((x) => x.id === hId);
+                            if (h?.note) toast({ title: "Your note", description: h.note });
+                            else toast({ title: "Highlight", description: h.text.slice(0, 80) });
+                          })}
+                        </p>
+                      );
+                    })}
                   </div>
                 </section>
               ))}
@@ -723,6 +779,7 @@ export function EbookReader({ slug }: { slug: string }) {
 
       {/* Preview paywall checkout — opens when the reader hits the preview limit */}
       <CheckoutModal
+        key="checkout-modal"
         open={paywallOpen}
         items={book ? [{ slug: book.slug, title: book.title, type: "book" as const, price: book.price }] : []}
         onClose={() => setPaywallOpen(false)}
@@ -797,12 +854,15 @@ function renderParagraphWithHighlights(
 
   const nodes: React.ReactNode[] = [];
   let cursor = 0;
+  let nodeIdx = 0;
   for (const r of ranges) {
     if (r.start < cursor) continue; // overlap skip
-    if (r.start > cursor) nodes.push(text.slice(cursor, r.start));
+    if (r.start > cursor) {
+      nodes.push(<span key={`t-${nodeIdx++}`}>{text.slice(cursor, r.start)}</span>);
+    }
     nodes.push(
       <mark
-        key={r.id}
+        key={`h-${r.id}`}
         className="reader-highlight"
         onClick={(e) => {
           e.stopPropagation();
@@ -814,7 +874,7 @@ function renderParagraphWithHighlights(
     );
     cursor = r.end;
   }
-  if (cursor < text.length) nodes.push(text.slice(cursor));
+  if (cursor < text.length) nodes.push(<span key={`t-${nodeIdx++}`}>{text.slice(cursor)}</span>);
   return nodes;
 }
 

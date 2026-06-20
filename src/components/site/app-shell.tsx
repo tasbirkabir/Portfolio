@@ -18,9 +18,12 @@ import { ContactView } from "@/components/views/contact-view";
 import { LibraryView } from "@/components/views/library-view";
 import { AccountView } from "@/components/views/account-view";
 import { SearchView } from "@/components/views/search-view";
-import { AdminView } from "@/components/admin/admin-view";
 import { AuthModal } from "@/components/platform/auth-modal";
-import { EbookReader } from "@/components/reader/ebook-reader";
+import dynamic from "next/dynamic";
+
+// Lazy-load heavy components that aren't needed on initial page load
+const AdminView = dynamic(() => import("@/components/admin/admin-view").then(m => ({ default: m.AdminView })), { ssr: false });
+const EbookReader = dynamic(() => import("@/components/reader/ebook-reader").then(m => ({ default: m.EbookReader })), { ssr: false });
 
 export function AppShell() {
   const { view, bookSlug, postSlug, pageKey, readerBookSlug } = useNav();

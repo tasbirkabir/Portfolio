@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 // Maps API URLs to static JSON file paths for static-export mode.
 const STATIC_MAP: Record<string, string> = {
   "/api/books": "/data/books.json",
-  "/api/books?featured=1": "/data/books.json", // filtered client-side
+  "/api/books?featured=1": "/data/books.json",
   "/api/resources": "/data/resources.json",
   "/api/blog": "/data/blog.json",
   "/api/testimonials": "/data/testimonials.json",
@@ -24,19 +24,17 @@ function toStatic(url: string): string | null {
   return STATIC_MAP[url] || null;
 }
 
-function isStaticHost(): boolean {
-  if (typeof window === "undefined") return false;
-  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") return false;
-  return true;
-}
-
 type State<T> = {
   data: T | null;
   loading: boolean;
   error: string | null;
 };
 
-// Unified data fetcher: uses /api/* in dev, /data/*.json on a static host.
+/**
+ * Unified data fetcher.
+ * Always tries the API first (/api/*). If the API fails (e.g. on a static host
+ * with no server), falls back to the static JSON file (/data/*.json).
+ */
 export function useData<T>(url: string | null): State<T> & { refetch: () => void } {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(!!url);
@@ -50,15 +48,14 @@ export function useData<T>(url: string | null): State<T> & { refetch: () => void
       return;
     }
     let active = true;
-    const staticUrl = isStaticHost() ? toStatic(url) : null;
-    const fetchUrl = staticUrl || url;
-
-    // For static books?featured=1, we filter client-side after fetching books.json
+    const staticUrl = toStatic(url);
     const isFeaturedBooks = url === "/api/books?featured=1";
 
     setLoading(true);
     setError(null);
-    fetch(fetchUrl)
+
+    // Try the API first
+    fetch(url)
       .then(async (r) => {
         if (!r.ok) throw new Error(`Request failed (${r.status})`);
         return r.json();
@@ -72,15 +69,46 @@ export function useData<T>(url: string | null): State<T> & { refetch: () => void
         }
         setLoading(false);
       })
-      .catch((e) => {
-        if (!active) return;
-        setError(e.message || "Something went wrong");
-        setLoading(false);
+      .catch(async () => {
+        // API failed — try static JSON fallback
+        if (!staticUrl || !active) {
+          if (active) {
+            setError("Failed to load data");
+            setLoading(false);
+          }
+          return;
+        }
+        try {
+          const r2 = await fetch(staticUrl);
+          if (!r2.ok) throw new Error("Static fetch failed");
+          const json2 = await r2.json();
+          if (!active) return;
+          if (isFeaturedBooks && json2.books) {
+            setData({ books: json2.books.filter((b: any) => b.featured) } as T);
+          } else {
+            setData(json2 as T);
+          }
+          setLoading(false);
+        } catch {
+          if (active) {
+            setError("Failed to load data");
+            setLoading(false);
+          }
+        }
       });
+
     return () => {
       active = false;
     };
   }, [url, nonce]);
+
+  // Clear data when url becomes null
+  useEffect(() => {
+    if (!url) {
+      setData(null);
+      setLoading(false);
+    }
+  }, [url]);
 
   return { data, loading, error, refetch: () => setNonce((n) => n + 1) };
 }

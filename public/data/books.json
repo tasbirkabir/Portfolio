@@ -1,7 +1,7 @@
 {
   "books": [
     {
-      "id": "cmqksech80000rtpkhpmycbw4",
+      "id": "cmqlfzf4a0000rt0kiixeq7ef",
       "title": "The AI Agency Operating System",
       "slug": "ai-agency-operating-system",
       "subtitle": "Build, Track, Advertise, Convert — the complete framework for a productized, AI-native agency.",
@@ -16,82 +16,91 @@
       "featured": true,
       "rating": 4.9,
       "reviewsCount": 412,
-      "buyers": 3822,
+      "buyers": 3823,
       "accessType": "paid",
       "status": "published",
       "whatYouLearn": [
         "The outcome-first positioning framework that makes business owners buy",
         "The $1T automation gap and why midmarket businesses are the real opportunity",
         "The Agency Triangle: Service, Client, Operations — and why missing one kills scale",
-        "Choosing your agency model: Custom, Productized, or White-Label",
-        "High-income AI services: voice agents, automations, and chatbots — deep dives",
-        "Pricing AI services with setup fees, retainers, and value-based anchors",
-        "The 30-day first client playbook and the 5-phase discovery call",
-        "Scaling from $10k to $30k/month with productized retainers and referrals"
+        "Choosing your agency model: Custom ($3k–$10k), Productized ($999–$2.5k), or White-Label",
+        "The 7 high-paying niches for AI agencies and the 48-hour niche validation protocol",
+        "High-income AI services: voice agents, automations, and chatbots — full deep dives",
+        "The universal voice agent script template and inbound vs. outbound agent design",
+        "n8n vs. Make — when to use each — and the 5 automations every business needs",
+        "Chatbase vs. ManyChat vs. Voiceflow and the 3-layer handoff architecture",
+        "Value-based vs. cost-based pricing and the complete AI agency rate card",
+        "The $999 starter offer strategy and guarantee structures that reduce buyer risk",
+        "The 5 client acquisition channels and the 30-day first client playbook",
+        "The 5-phase discovery call framework and the PAIN qualification framework",
+        "Onboarding, 7-day delivery sprints, and the 3 rules of project communication",
+        "The 2026 AI agency tech stack directory and SOPs for every service",
+        "Scaling milestones to $10k and $30k/month, team structures, and the growth flywheel",
+        "5 real-world case studies and a 3-month startup execution timeline"
       ],
       "chapters": [
         {
-          "title": "Letter from Tasbir",
-          "pages": 6
-        },
-        {
-          "title": "What Is an AI Agency, Really?",
-          "pages": 6
-        },
-        {
-          "title": "The Founder Mindset",
-          "pages": 8
-        },
-        {
-          "title": "Choosing a Profitable Niche",
-          "pages": 4
-        },
-        {
-          "title": "High-Income AI Services",
+          "title": "LETTER FROM TASBIR",
           "pages": 3
         },
         {
-          "title": "AI Voice Agents — Deep Dive",
+          "title": "WHAT IS AN AI AGENCY, REALLY?",
           "pages": 3
         },
         {
-          "title": "AI Automations — Deep Dive",
-          "pages": 2
-        },
-        {
-          "title": "AI Chatbots — Deep Dive",
-          "pages": 2
-        },
-        {
-          "title": "Pricing AI Services",
-          "pages": 4
-        },
-        {
-          "title": "Creating Offers That Sell",
-          "pages": 2
-        },
-        {
-          "title": "Finding Your First Clients",
-          "pages": 4
-        },
-        {
-          "title": "The Discovery Call & Sales",
-          "pages": 2
-        },
-        {
-          "title": "Delivering Projects & Onboarding",
-          "pages": 5
-        },
-        {
-          "title": "SOPs, Systems & Tech Stack",
-          "pages": 1
-        },
-        {
-          "title": "Scaling to $10K & $30K/Month",
+          "title": "THE FOUNDER MINDSET",
           "pages": 3
         },
         {
-          "title": "Future, Case Studies & Action Plan",
+          "title": "CHOOSING A PROFITABLE NICHE",
+          "pages": 3
+        },
+        {
+          "title": "HIGH-INCOME AI SERVICES",
+          "pages": 3
+        },
+        {
+          "title": "AI VOICE AGENTS — DEEP DIVE",
+          "pages": 3
+        },
+        {
+          "title": "AI AUTOMATIONS — DEEP DIVE",
+          "pages": 3
+        },
+        {
+          "title": "AI CHATBOTS — DEEP DIVE",
+          "pages": 3
+        },
+        {
+          "title": "PRICING AI SERVICES",
+          "pages": 3
+        },
+        {
+          "title": "CREATING OFFERS THAT SELL",
+          "pages": 3
+        },
+        {
+          "title": "FINDING YOUR FIRST CLIENTS",
+          "pages": 3
+        },
+        {
+          "title": "THE DISCOVERY CALL & SALES",
+          "pages": 3
+        },
+        {
+          "title": "DELIVERING PROJECTS & ONBOARDING",
+          "pages": 3
+        },
+        {
+          "title": "SOPS, SYSTEMS & TECH STACK",
+          "pages": 3
+        },
+        {
+          "title": "SCALING TO $10K & $30K/MONTH",
+          "pages": 3
+        },
+        {
+          "title": "FUTURE, CASE STUDIES & ACTION PLAN",
           "pages": 3
         }
       ],
@@ -102,7 +111,7 @@
         },
         {
           "q": "Do I need technical skills to build the AI services?",
-          "a": "No. The deep dives are written for builders using no-code/low-code tools like n8n, Make, and GoHighLevel. If you can follow a recipe, you can deliver these services."
+          "a": "No. The deep dives on voice agents, automations, and chatbots are written for builders using no-code/low-code tools like n8n, Make, and GoHighLevel. If you can follow a recipe, you can deliver these services."
         },
         {
           "q": "What format is the book?",
@@ -110,7 +119,7 @@
         },
         {
           "q": "How long until I see results?",
-          "a": "Most readers complete the Chapter 1 action plan in the first week and run their first outreach by week two. First client typically lands in 30–60 days."
+          "a": "Most readers complete the Chapter 1 action plan in the first week and run their first outreach by week two. First client typically lands in 30–60 days following the 30-day playbook."
         },
         {
           "q": "Is there a guarantee?",
@@ -128,7 +137,7 @@
       "seoDesc": null
     },
     {
-      "id": "cmqksechc0004rtpk6kxi6i7l",
+      "id": "cmqlfzf4e0004rt0kll4h4j7c",
       "title": "The Prompt Engineering Bible",
       "slug": "prompt-engineering-bible",
       "subtitle": "From basics to production: the complete guide to making AI do real work.",
@@ -193,7 +202,7 @@
       "seoDesc": null
     },
     {
-      "id": "cmqksechb0003rtpku5cc4z7k",
+      "id": "cmqlfzf4d0003rt0kssnaed8s",
       "title": "Deep Work for Builders",
       "slug": "deep-work-for-builders",
       "subtitle": "A focus system for makers who ship in a world built to distract them.",
@@ -258,7 +267,7 @@
       "seoDesc": null
     },
     {
-      "id": "cmqksech90001rtpkhs38iid9",
+      "id": "cmqlfzf4c0001rt0kafnhot4x",
       "title": "The Solo Scale Playbook",
       "slug": "solo-scale-playbook",
       "subtitle": "How to grow a one-person business past six figures without hiring a team.",
@@ -327,7 +336,7 @@
       "seoDesc": null
     },
     {
-      "id": "cmqkseche0006rtpkqpucpowg",
+      "id": "cmqlfzf4g0006rt0kxdxrsr8o",
       "title": "The $10K Month System",
       "slug": "10k-month-system",
       "subtitle": "A 90-day plan to your first consistent five-figure month as a solo operator.",
@@ -392,7 +401,7 @@
       "seoDesc": null
     },
     {
-      "id": "cmqksecha0002rtpktn76hcqd",
+      "id": "cmqlfzf4c0002rt0kaoon6f8s",
       "title": "Content OS",
       "slug": "content-os",
       "subtitle": "The framework for turning content into a client pipeline that compounds.",
@@ -457,7 +466,7 @@
       "seoDesc": null
     },
     {
-      "id": "cmqkseche0007rtpku37cfv94",
+      "id": "cmqlfzf4h0007rt0kxtqmjxj8",
       "title": "Systems Thinking for Founders",
       "slug": "systems-thinking-for-founders",
       "subtitle": "See the loops, leverage points, and bottlenecks that run your business.",
@@ -522,7 +531,7 @@
       "seoDesc": null
     },
     {
-      "id": "cmqksechd0005rtpky3gw90ty",
+      "id": "cmqlfzf4f0005rt0kmkxqcssv",
       "title": "Landing Pages That Convert",
       "slug": "landing-pages-that-convert",
       "subtitle": "The anatomy of pages that turn strangers into buyers.",

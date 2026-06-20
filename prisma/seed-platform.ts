@@ -212,9 +212,12 @@ async function main() {
     await db.testimonial.create({ data: t });
   }
 
-  // Admin user + demo user (demo passwords — sandbox only)
-  await db.user.create({ data: { email: "admin@tasbirkabir.site", name: "Tasbir Kabir", password: "admin123", role: "admin" } });
-  await db.user.create({ data: { email: "reader@demo.com", name: "Demo Reader", password: "demo123", role: "user" } });
+  // Admin user + demo user — passwords hashed with bcrypt
+  const { hashPassword } = await import("../src/lib/auth/passwords");
+  const adminPass = await hashPassword("admin123");
+  const readerPass = await hashPassword("demo123");
+  await db.user.create({ data: { email: "admin@tasbirkabir.site", name: "Tasbir Kabir", password: adminPass, role: "admin" } });
+  await db.user.create({ data: { email: "reader@demo.com", name: "Demo Reader", password: readerPass, role: "user" } });
 
   // Give demo reader access to a couple of books for the library demo
   await db.libraryAccess.create({ data: { userId: "demo", userEmail: "reader@demo.com", itemType: "book", itemSlug: "deep-work-for-builders" } });

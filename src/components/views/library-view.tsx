@@ -1,12 +1,75 @@
 "use client";
 
 import { motion } from "motion/react";
-import { BookOpen, FileText, Bookmark, ArrowRight, Play, RotateCcw } from "lucide-react";
+import { useState } from "react";
+import { BookOpen, FileText, Bookmark, ArrowRight, Play, RotateCcw, Download, BookOpenCheck } from "lucide-react";
 import { useFetch } from "@/hooks/use-fetch";
 import { useNav } from "@/lib/store/nav";
 import { useAuth } from "@/lib/store/auth";
 import { AuthPrompt } from "./auth-prompt";
 import { BookCover } from "@/components/site/book-cover";
+
+const ASSET_ICONS: Record<string, string> = {
+  pdf: "📄 PDF", epub: "📚 EPUB", mobi: "📚 MOBI", zip: "🗜️ ZIP",
+  bonus: "🎁 Bonus", template: "📋 Template", worksheet: "✏️ Worksheet",
+  "prompt-pack": "🤖 Prompts", checklist: "✅ Checklist", source: "💾 Source",
+};
+
+/** A purchased book card with Read Online + download buttons for each available asset. */
+function PurchasedBook({ book, index, onRead }: { book: any; index: number; onRead: () => void }) {
+  const { data } = useFetch<{ assets: any[] }>(`/api/books/${book.slug}`);
+  const assets = data?.assets ?? [];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+      className="flex flex-col gap-4 rounded-3xl border border-border/60 bg-card p-5 sm:flex-row sm:items-start"
+    >
+      {/* Cover + title */}
+      <div className="flex shrink-0 gap-4 sm:w-48">
+        <div className="w-20 shrink-0">
+          <BookCover book={book} showBadge={false} />
+        </div>
+        <div className="min-w-0 flex-1 sm:hidden">
+          <p className="line-clamp-2 text-sm font-semibold">{book.title}</p>
+          <p className="text-xs text-muted-foreground">{book.category}</p>
+        </div>
+      </div>
+
+      {/* Actions */}
+      <div className="min-w-0 flex-1">
+        <p className="hidden line-clamp-1 text-sm font-semibold sm:block">{book.title}</p>
+        <p className="hidden text-xs text-muted-foreground sm:block">{book.category}</p>
+
+        <div className="mt-3 flex flex-wrap gap-2">
+          <button
+            onClick={onRead}
+            className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2.5 text-xs font-medium text-background transition-transform hover:scale-[1.03]"
+          >
+            <BookOpenCheck className="h-3.5 w-3.5" /> Read Online
+          </button>
+
+          {assets.map((a: any) => (
+            <a
+              key={a.id}
+              href={`/api/assets/${a.id}/download`}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2.5 text-xs font-medium transition-colors hover:bg-foreground/5"
+            >
+              <Download className="h-3.5 w-3.5" />
+              {ASSET_ICONS[a.type] || "📄"} {a.label}
+            </a>
+          ))}
+        </div>
+
+        {assets.length === 0 && (
+          <p className="mt-2 text-xs text-muted-foreground">No downloadable files available for this book yet.</p>
+        )}
+      </div>
+    </motion.div>
+  );
+}
 
 export function LibraryView() {
   const { user } = useAuth();
@@ -89,17 +152,9 @@ export function LibraryView() {
               <h2 className="mb-5 flex items-center gap-2 font-display text-xl tracking-tight sm:text-2xl">
                 <BookOpen className="h-5 w-5 text-clay" /> Purchased books
               </h2>
-              <div className="grid gap-5 sm:grid-cols-3 lg:grid-cols-5">
+              <div className="space-y-4">
                 {books.map((b, i) => (
-                  <motion.div key={b.slug} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.05 }}>
-                    <button onClick={() => openReader(b.slug)} className="group block w-full text-left">
-                      <div className="transition-transform duration-500 group-hover:-translate-y-1.5">
-                        <BookCover book={b} />
-                      </div>
-                      <p className="mt-3 line-clamp-1 text-sm font-semibold">{b.title}</p>
-                      <p className="text-xs text-muted-foreground">{b.category}</p>
-                    </button>
-                  </motion.div>
+                  <PurchasedBook key={b.slug} book={b} index={i} onRead={() => openReader(b.slug)} />
                 ))}
               </div>
             </section>

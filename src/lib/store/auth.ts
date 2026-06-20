@@ -18,6 +18,8 @@ type AuthState = {
   login: (email: string, password: string) => Promise<{ ok: boolean; error?: string }>;
   register: (name: string, email: string, password: string) => Promise<{ ok: boolean; error?: string }>;
   logout: () => Promise<void>;
+  requestPasswordReset: (email: string) => Promise<{ ok: boolean; error?: string; message?: string }>;
+  confirmPasswordReset: (token: string, password: string) => Promise<{ ok: boolean; error?: string; message?: string }>;
   openAuthModal: (mode?: "login" | "register") => void;
   closeAuthModal: () => void;
 };
@@ -61,6 +63,24 @@ export const useAuth = create<AuthState>((set, get) => ({
   logout: async () => {
     await fetch("/api/auth/logout", { method: "POST" });
     set({ user: null });
+  },
+  requestPasswordReset: async (email: string) => {
+    const r = await fetch("/api/auth/reset-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+    const j = await r.json();
+    return { ok: r.ok, error: j.error, message: j.message };
+  },
+  confirmPasswordReset: async (token: string, password: string) => {
+    const r = await fetch("/api/auth/reset-password/confirm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token, password }),
+    });
+    const j = await r.json();
+    return { ok: r.ok, error: j.error, message: j.message };
   },
   openAuthModal: (mode = "login") => set({ authModalOpen: true, authModalMode: mode }),
   closeAuthModal: () => set({ authModalOpen: false }),
