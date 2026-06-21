@@ -24,11 +24,11 @@ export async function POST(req: NextRequest) {
     const { items, method, customer } = parsed.data;
 
     const user = await getCurrentUser();
-    const userEmail = (customer?.email || user?.email || "").toLowerCase().trim();
-    const userName = customer?.name || user?.name || null;
-    if (!userEmail) {
-      return errorResponse("An email is required to complete the purchase.", 400);
+    if (!user) {
+      return errorResponse("Please sign in to complete your purchase.", 401);
     }
+    const userEmail = user.email;
+    const userName = user.name || customer?.name || null;
 
     // SECURITY: Look up actual prices from the database — never trust client prices
     const verifiedItems: { slug: string; title: string; type: string; price: number }[] = [];

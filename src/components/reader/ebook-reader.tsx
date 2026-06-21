@@ -533,80 +533,25 @@ export function EbookReader({ slug }: { slug: string }) {
                 <section key={`sec-${si}`}>
                   <h2 className="mb-4 font-display text-xl tracking-tight sm:text-2xl">{section.heading}</h2>
                   <div className="space-y-5">
-                    {section.body.map((para, pi) => {
-                      // Check if this paragraph contains HTML (from ZIP import — <img>, <table>, etc.)
-                      const isHtml = para.startsWith("<") && (para.includes("<img") || para.includes("<table") || para.includes("<div"));
-
-                      if (isHtml) {
-                        return (
-                          <div
-                            key={`para-${si}-${pi}`}
-                            className="text-foreground/85 [&_img]:mt-4 [&_img]:max-w-full [&_img]:rounded-xl [&_img]:shadow-md [&_img]:mx-auto [&_blockquote]:border-l-2 [&_blockquote]:border-clay [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_table]:w-full [&_table]:border-collapse [&_td]:border [&_td]:border-border [&_td]:p-2 [&_th]:border [&_th]:border-border [&_th]:p-2 [&_th]:font-semibold [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_pre]:rounded-xl [&_pre]:bg-muted [&_pre]:p-4 [&_pre]:overflow-x-auto [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5"
-                            dangerouslySetInnerHTML={{ __html: para }}
-                          />
-                        );
-                      }
-
-                      // Check for blockquote prefix ("> text")
-                      if (para.startsWith("> ")) {
-                        return (
-                          <blockquote
-                            key={`para-${si}-${pi}`}
-                            className="border-l-2 border-clay pl-4 italic text-foreground/70"
-                          >
-                            {renderParagraphWithHighlights(para.slice(2), si, pi, currentChapter.id, highlights, (hId) => {
-                              const h = highlights.find((x) => x.id === hId);
-                              if (h?.note) toast({ title: "Your note", description: h.note });
-                              else toast({ title: "Highlight", description: h.text.slice(0, 80) });
-                            })}
-                          </blockquote>
-                        );
-                      }
-
-                      // Check for bullet point prefix ("• text")
-                      if (para.startsWith("• ")) {
-                        return (
-                          <div key={`para-${si}-${pi}`} className="flex gap-2 text-foreground/85">
-                            <span className="text-clay">•</span>
-                            <span>{renderParagraphWithHighlights(para.slice(2), si, pi, currentChapter.id, highlights, (hId) => {
-                              const h = highlights.find((x) => x.id === hId);
-                              if (h?.note) toast({ title: "Your note", description: h.note });
-                              else toast({ title: "Highlight", description: h.text.slice(0, 80) });
-                            })}</span>
-                          </div>
-                        );
-                      }
-
-                      // Check for bold heading prefix ("**text**")
-                      if (para.startsWith("**") && para.endsWith("**")) {
-                        return (
-                          <h3 key={`para-${si}-${pi}`} className="font-display text-lg font-semibold tracking-tight">
-                            {para.slice(2, -2)}
-                          </h3>
-                        );
-                      }
-
-                      // Regular paragraph
-                      return (
-                        <p
-                          key={`para-${si}-${pi}`}
-                          data-para
-                          data-chapter-id={currentChapter.id}
-                          data-section-index={si}
-                          data-para-index={pi}
-                          className={cn(
-                            "text-foreground/85 text-pretty",
-                            si === 0 && pi === 0 && "reader-dropcap"
-                          )}
-                        >
-                          {renderParagraphWithHighlights(para, si, pi, currentChapter.id, highlights, (hId) => {
-                            const h = highlights.find((x) => x.id === hId);
-                            if (h?.note) toast({ title: "Your note", description: h.note });
-                            else toast({ title: "Highlight", description: h.text.slice(0, 80) });
-                          })}
-                        </p>
-                      );
-                    })}
+                    {section.body.map((para, pi) => (
+                      <p
+                        key={`para-${si}-${pi}`}
+                        data-para
+                        data-chapter-id={currentChapter.id}
+                        data-section-index={si}
+                        data-para-index={pi}
+                        className={cn(
+                          "text-foreground/85 text-pretty",
+                          si === 0 && pi === 0 && "reader-dropcap"
+                        )}
+                      >
+                        {renderParagraphWithHighlights(para, si, pi, currentChapter.id, highlights, (hId) => {
+                          const h = highlights.find((x) => x.id === hId);
+                          if (h?.note) toast({ title: "Your note", description: h.note });
+                          else toast({ title: "Highlight", description: h.text.slice(0, 80) });
+                        })}
+                      </p>
+                    ))}
                   </div>
                 </section>
               ))}

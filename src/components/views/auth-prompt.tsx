@@ -18,7 +18,7 @@ export function AuthPrompt({ title, desc }: { title: string; desc: string }) {
           <button onClick={() => openAuthModal("login")} className="rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.03]">Sign in</button>
           <button onClick={() => openAuthModal("register")} className="rounded-full border border-border px-6 py-3.5 text-sm font-medium transition-colors hover:bg-foreground/5">Create account</button>
         </div>
-        <p className="mt-4 text-xs text-muted-foreground">Demo: reader@demo.com / demo123</p>
+        
       </motion.div>
     </div>
   );

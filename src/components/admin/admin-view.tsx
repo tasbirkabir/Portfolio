@@ -59,7 +59,7 @@ export function AdminView() {
     return (
       <div className="mx-auto max-w-2xl px-5 py-24 text-center">
         <h1 className="font-display text-3xl">Admin only</h1>
-        <p className="mt-2 text-muted-foreground">Your account doesn't have admin access. Sign in as admin@tasbirkabir.site / admin123.</p>
+        <p className="mt-2 text-muted-foreground">Your account doesn't have admin access. Sign in with your admin account.</p>
         <button onClick={() => { logout(); navigate("home"); }} className="mt-5 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background">Back to site</button>
       </div>
     );

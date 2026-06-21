@@ -1,19 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Pencil, Trash2, X, Search, Loader2, FileArchive } from "lucide-react";
+import { Plus, Pencil, Trash2, X, Search, Loader2 } from "lucide-react";
 import { useFetch } from "@/hooks/use-fetch";
 import { useToast } from "@/hooks/use-toast";
 import { BookCover } from "@/components/site/book-cover";
 import { BookEditor } from "./book-editor";
-import { ZipUploader } from "./zip-uploader";
 
 export function AdminBooks() {
   const { data, loading, refetch } = useFetch<{ books: any[] }>("/api/admin/books");
   const { toast } = useToast();
   const [editing, setEditing] = useState<any | null>(null);
   const [creating, setCreating] = useState(false);
-  const [zipOpen, setZipOpen] = useState(false);
   const [q, setQ] = useState("");
 
   const books = (data?.books ?? []).filter((b) => b.title.toLowerCase().includes(q.toLowerCase()));
@@ -32,17 +30,9 @@ export function AdminBooks() {
           <h1 className="font-display text-2xl tracking-tight sm:text-3xl">Ebooks</h1>
           <p className="text-sm text-muted-foreground">{books.length} books in the library</p>
         </div>
-        <div className="flex gap-2">
-          <button
-            onClick={() => setZipOpen(true)}
-            className="inline-flex items-center gap-2 rounded-full border border-clay/40 bg-clay/10 px-4 py-2.5 text-sm font-medium text-clay transition-colors hover:bg-clay/20"
-          >
-            <FileArchive className="h-4 w-4" /> Publish from ZIP
-          </button>
-          <button onClick={() => setCreating(true)} className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-transform hover:scale-[1.03]">
-            <Plus className="h-4 w-4" /> New ebook
-          </button>
-        </div>
+        <button onClick={() => setCreating(true)} className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-transform hover:scale-[1.03]">
+          <Plus className="h-4 w-4" /> New ebook
+        </button>
       </div>
 
       <div className="flex items-center gap-2.5 rounded-full border border-border bg-card px-4 py-2.5">
@@ -76,12 +66,6 @@ export function AdminBooks() {
           book={editing}
           onClose={() => { setEditing(null); setCreating(false); }}
           onSaved={() => { setEditing(null); setCreating(false); refetch(); }}
-        />
-      )}
-
-      {zipOpen && (
-        <ZipUploader
-          onClose={() => { setZipOpen(false); refetch(); }}
         />
       )}
     </div>

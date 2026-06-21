@@ -15,12 +15,19 @@ function serializeBook(b: any, includeContent: boolean) {
     faq: JSON.parse(b.faq),
     highlights: JSON.parse(b.highlights),
   };
-  // Return ALL chapters with full content. The reader's preview gate
-  // (previewLimitIndex) handles access control — it blocks navigation
-  // past the free preview chapters and shows the paywall CTA.
-  // This way the reader can show the full table of contents AND
-  // the content is available immediately after purchase (no re-fetch needed).
-  base.content = b.content ? JSON.parse(b.content) : [];
+  // Return ALL chapters so the reader can show the full table of contents.
+  // For non-purchasers: first 3 chapters have full content, the rest have
+  // empty sections (the reader's preview gate blocks reading them).
+  if (includeContent) {
+    base.content = b.content ? JSON.parse(b.content) : [];
+  } else {
+    const allContent = b.content ? JSON.parse(b.content) : [];
+    const previewCount = Math.min(3, allContent.length);
+    base.content = allContent.map((ch: any, i: number) => {
+      if (i < previewCount) return ch; // full content for preview chapters
+      return { ...ch, sections: [] }; // empty sections for locked chapters
+    });
+  }
   return base;
 }
 

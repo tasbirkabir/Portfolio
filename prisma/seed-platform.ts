@@ -212,32 +212,16 @@ async function main() {
     await db.testimonial.create({ data: t });
   }
 
-  // Admin user + demo user — passwords hashed with bcrypt
+  // Admin user — password hashed with bcrypt
+  // IMPORTANT: Change this password after first login via the admin panel
   const { hashPassword } = await import("../src/lib/auth/passwords");
-  const adminPass = await hashPassword("admin123");
-  const readerPass = await hashPassword("demo123");
+  const adminPass = await hashPassword("ChangeMe2026!");
   await db.user.create({ data: { email: "admin@tasbirkabir.site", name: "Tasbir Kabir", password: adminPass, role: "admin" } });
-  await db.user.create({ data: { email: "reader@demo.com", name: "Demo Reader", password: readerPass, role: "user" } });
-
-  // Give demo reader access to a couple of books for the library demo
-  await db.libraryAccess.create({ data: { userId: "demo", userEmail: "reader@demo.com", itemType: "book", itemSlug: "deep-work-for-builders" } });
-  await db.libraryAccess.create({ data: { userId: "demo", userEmail: "reader@demo.com", itemType: "book", itemSlug: "content-os" } });
-  await db.readingProgress.create({ data: { userId: "demo", bookSlug: "deep-work-for-builders", chapterIndex: 2, progress: 34 } });
-
-  // Demo orders
-  await db.order.create({ data: { userEmail: "reader@demo.com", userName: "Demo Reader", items: JSON.stringify([{ slug: "deep-work-for-builders", title: "Deep Work for Builders", type: "book", price: 12 }]), total: 12, method: "bkash", status: "paid", txnId: "BKASH_DEMO_001" } });
-  await db.order.create({ data: { userEmail: "buyer1@example.com", userName: "Sarah Chen", items: JSON.stringify([{ slug: "ai-agency-operating-system", title: "The AI Agency Operating System", type: "book", price: 19 }]), total: 19, method: "card", status: "paid", txnId: "CARD_DEMO_002" } });
-  await db.order.create({ data: { userEmail: "buyer2@example.com", userName: "James W.", items: JSON.stringify([{ slug: "prompt-engineering-bible", title: "The Prompt Engineering Bible", type: "book", price: 24 }]), total: 24, method: "nagad", status: "paid", txnId: "NAGAD_DEMO_003" } });
-  await db.order.create({ data: { userEmail: "buyer3@example.com", userName: "Amara D.", items: JSON.stringify([{ slug: "solo-scale-playbook", title: "The Solo Scale Playbook", type: "book", price: 15 }]), total: 15, method: "rocket", status: "paid", txnId: "ROCKET_DEMO_004" } });
-  await db.order.create({ data: { userEmail: "buyer4@example.com", userName: "David O.", items: JSON.stringify([{ slug: "automation-toolkit", title: "Automation Toolkit", type: "resource", price: 12 }]), total: 12, method: "bkash", status: "paid", txnId: "BKASH_DEMO_005" } });
 
   // Newsletter subs
   const subs = [
-    { email: "reader@demo.com", name: "Demo Reader", segment: "buyers" },
     { email: "sub1@example.com", segment: "all" },
     { email: "sub2@example.com", segment: "all" },
-    { email: "sub3@example.com", segment: "readers" },
-    { email: "buyer1@example.com", name: "Sarah Chen", segment: "buyers" },
   ];
   for (const s of subs) await db.newsletterSub.create({ data: s });
 
@@ -275,7 +259,7 @@ async function main() {
     await db.analyticsEvent.create({ data: { ...e, meta: "{}", createdAt: new Date(Date.now() - i * 3600 * 1000) } });
   }
 
-  console.log("Seeded platform: admin@tasbirkabir.site/admin123, reader@demo.com/demo123");
+  console.log("Seeded platform: admin@tasbirkabir.site / ChangeMe2026!");
 }
 
 main()

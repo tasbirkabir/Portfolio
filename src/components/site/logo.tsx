@@ -21,12 +21,15 @@ export function Logo({
   alt?: string;
 }) {
   const navigate = useNav((s) => s.navigate);
+  // Use the small WebP for sizes <= 64, full WebP for larger
+  const src = size <= 64 ? "/images/logo-small.webp" : "/images/logo.webp";
   return (
     <img
-      src="/images/logo.png"
+      src={src}
       alt={alt}
       width={size}
       height={size}
+      loading="eager"
       onClick={onClickHome ? () => navigate("home") : undefined}
       className={cn(
         "shrink-0 object-cover ring-1 ring-black/5",

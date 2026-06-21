@@ -63,7 +63,7 @@ export function ResourcesView() {
   function download(r: any) {
     toast({
       title: "Download started.",
-      description: `${r.title} is on its way to your inbox. (Demo)`,
+      description: `${r.title} is on its way to your inbox.`,
     });
   }
 

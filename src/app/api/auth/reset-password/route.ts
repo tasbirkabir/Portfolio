@@ -3,13 +3,9 @@ import { db } from "@/lib/db";
 import { emailSchema, errorResponse } from "@/lib/security/validation";
 import { rateLimit, rateLimitResponse } from "@/lib/security/rate-limit";
 import { logSecurityEvent } from "@/lib/security/audit";
+import { sendPasswordResetEmail } from "@/lib/email/resend";
 import { randomBytes } from "crypto";
 
-/**
- * Request a password reset.
- * Generates a secure token and stores it (hashed) in the DB.
- * In production, an email would be sent via Resend.
- */
 export async function POST(req: NextRequest) {
   const rl = rateLimit(req, { windowMs: 60 * 60 * 1000, maxRequests: 5, keyPrefix: "pw_reset" });
   if (!rl.ok) return rateLimitResponse(rl.remaining, rl.resetAt);
@@ -30,10 +26,8 @@ export async function POST(req: NextRequest) {
         data: { passwordResetToken: token, passwordResetExpiry: expiry },
       });
 
-      // In production: send email with reset link
-      // await sendResetEmail(user.email, token);
-      console.log(`[Password reset] Token for ${user.email}: ${token}`);
-      // For the sandbox, the token is logged. In production, email it via Resend.
+      // Send the reset email via Resend
+      await sendPasswordResetEmail(user.email, token);
     }
 
     return NextResponse.json({

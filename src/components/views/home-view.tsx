@@ -131,9 +131,8 @@ export function HomeView() {
                 <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-clay/10 blur-2xl" />
                 <div className="relative overflow-hidden rounded-[1.75rem] shadow-premium ring-1 ring-black/5">
                   <img
-                    src="/images/logo.png"
+                    src="/images/logo.webp"
                     alt="Tasbir Kabir"
-                    loading="eager"
                     className="aspect-square w-full object-cover"
                   />
                 </div>

@@ -81,7 +81,7 @@ export function PostView({ slug }: { slug: string }) {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="my-10 overflow-hidden rounded-3xl"
         >
-          <img src={post.cover} alt="" loading="lazy" className="aspect-[16/9] w-full object-cover" />
+          <img src={post.cover} alt="" className="aspect-[16/9] w-full object-cover" />
         </motion.div>
 
         {/* Body */}

@@ -99,6 +99,7 @@ export function ExpandableTabs({
             onClick={() => handleSelect(index)}
             transition={transition}
             aria-pressed={selected === index}
+            aria-label={tab.title}
             className={cn(
               "relative flex items-center rounded-xl px-4 py-2 text-sm font-medium transition-colors duration-300",
               selected === index

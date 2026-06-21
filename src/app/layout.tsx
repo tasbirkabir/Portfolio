@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Instrument_Serif, Newsreader } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Newsreader } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/site/theme-provider";
@@ -7,8 +7,11 @@ import { ThemeProvider } from "@/components/site/theme-provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "swap",
-  preload: true,
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 const instrumentSerif = Instrument_Serif({
@@ -16,8 +19,6 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: ["400"],
   style: ["normal", "italic"],
-  display: "swap",
-  preload: false,
 });
 
 const newsreader = Newsreader({
@@ -25,8 +26,6 @@ const newsreader = Newsreader({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   style: ["normal", "italic"],
-  display: "swap",
-  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -69,6 +68,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preload" href="/images/logo.webp" as="image" type="image/webp" fetchPriority="high" />
+        <link rel="icon" href="/images/logo-small.webp" type="image/webp" />
+        <link rel="apple-touch-icon" href="/images/logo.webp" />
       </head>
       <body
         className={`${geistSans.variable} ${instrumentSerif.variable} ${newsreader.variable} antialiased bg-background text-foreground font-sans`}
