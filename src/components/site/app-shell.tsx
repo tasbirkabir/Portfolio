@@ -8,23 +8,23 @@ import { Navbar } from "@/components/site/navbar";
 import { MobileNav } from "@/components/site/mobile-nav";
 import { Footer } from "@/components/site/footer";
 import { HomeView } from "@/components/views/home-view";
-import { AboutView } from "@/components/views/about-view";
-import { BooksView } from "@/components/views/books-view";
-import { BookView } from "@/components/views/book-view";
-import { ResourcesView } from "@/components/views/resources-view";
-import { BlogView } from "@/components/views/blog-view";
-import { PostView } from "@/components/views/post-view";
-import { AuthModal } from "@/components/platform/auth-modal";
-import { ContactView } from "@/components/views/contact-view";
 
-// Lazy-load heavy views that aren't needed on initial page load.
-// This cuts ~257 KiB of unused JavaScript from the initial bundle.
+// Lazy-load ALL views except HomeView (the landing page).
+// This dramatically reduces unused JavaScript in the initial bundle.
+const AboutView = lazy(() => import("@/components/views/about-view").then(m => ({ default: m.AboutView })));
+const BooksView = lazy(() => import("@/components/views/books-view").then(m => ({ default: m.BooksView })));
+const BookView = lazy(() => import("@/components/views/book-view").then(m => ({ default: m.BookView })));
+const ResourcesView = lazy(() => import("@/components/views/resources-view").then(m => ({ default: m.ResourcesView })));
+const BlogView = lazy(() => import("@/components/views/blog-view").then(m => ({ default: m.BlogView })));
+const PostView = lazy(() => import("@/components/views/post-view").then(m => ({ default: m.PostView })));
+const ContactView = lazy(() => import("@/components/views/contact-view").then(m => ({ default: m.ContactView })));
 const AdminView = lazy(() => import("@/components/admin/admin-view").then(m => ({ default: m.AdminView })));
 const EbookReader = lazy(() => import("@/components/reader/ebook-reader").then(m => ({ default: m.EbookReader })));
 const LibraryView = lazy(() => import("@/components/views/library-view").then(m => ({ default: m.LibraryView })));
 const AccountView = lazy(() => import("@/components/views/account-view").then(m => ({ default: m.AccountView })));
 const SearchView = lazy(() => import("@/components/views/search-view").then(m => ({ default: m.SearchView })));
 const KnowledgeHubView = lazy(() => import("@/components/views/knowledge-hub-view").then(m => ({ default: m.KnowledgeHubView })));
+const AuthModal = lazy(() => import("@/components/platform/auth-modal").then(m => ({ default: m.AuthModal })));
 const CheckoutModal = lazy(() => import("@/components/platform/checkout-modal").then(m => ({ default: m.CheckoutModal })));
 
 function ViewLoader() {
@@ -54,7 +54,7 @@ export function AppShell() {
             <AdminView />
           </Suspense>
         </main>
-        <AuthModal />
+        <Suspense fallback={null}><AuthModal /></Suspense>
         <AnimatePresence>
           {readerBookSlug && (
             <Suspense fallback={null}>
@@ -80,13 +80,13 @@ export function AppShell() {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
             {view === "home" && <HomeView />}
-            {view === "about" && <AboutView />}
-            {view === "books" && <BooksView />}
-            {view === "book" && bookSlug && <BookView slug={bookSlug} />}
-            {view === "resources" && <ResourcesView />}
-            {view === "blog" && <BlogView />}
-            {view === "post" && postSlug && <PostView slug={postSlug} />}
-            {view === "contact" && <ContactView />}
+            {view === "about" && <Suspense fallback={<ViewLoader />}><AboutView /></Suspense>}
+            {view === "books" && <Suspense fallback={<ViewLoader />}><BooksView /></Suspense>}
+            {view === "book" && bookSlug && <Suspense fallback={<ViewLoader />}><BookView slug={bookSlug} /></Suspense>}
+            {view === "resources" && <Suspense fallback={<ViewLoader />}><ResourcesView /></Suspense>}
+            {view === "blog" && <Suspense fallback={<ViewLoader />}><BlogView /></Suspense>}
+            {view === "post" && postSlug && <Suspense fallback={<ViewLoader />}><PostView slug={postSlug} /></Suspense>}
+            {view === "contact" && <Suspense fallback={<ViewLoader />}><ContactView /></Suspense>}
             {view === "library" && <Suspense fallback={<ViewLoader />}><LibraryView /></Suspense>}
             {view === "account" && <Suspense fallback={<ViewLoader />}><AccountView /></Suspense>}
             {view === "search" && <Suspense fallback={<ViewLoader />}><SearchView /></Suspense>}
@@ -98,7 +98,7 @@ export function AppShell() {
       <MobileNav />
 
       {/* Global auth modal */}
-      <AuthModal />
+      <Suspense fallback={null}><AuthModal /></Suspense>
 
       {/* Ebook reader overlay */}
       <AnimatePresence>

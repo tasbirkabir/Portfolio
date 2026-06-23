@@ -8,14 +8,15 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
-  preload: true,
+  preload: false,
+  adjustFontFallback: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
-  preload: false, // only used in admin, don't block initial render
+  preload: false,
 });
 
 const instrumentSerif = Instrument_Serif({
@@ -24,7 +25,8 @@ const instrumentSerif = Instrument_Serif({
   weight: ["400"],
   style: ["normal", "italic"],
   display: "swap",
-  preload: true,
+  preload: false,
+  adjustFontFallback: true,
 });
 
 const newsreader = Newsreader({
@@ -33,7 +35,7 @@ const newsreader = Newsreader({
   weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
-  preload: false, // reader font, not needed for initial paint
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -108,8 +110,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <meta name="theme-color" content="#1a1a1a" />
         <link rel="preload" href="/images/logo.webp" as="image" type="image/webp" fetchPriority="high" />
         <link rel="icon" href="/images/logo-small.webp" type="image/webp" />
         <link rel="apple-touch-icon" href="/images/logo.webp" />
