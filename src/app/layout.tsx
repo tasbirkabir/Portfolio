@@ -38,7 +38,10 @@ const newsreader = Newsreader({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.tasbirkabir.site"),
-  title: "Tasbir Kabir — AI Consultant, Web Developer & Media Buyer",
+  title: {
+    default: "Tasbir Kabir — AI Consultant, Web Developer & Media Buyer",
+    template: "%s — Tasbir Kabir",
+  },
   description:
     "Tasbir Kabir builds AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster. Based in Dhaka, Bangladesh.",
   keywords: [
@@ -52,20 +55,47 @@ export const metadata: Metadata = {
     "Dhaka",
     "Bangladesh",
     "digital systems",
+    "Claude",
+    "OpenAI",
+    "Make.com",
+    "lead generation",
+    "business automation",
   ],
   authors: [{ name: "Tasbir Kabir" }],
+  creator: "Tasbir Kabir",
+  publisher: "Tasbir Kabir",
+  alternates: {
+    canonical: "https://www.tasbirkabir.site",
+  },
   openGraph: {
     title: "Tasbir Kabir — AI Consultant, Web Developer & Media Buyer",
     description:
-      "I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.",
+      "I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster. Based in Dhaka, Bangladesh.",
     type: "website",
-    images: [{ url: "/images/logo.webp", width: 800, height: 800, alt: "Tasbir Kabir" }],
+    locale: "en_US",
+    siteName: "Tasbir Kabir",
+    url: "https://www.tasbirkabir.site",
+    images: [{ url: "/images/logo.webp", width: 800, height: 800, alt: "Tasbir Kabir — AI Consultant" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Tasbir Kabir — AI Consultant, Web Developer & Media Buyer",
     description:
       "I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.",
+    images: ["/images/logo.webp"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "google-site-verification-code",
   },
 };
 

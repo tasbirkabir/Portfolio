@@ -29,10 +29,14 @@ export function personSchema(s?: any) {
       addressLocality: "Dhaka",
       addressCountry: "Bangladesh",
     },
+    nationality: { "@type": "Country", name: "Bangladesh" },
     knowsAbout: [
       "AI Agents", "Automation Systems", "Web Development", "Media Buying",
       "Digital Marketing", "Lead Generation", "Business Automation", "n8n", "Make",
+      "OpenAI", "Claude", "Next.js", "WordPress", "ChatGPT", "Artificial Intelligence",
     ],
+    knowsLanguage: ["en", "bn"],
+    award: ["60+ projects delivered", "98% client satisfaction"],
     sameAs: [
       s?.socialLinkedin || "https://www.linkedin.com/in/tasbirrkabir",
       s?.socialTwitter || "https://x.com/tasbirrkabir",
