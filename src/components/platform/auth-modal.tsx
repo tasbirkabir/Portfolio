@@ -153,7 +153,7 @@ export function AuthModal() {
                   </form>
                 </div>
               ) : (
-                <>
+                <div>
               <div className="mb-6">
                 <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-clay/10 text-clay">
                   <Sparkles className="h-5 w-5" />
@@ -305,7 +305,7 @@ export function AuthModal() {
                   {isLogin ? "Create an account" : "Sign in"}
                 </button>
               </p>
-                </>
+                </div>
               )}
             </div>
           </motion.div>

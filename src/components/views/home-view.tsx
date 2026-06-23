@@ -59,6 +59,8 @@ export function HomeView() {
   const heroCta1View = (s?.heroCta1View ?? "books") as View;
   const heroCta2View = (s?.heroCta2View ?? "blog") as View;
   const heroImage = s?.heroImage ?? "/images/logo.webp";
+  // Normalize logo.png -> logo.webp for performance (WebP is ~14x smaller)
+  const heroImgSrc = heroImage.endsWith(".png") ? heroImage.replace(/\.png$/, ".webp") : heroImage;
   const heroAvatarStripText =
     s?.heroAvatarStripText ?? "60+ projects delivered across web · AI · automation";
 
@@ -196,8 +198,12 @@ export function HomeView() {
                 <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-clay/10 blur-2xl" />
                 <div className="relative overflow-hidden rounded-[1.75rem] shadow-premium ring-1 ring-black/5">
                   <img
-                    src={heroImage}
+                    src={heroImgSrc}
                     alt={brandName}
+                    width={500}
+                    height={500}
+                    loading="eager"
+                    fetchPriority="high"
                     className="aspect-square w-full object-cover"
                   />
                 </div>

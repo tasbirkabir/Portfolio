@@ -7,11 +7,15 @@ import { ThemeProvider } from "@/components/site/theme-provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false, // only used in admin, don't block initial render
 });
 
 const instrumentSerif = Instrument_Serif({
@@ -19,6 +23,8 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: ["400"],
   style: ["normal", "italic"],
+  display: "swap",
+  preload: true,
 });
 
 const newsreader = Newsreader({
@@ -26,9 +32,12 @@ const newsreader = Newsreader({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   style: ["normal", "italic"],
+  display: "swap",
+  preload: false, // reader font, not needed for initial paint
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.tasbirkabir.site"),
   title: "Tasbir Kabir — AI Consultant, Web Developer & Media Buyer",
   description:
     "Tasbir Kabir builds AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster. Based in Dhaka, Bangladesh.",
@@ -50,6 +59,7 @@ export const metadata: Metadata = {
     description:
       "I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.",
     type: "website",
+    images: [{ url: "/images/logo.webp", width: 800, height: 800, alt: "Tasbir Kabir" }],
   },
   twitter: {
     card: "summary_large_image",

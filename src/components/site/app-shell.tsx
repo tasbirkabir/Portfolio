@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useNav } from "@/lib/store/nav";
 import { useAuth } from "@/lib/store/auth";
@@ -14,14 +14,26 @@ import { BookView } from "@/components/views/book-view";
 import { ResourcesView } from "@/components/views/resources-view";
 import { BlogView } from "@/components/views/blog-view";
 import { PostView } from "@/components/views/post-view";
-import { AdminView } from "@/components/admin/admin-view";
 import { AuthModal } from "@/components/platform/auth-modal";
-import { EbookReader } from "@/components/reader/ebook-reader";
 import { ContactView } from "@/components/views/contact-view";
-import { LibraryView } from "@/components/views/library-view";
-import { AccountView } from "@/components/views/account-view";
-import { SearchView } from "@/components/views/search-view";
-import { KnowledgeHubView } from "@/components/views/knowledge-hub-view";
+
+// Lazy-load heavy views that aren't needed on initial page load.
+// This cuts ~257 KiB of unused JavaScript from the initial bundle.
+const AdminView = lazy(() => import("@/components/admin/admin-view").then(m => ({ default: m.AdminView })));
+const EbookReader = lazy(() => import("@/components/reader/ebook-reader").then(m => ({ default: m.EbookReader })));
+const LibraryView = lazy(() => import("@/components/views/library-view").then(m => ({ default: m.LibraryView })));
+const AccountView = lazy(() => import("@/components/views/account-view").then(m => ({ default: m.AccountView })));
+const SearchView = lazy(() => import("@/components/views/search-view").then(m => ({ default: m.SearchView })));
+const KnowledgeHubView = lazy(() => import("@/components/views/knowledge-hub-view").then(m => ({ default: m.KnowledgeHubView })));
+const CheckoutModal = lazy(() => import("@/components/platform/checkout-modal").then(m => ({ default: m.CheckoutModal })));
+
+function ViewLoader() {
+  return (
+    <div className="flex min-h-[60vh] items-center justify-center">
+      <div className="h-6 w-6 animate-spin rounded-full border-2 border-muted border-t-foreground" />
+    </div>
+  );
+}
 
 export function AppShell() {
   const { view, bookSlug, postSlug, pageKey, readerBookSlug } = useNav();
@@ -38,11 +50,17 @@ export function AppShell() {
       <div className="flex min-h-screen flex-col">
         <Navbar />
         <main className="flex-1 pt-16">
-          <AdminView />
+          <Suspense fallback={<ViewLoader />}>
+            <AdminView />
+          </Suspense>
         </main>
         <AuthModal />
         <AnimatePresence>
-          {readerBookSlug && <EbookReader key={readerBookSlug} slug={readerBookSlug} />}
+          {readerBookSlug && (
+            <Suspense fallback={null}>
+              <EbookReader key={readerBookSlug} slug={readerBookSlug} />
+            </Suspense>
+          )}
         </AnimatePresence>
       </div>
     );
@@ -69,10 +87,10 @@ export function AppShell() {
             {view === "blog" && <BlogView />}
             {view === "post" && postSlug && <PostView slug={postSlug} />}
             {view === "contact" && <ContactView />}
-            {view === "library" && <LibraryView />}
-            {view === "account" && <AccountView />}
-            {view === "search" && <SearchView />}
-            {view === "knowledge" && <KnowledgeHubView />}
+            {view === "library" && <Suspense fallback={<ViewLoader />}><LibraryView /></Suspense>}
+            {view === "account" && <Suspense fallback={<ViewLoader />}><AccountView /></Suspense>}
+            {view === "search" && <Suspense fallback={<ViewLoader />}><SearchView /></Suspense>}
+            {view === "knowledge" && <Suspense fallback={<ViewLoader />}><KnowledgeHubView /></Suspense>}
           </motion.div>
         </AnimatePresence>
       </main>
@@ -84,7 +102,11 @@ export function AppShell() {
 
       {/* Ebook reader overlay */}
       <AnimatePresence>
-        {readerBookSlug && <EbookReader key={readerBookSlug} slug={readerBookSlug} />}
+        {readerBookSlug && (
+          <Suspense fallback={null}>
+            <EbookReader key={readerBookSlug} slug={readerBookSlug} />
+          </Suspense>
+        )}
       </AnimatePresence>
     </div>
   );

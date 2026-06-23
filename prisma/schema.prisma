@@ -234,7 +234,7 @@ model SiteSettings {
   heroCta2      String   @default("Work with me")
   heroCta1View  String   @default("books")
   heroCta2View  String   @default("contact")
-  heroImage     String   @default("/images/logo.png")
+  heroImage     String   @default("/images/logo.webp")
   heroAvatarStripText String @default("60+ projects delivered across web · AI · automation")
   // Homepage sections
   homeStats     String   @default("[]")
@@ -268,9 +268,9 @@ model SiteSettings {
   // Brand
   brandName     String   @default("Tasbir Kabir")
   brandTagline  String   @default("Build · Automate · Scale · Optimize · Repeat")
-  logoUrl       String   @default("/images/logo.png")
-  faviconUrl    String   @default("/images/logo.png")
-  ogImageUrl    String   @default("/images/logo.png")
+  logoUrl       String   @default("/images/logo.webp")
+  faviconUrl    String   @default("/images/logo.webp")
+  ogImageUrl    String   @default("/images/logo.webp")
   // Theme
   accentColor   String   @default("#b45309")
   // Footer

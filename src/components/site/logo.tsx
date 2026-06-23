@@ -30,7 +30,9 @@ export function Logo({
   const s = settingsData?.settings ?? null;
 
   // Settings logoUrl wins; otherwise the original size-based fallback.
-  const src = s?.logoUrl || (size <= 64 ? "/images/logo-small.webp" : "/images/logo.webp");
+  // Normalize .png → .webp for performance (logo.png is 533KB, logo.webp is 38KB).
+  const rawSrc = s?.logoUrl || (size <= 64 ? "/images/logo-small.webp" : "/images/logo.webp");
+  const src = rawSrc.endsWith(".png") ? rawSrc.replace(/\.png$/, ".webp") : rawSrc;
   const resolvedAlt = alt || s?.brandName || "Tasbir Kabir";
 
   return (

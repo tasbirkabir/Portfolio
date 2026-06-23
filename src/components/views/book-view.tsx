@@ -8,12 +8,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { useData } from "@/hooks/use-data";
 import { useNav } from "@/lib/store/nav";
 import { BookCover } from "@/components/site/book-cover";
-import { CheckoutModal } from "@/components/platform/checkout-modal";
 import { useToast } from "@/hooks/use-toast";
+
+// Lazy-load the checkout modal — only needed when the user clicks "Buy".
+const CheckoutModal = lazy(() => import("@/components/platform/checkout-modal").then(m => ({ default: m.CheckoutModal })));
 import { JsonLd } from "@/lib/seo/json-ld";
 import { bookSchema, productSchema, breadcrumbSchema, faqPageSchema } from "@/lib/seo/schema";
 import { FaqSection } from "@/components/site/faq-section";
@@ -284,12 +286,14 @@ export function BookView({ slug }: { slug: string }) {
         </div>
       </section>
 
-      <CheckoutModal
-        open={checkoutOpen}
-        items={checkoutItems}
-        onClose={() => setCheckoutOpen(false)}
-        onSuccess={() => openReader(book.slug)}
-      />
+      <Suspense fallback={null}>
+        <CheckoutModal
+          open={checkoutOpen}
+          items={checkoutItems}
+          onClose={() => setCheckoutOpen(false)}
+          onSuccess={() => openReader(book.slug)}
+        />
+      </Suspense>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import {
   Check, X, Copy, QrCode, AlertTriangle,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { Card, relTime } from "./admin-account";
+import { Card, relTime } from "./admin-ui";
 
 type Session = {
   id: string;
