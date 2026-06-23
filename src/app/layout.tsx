@@ -111,7 +111,6 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content="#1a1a1a" />
-        <link rel="preload" href="/images/logo.webp" as="image" type="image/webp" fetchPriority="high" />
         <link rel="icon" href="/images/logo-small.webp" type="image/webp" />
         <link rel="apple-touch-icon" href="/images/logo.webp" />
       </head>
