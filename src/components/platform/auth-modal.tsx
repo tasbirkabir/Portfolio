@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Mail, Lock, User, ArrowRight, Sparkles, Eye, EyeOff, Check } from "lucide-react";
+import { X, Mail, Lock, User, ArrowRight, Sparkles, Eye, EyeOff, Check, ShieldCheck } from "lucide-react";
 import { useAuth } from "@/lib/store/auth";
 import { useToast } from "@/hooks/use-toast";
 
 export function AuthModal() {
-  const { authModalOpen, authModalMode, closeAuthModal, login, register, openAuthModal } = useAuth();
+  const { authModalOpen, authModalMode, closeAuthModal, login, register, verify2fa, openAuthModal } = useAuth();
   const { toast } = useToast();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,6 +16,8 @@ export function AuthModal() {
   const [showPassword, setShowPassword] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [twoFactorPending, setTwoFactorPending] = useState<string | null>(null);
+  const [twoFactorCode, setTwoFactorCode] = useState("");
 
   const isLogin = authModalMode === "login";
 
@@ -59,12 +61,37 @@ export function AuthModal() {
       : await register(name, email, password);
     setLoading(false);
     if (!res.ok) {
+      if (res.twoFactorRequired && res.pendingToken) {
+        setTwoFactorPending(res.pendingToken);
+        setTwoFactorCode("");
+        return;
+      }
       toast({ title: "Could not continue", description: res.error, variant: "destructive" });
     } else {
       toast({
         title: isLogin ? "Welcome back." : "Account created successfully.",
         description: isLogin ? undefined : "You're signed in.",
       });
+      setName(""); setEmail(""); setPassword(""); setConfirmPassword(""); setAgreeTerms(false);
+    }
+  }
+
+  async function submit2fa(e: React.FormEvent) {
+    e.preventDefault();
+    if (!twoFactorPending) return;
+    if (!twoFactorCode.trim()) {
+      toast({ title: "Enter your code", description: "Type the 6-digit code from your authenticator app.", variant: "destructive" });
+      return;
+    }
+    setLoading(true);
+    const res = await verify2fa(twoFactorPending, twoFactorCode.trim());
+    setLoading(false);
+    if (!res.ok) {
+      toast({ title: "Verification failed", description: res.error, variant: "destructive" });
+    } else {
+      toast({ title: "Welcome back." });
+      setTwoFactorPending(null);
+      setTwoFactorCode("");
       setName(""); setEmail(""); setPassword(""); setConfirmPassword(""); setAgreeTerms(false);
     }
   }
@@ -95,6 +122,38 @@ export function AuthModal() {
             </button>
 
             <div className="p-7 sm:p-8">
+              {twoFactorPending ? (
+                <div className="mb-6">
+                  <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-clay/10 text-clay">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                  <h2 className="font-display text-2xl tracking-tight">Two-factor code</h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Enter the 6-digit code from your authenticator app to continue.
+                  </p>
+                  <form onSubmit={submit2fa} className="mt-5 space-y-3">
+                    <Field icon={ShieldCheck} label="Authentication code">
+                      <input
+                        autoFocus
+                        inputMode="numeric"
+                        autoComplete="one-time-code"
+                        value={twoFactorCode}
+                        onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                        placeholder="000000"
+                        className="w-full bg-transparent text-sm tracking-[0.4em] focus:outline-none"
+                      />
+                    </Field>
+                    <button type="submit" disabled={loading} className="group mt-2 flex w-full items-center justify-center gap-2 rounded-full bg-foreground py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.02] active:scale-95 disabled:opacity-60">
+                      {loading ? "Verifying…" : "Verify & sign in"}
+                      {!loading && <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />}
+                    </button>
+                    <button type="button" onClick={() => { setTwoFactorPending(null); setTwoFactorCode(""); }} className="w-full text-center text-xs font-medium text-muted-foreground hover:text-foreground">
+                      ← Back to sign in
+                    </button>
+                  </form>
+                </div>
+              ) : (
+                <>
               <div className="mb-6">
                 <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-clay/10 text-clay">
                   <Sparkles className="h-5 w-5" />
@@ -246,6 +305,8 @@ export function AuthModal() {
                   {isLogin ? "Create an account" : "Sign in"}
                 </button>
               </p>
+                </>
+              )}
             </div>
           </motion.div>
         </motion.div>

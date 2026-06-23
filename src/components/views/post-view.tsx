@@ -8,6 +8,8 @@ import { useNav } from "@/lib/store/nav";
 import { DynamicIslandTOC } from "@/components/site/dynamic-island-toc";
 import { NewsletterBand } from "@/components/site/newsletter-band";
 import { Logo } from "@/components/site/logo";
+import { JsonLd } from "@/lib/seo/json-ld";
+import { articleSchema, breadcrumbSchema } from "@/lib/seo/schema";
 
 export function PostView({ slug }: { slug: string }) {
   const { data, loading } = useData<{ post: any }>(`/api/blog/${slug}`);
@@ -37,6 +39,15 @@ export function PostView({ slug }: { slug: string }) {
 
   return (
     <>
+      {/* JSON-LD (Article + Breadcrumb) */}
+      <JsonLd data={[
+        articleSchema(post),
+        breadcrumbSchema([
+          { name: "Home", url: "https://tasbirkabir.site/" },
+          { name: "Blog", url: "https://tasbirkabir.site/?v=blog" },
+          { name: post.title, url: `https://tasbirkabir.site/?v=post&slug=${post.slug}` },
+        ]),
+      ]} />
       <article className="mx-auto max-w-3xl px-5 py-16 sm:py-20">
         <button
           onClick={() => navigate("blog")}

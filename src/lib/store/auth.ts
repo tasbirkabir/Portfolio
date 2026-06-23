@@ -15,7 +15,8 @@ type AuthState = {
   authModalOpen: boolean;
   authModalMode: "login" | "register";
   fetchUser: () => Promise<void>;
-  login: (email: string, password: string) => Promise<{ ok: boolean; error?: string }>;
+  login: (email: string, password: string) => Promise<{ ok: boolean; error?: string; twoFactorRequired?: boolean; pendingToken?: string }>;
+  verify2fa: (pendingToken: string, code: string) => Promise<{ ok: boolean; error?: string }>;
   register: (name: string, email: string, password: string) => Promise<{ ok: boolean; error?: string }>;
   logout: () => Promise<void>;
   requestPasswordReset: (email: string) => Promise<{ ok: boolean; error?: string; message?: string }>;
@@ -43,6 +44,18 @@ export const useAuth = create<AuthState>((set, get) => ({
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
+    });
+    const j = await r.json();
+    if (!r.ok) return { ok: false, error: j.error };
+    if (j.twoFactorRequired) return { ok: false, twoFactorRequired: true, pendingToken: j.pendingToken };
+    set({ user: j.user, authModalOpen: false });
+    return { ok: true };
+  },
+  verify2fa: async (pendingToken, code) => {
+    const r = await fetch("/api/auth/verify-2fa", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pendingToken, code }),
     });
     const j = await r.json();
     if (!r.ok) return { ok: false, error: j.error };

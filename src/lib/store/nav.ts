@@ -4,7 +4,7 @@ import { create } from "zustand";
 
 export type View =
   | "home" | "about" | "books" | "book" | "resources" | "blog" | "post" | "contact"
-  | "library" | "account" | "search" | "admin";
+  | "library" | "account" | "search" | "admin" | "knowledge";
 
 type NavState = {
   view: View;

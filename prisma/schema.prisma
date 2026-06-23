@@ -29,16 +29,16 @@ model Book {
   rating       Float    @default(5)
   reviewsCount Int      @default(0)
   buyers       Int      @default(0)
-  accessType   String   @default("paid") // public | free | email-gate | paid | members
-  status       String   @default("published") // draft | published | scheduled
-  whatYouLearn String   @default("[]") // JSON: string[]
-  chapters     String   @default("[]") // JSON: { title: string; pages: number }[]
-  faq          String   @default("[]") // JSON: { q: string; a: string }[]
-  highlights   String   @default("[]") // JSON: string[]
-  content      String   @default("[]") // JSON: Chapter[] for the reader
+  accessType   String   @default("paid")
+  status       String   @default("published")
+  whatYouLearn String   @default("[]")
+  chapters     String   @default("[]")
+  faq          String   @default("[]")
+  highlights   String   @default("[]")
+  content      String   @default("[]")
   seoTitle     String?
   seoDesc      String?
-  assets       Asset[]  // downloadable files attached to this book
+  assets       Asset[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -47,12 +47,12 @@ model Asset {
   id          String   @id @default(cuid())
   bookId      String
   book        Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
-  type        String   // pdf | epub | mobi | zip | docx | xlsx | pptx | png | jpg | svg | bonus | template | worksheet | prompt-pack | checklist | source
-  label       String   // display name, e.g. "PDF Version", "Bonus Templates"
-  filename    String   // original filename
-  fileSize    Int      // bytes
-  fileType    String   // MIME type
-  storagePath String   // path in storage (for signed URL generation)
+  type        String
+  label       String
+  filename    String
+  fileSize    Int
+  fileType    String
+  storagePath String
   downloads   Int      @default(0)
   createdAt   DateTime @default(now())
 }
@@ -62,11 +62,11 @@ model Resource {
   title       String
   slug        String   @unique
   description String
-  type        String   // pdf | template | checklist | prompt-pack | guide | framework | swipe-file | toolkit
+  type        String
   category    String
   accent      String
   price       Float    @default(0)
-  accessType  String   @default("free") // public | free | email-gate | paid | members
+  accessType  String   @default("free")
   status      String   @default("published")
   downloads   Int      @default(0)
   pages       Int?
@@ -82,11 +82,11 @@ model BlogPost {
   excerpt     String
   content     String
   category    String
-  tags        String   @default("[]") // JSON: string[]
+  tags        String   @default("[]")
   readTime    Int
   cover       String
   featured    Boolean  @default(false)
-  status      String   @default("published") // draft | published | scheduled
+  status      String   @default("published")
   seoTitle    String?
   seoDesc     String?
   publishedAt DateTime @default(now())
@@ -109,20 +109,57 @@ model User {
   id                  String   @id @default(cuid())
   email               String   @unique
   name                String?
-  password            String   // bcrypt hash
-  role                String   @default("user") // user | admin
+  password            String
+  role                String   @default("user")
   banned              Boolean  @default(false)
   emailVerified       Boolean  @default(false)
   passwordResetToken  String?
   passwordResetExpiry DateTime?
+  profileImage        String?
+  twoFactorSecret     String?
+  twoFactorEnabled    Boolean  @default(false)
+  lastLoginAt         DateTime?
+  lastLoginIp         String?
+  passwordChangedAt   DateTime?
   createdAt           DateTime @default(now())
+  sessions            Session[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sid          String   @unique
+  userAgent    String?
+  ip           String?
+  deviceName   String?
+  createdAt    DateTime @default(now())
+  lastActiveAt DateTime @default(now())
+  expiresAt    DateTime
+  revokedAt    DateTime?
+
+  @@index([userId])
+}
+
+model LoginHistory {
+  id        String   @id @default(cuid())
+  userId    String?
+  email     String
+  ip        String?
+  userAgent String?
+  success   Boolean
+  reason    String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([email])
 }
 
 model LibraryAccess {
   id        String   @id @default(cuid())
   userId    String
   userEmail String
-  itemType  String   // book | resource
+  itemType  String
   itemSlug  String
   createdAt DateTime @default(now())
 
@@ -134,7 +171,7 @@ model ReadingProgress {
   userId       String
   bookSlug     String
   chapterIndex Int     @default(0)
-  progress     Float   @default(0) // 0..100
+  progress     Float   @default(0)
   updatedAt    DateTime @updatedAt
 
   @@unique([userId, bookSlug])
@@ -147,11 +184,11 @@ model Order {
   userId      String?
   userEmail   String
   userName    String?
-  items       String   // JSON: { slug, title, type, price }[]
+  items       String
   total       Float
   currency    String   @default("USD")
-  method      String   // bkash | nagad | rocket | card
-  status      String   @default("paid") // pending | paid | failed | refunded
+  method      String
+  status      String   @default("paid")
   txnId       String?
   createdAt   DateTime @default(now())
 }
@@ -162,7 +199,7 @@ model NewsletterSub {
   id        String   @id @default(cuid())
   email     String   @unique
   name      String?
-  segment   String   @default("all") // all | buyers | readers | vip
+  segment   String   @default("all")
   createdAt DateTime @default(now())
 }
 
@@ -171,7 +208,7 @@ model Broadcast {
   subject   String
   body      String
   segment   String   @default("all")
-  status    String   @default("draft") // draft | sent
+  status    String   @default("draft")
   sentAt    DateTime?
   createdAt DateTime @default(now())
 }
@@ -195,7 +232,39 @@ model SiteSettings {
   heroSubtitle  String   @default("Hey, I'm Tasbir. I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.")
   heroCta1      String   @default("Explore the books")
   heroCta2      String   @default("Work with me")
+  heroCta1View  String   @default("books")
+  heroCta2View  String   @default("contact")
   heroImage     String   @default("/images/logo.png")
+  heroAvatarStripText String @default("60+ projects delivered across web · AI · automation")
+  // Homepage sections
+  homeStats     String   @default("[]")
+  homeWhatIBuildEyebrow String @default("What I Build")
+  homeWhatIBuildTitle   String @default("Five systems. One operating system for your business.")
+  homeWhatIBuild String @default("[]")
+  homeFeaturedEyebrow   String @default("Featured ebook")
+  homeSocialProofEyebrow String @default("Loved by clients")
+  homeSocialProofTitle  String @default("What clients say about the work")
+  homeResourcesEyebrow  String @default("Free downloads")
+  homeResourcesTitle    String @default("Resources & lead magnets")
+  // About page
+  aboutEyebrow  String   @default("About")
+  aboutTitle    String   @default("Building digital systems that scale.")
+  aboutBio      String   @default("Hey, I'm Tasbir Kabir — AI Consultant, Web Developer, and Media Buyer based in Dhaka, Bangladesh.\n\nFor over 3 years, I've been helping businesses establish and grow their digital presence through websites, marketing systems, and automation.\n\nAlong the way, I discovered that many repetitive processes could be streamlined and enhanced using AI. Today, I build AI agents, automation systems, and AI-integrated websites that help businesses operate more efficiently and grow faster.")
+  aboutMissionQuote String @default("The best systems work for you even when you're offline.")
+  aboutMissionBody  String @default("I combine AI and digital strategy to create systems that drive real business growth — from intelligent workflows to conversion-focused web experiences. Every system I build is designed to save time, generate leads, and scale.\n\nI don't just deliver — I teach you how to run and modify the system yourself, step by step. Because the system you understand is the system that compounds.")
+  aboutServicesEyebrow  String @default("What I build & teach")
+  aboutServicesTitle    String @default("From idea to automated business")
+  aboutServicesSubtitle String @default("Four services, one operating system. Each one plugs into the next — so your business runs on systems, not on you.")
+  aboutServices String   @default("[]")
+  aboutProcessEyebrow   String @default("How it works")
+  aboutProcessTitle     String @default("Simple process, serious results")
+  aboutProcess String   @default("[]")
+  aboutTimelineEyebrow  String @default("The path")
+  aboutTimelineTitle    String @default("3+ years, one focus")
+  aboutTimeline String  @default("[]")
+  aboutAchievements String @default("[]")
+  aboutCtaTitle  String @default("Ready to build smarter?")
+  aboutCtaDesc   String @default("Start with the AI Agency Operating System, or browse the whole library.")
   // Brand
   brandName     String   @default("Tasbir Kabir")
   brandTagline  String   @default("Build · Automate · Scale · Optimize · Repeat")
@@ -207,26 +276,31 @@ model SiteSettings {
   // Footer
   footerBio     String   @default("AI Consultant, Web Developer & Media Buyer based in Dhaka, Bangladesh. I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.")
   footerCopyright String @default("Tasbir Kabir — AI Consultant & Web Developer")
+  footerTagline String   @default("Build · Automate · Scale · Optimize · Repeat")
+  footerColumns String   @default("[]")
   // Socials
   socialLinkedin  String @default("https://www.linkedin.com/in/tasbirrkabir")
   socialTwitter   String @default("https://x.com/tasbirrkabir")
   socialGithub    String @default("https://github.com/tasbirkabir")
   socialFacebook  String @default("https://www.facebook.com/share/1Tf65s6PB7/")
   socialEmail     String @default("mailto:tasbirrkabir@gmail.com")
+  // Contact
+  contactEmail  String   @default("tasbirrkabir@gmail.com")
+  contactPhone  String   @default("+880 1700 000000")
   // SEO defaults
   seoTitle      String   @default("Tasbir Kabir — AI Consultant, Web Developer & Media Buyer")
   seoDesc       String   @default("I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.")
-  // Nav (JSON: { label, view }[])
+  // Nav
   navItems      String   @default("[]")
   updatedAt     DateTime @updatedAt
 }
 
 model AnalyticsEvent {
   id        String   @id @default(cuid())
-  type      String   // page_view | book_view | sale | download | email_signup | reading_complete
+  type      String
   path      String?
   refSlug   String?
   value     Float    @default(0)
-  meta      String   @default("{}") // JSON
+  meta      String   @default("{}")
   createdAt DateTime @default(now())
 }

@@ -1,38 +1,82 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Home, BookOpen, FileText, Newspaper, User, UserRound, Mail, Moon, Sun, ArrowUpRight, Search, Library, LogIn, Shield } from "lucide-react";
+import {
+  Home, BookOpen, FileText, Newspaper, User, UserRound, Mail, Moon, Sun,
+  ArrowUpRight, Search, Library, LogIn, Shield, Sparkles, type LucideIcon,
+} from "lucide-react";
 import { useNav, type View } from "@/lib/store/nav";
 import { useAuth } from "@/lib/store/auth";
+import { useData } from "@/hooks/use-data";
 import { useTheme } from "./theme-provider";
 import { ExpandableTabs } from "./expandable-tabs";
 import { Logo } from "./logo";
 import { cn } from "@/lib/utils";
 
-const NAV_TABS = [
-  { title: "Home", view: "home" as View, icon: Home },
-  { title: "Books", view: "books" as View, icon: BookOpen },
-  { title: "Resources", view: "resources" as View, icon: FileText },
-  { title: "Blog", view: "blog" as View, icon: Newspaper },
-  { type: "separator" as const },
-  { title: "About", view: "about" as View, icon: User },
-  { title: "Contact", view: "contact" as View, icon: Mail },
-];
-
-// Flatten to just the selectable (non-separator) views, in order, so we can
-// map the current view → a stable tab index for the controlled ExpandableTabs.
-const SELECTABLE = NAV_TABS.filter((t) => t.type !== "separator") as {
+type NavTabItem = {
   title: string;
   view: View;
-  icon: typeof Home;
-}[];
+  icon: LucideIcon;
+};
+type NavSeparator = { type: "separator" };
+type NavEntry = NavTabItem | NavSeparator;
+
+// Hardcoded fallback tabs — used when settings.navItems is empty (the default).
+const NAV_TABS: NavEntry[] = [
+  { title: "Home", view: "home", icon: Home },
+  { title: "Books", view: "books", icon: BookOpen },
+  { title: "Resources", view: "resources", icon: FileText },
+  { title: "Blog", view: "blog", icon: Newspaper },
+  { type: "separator" as const },
+  { title: "Knowledge", view: "knowledge", icon: Library },
+  { title: "About", view: "about", icon: User },
+  { title: "Contact", view: "contact", icon: Mail },
+];
+
+// Map a view name → icon. Used when settings.navItems is populated.
+const VIEW_ICON_MAP: Record<string, LucideIcon> = {
+  home: Home,
+  books: BookOpen,
+  book: BookOpen,
+  resources: FileText,
+  blog: Newspaper,
+  post: Newspaper,
+  about: User,
+  contact: Mail,
+  knowledge: Library,
+  search: Search,
+  library: Library,
+  account: UserRound,
+  admin: Shield,
+};
+
+function iconForView(view: string): LucideIcon {
+  return VIEW_ICON_MAP[view] || Sparkles;
+}
 
 export function Navbar() {
   const { view, navigate } = useNav();
   const { theme, toggle } = useTheme();
-  const { user, openAuthModal, logout } = useAuth();
+  const { user, openAuthModal } = useAuth();
   const [scrolled, setScrolled] = useState(false);
+  const { data: settingsData } = useData<{ settings: any }>("/api/settings");
+  const s = settingsData?.settings ?? null;
+
+  const brandName = s?.brandName ?? "Tasbir Kabir";
+
+  // If settings.navItems is a non-empty array, build tabs from it; else fallback.
+  const tabs = useMemo<NavEntry[]>(() => {
+    const items = s?.navItems;
+    if (Array.isArray(items) && items.length) {
+      return items.map((it: { label?: string; title?: string; view: string }) => ({
+        title: it.label || it.title || it.view,
+        view: (it.view as View) || "home",
+        icon: iconForView(it.view),
+      }));
+    }
+    return NAV_TABS;
+  }, [s?.navItems]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -41,9 +85,9 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Current view → tab index in the full NAV_TABS array (incl. separator).
+  // Current view → tab index in the full tabs array (incl. separators).
   const activeTabIndex = (() => {
-    const idx = NAV_TABS.findIndex((t) => t.type !== "separator" && t.view === view);
+    const idx = tabs.findIndex((t) => t.type !== "separator" && t.view === view);
     return idx === -1 ? 0 : idx;
   })();
 
@@ -61,19 +105,19 @@ export function Navbar() {
         <button onClick={() => navigate("home")} className="group flex min-w-0 shrink-0 items-center gap-2">
           <Logo size={30} rounded="rounded-full" />
           <span className="truncate font-display text-base tracking-tight sm:text-lg">
-            Tasbir Kabir
+            {brandName}
           </span>
         </button>
 
         {/* Center nav — ExpandableTabs (desktop only, md+) */}
         <nav className="hidden min-w-0 md:block">
           <ExpandableTabs
-            tabs={NAV_TABS}
+            tabs={tabs}
             value={activeTabIndex}
             activeColor="text-clay"
             onChange={(index) => {
               if (index === null) return;
-              const t = NAV_TABS[index];
+              const t = tabs[index];
               if (t && t.type !== "separator") navigate(t.view);
             }}
           />

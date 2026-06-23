@@ -3,6 +3,8 @@
 import { motion } from "motion/react";
 import { Twitter, Linkedin, Github, Facebook, Mail, ArrowUpRight } from "lucide-react";
 import { OnboardingForm } from "@/components/site/onboarding-form";
+import { JsonLd } from "@/lib/seo/json-ld";
+import { contactPageSchema } from "@/lib/seo/schema";
 
 const SOCIALS = [
   { icon: Linkedin, label: "LinkedIn", handle: "in/tasbirrkabir", href: "https://www.linkedin.com/in/tasbirrkabir" },
@@ -15,6 +17,8 @@ const SOCIALS = [
 export function ContactView() {
   return (
     <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
+      {/* JSON-LD (ContactPage) */}
+      <JsonLd data={contactPageSchema()} />
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}

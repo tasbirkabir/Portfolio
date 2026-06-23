@@ -8,6 +8,10 @@ import { useToast } from "@/hooks/use-toast";
 import { useNav } from "@/lib/store/nav";
 import { ExpandableTabs } from "@/components/site/expandable-tabs";
 import { cn } from "@/lib/utils";
+import { JsonLd } from "@/lib/seo/json-ld";
+import { faqPageSchema } from "@/lib/seo/schema";
+import { FaqSection } from "@/components/site/faq-section";
+import { RESOURCES_FAQS } from "@/lib/seo/faq-data";
 
 const TYPE_META: Record<string, { icon: typeof FileText; label: string }> = {
   pdf: { icon: FileText, label: "Free PDF" },
@@ -184,6 +188,9 @@ export function ResourcesView() {
           <ArrowUpRight className="h-4 w-4" />
         </button>
       </div>
+
+      {/* FAQ (GEO) */}
+      <FaqSection faqs={RESOURCES_FAQS} eyebrow="Questions" title="Resources FAQ" />
     </div>
   );
 }

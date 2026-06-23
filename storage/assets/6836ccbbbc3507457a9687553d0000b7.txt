@@ -1,0 +1,7 @@
+AI Agency Prompt Pack
+
+1. Cold outreach email generator
+2. Discovery call qualifier
+3. Proposal writer
+4. SOP generator
+...24 prompts total

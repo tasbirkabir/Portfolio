@@ -1,13 +1,10 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { parseSettings } from "@/lib/settings-defaults";
 
 export async function GET() {
   const s = await db.siteSettings.findUnique({ where: { id: "singleton" } });
-  if (!s) return NextResponse.json({ settings: null });
-  return NextResponse.json({
-    settings: {
-      ...s,
-      navItems: JSON.parse(s.navItems || "[]"),
-    },
-  });
+  const settings = parseSettings(s);
+  if (!settings) return NextResponse.json({ settings: null });
+  return NextResponse.json({ settings });
 }

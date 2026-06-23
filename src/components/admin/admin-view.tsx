@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import {
   LayoutDashboard, BookOpen, Newspaper, FileText, ShoppingCart, Users,
   Mail, BarChart3, Settings, Search as SearchIcon, LogOut, ExternalLink,
-  Loader2,
+  Loader2, UserCog, ShieldCheck,
 } from "lucide-react";
 import { useAuth } from "@/lib/store/auth";
 import { useNav } from "@/lib/store/nav";
@@ -19,9 +19,11 @@ import { AdminUsers } from "./admin-users";
 import { AdminNewsletter } from "./admin-newsletter";
 import { AdminAnalytics } from "./admin-analytics";
 import { AdminSettings } from "./admin-settings";
+import { AdminAccount } from "./admin-account";
+import { AdminSecurity } from "./admin-security";
 import { cn } from "@/lib/utils";
 
-type Tab = "dashboard" | "books" | "blog" | "resources" | "orders" | "users" | "newsletter" | "analytics" | "settings";
+type Tab = "dashboard" | "books" | "blog" | "resources" | "orders" | "users" | "newsletter" | "analytics" | "settings" | "account" | "security";
 
 const NAV: { id: Tab; label: string; icon: typeof BookOpen }[] = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -33,6 +35,8 @@ const NAV: { id: Tab; label: string; icon: typeof BookOpen }[] = [
   { id: "newsletter", label: "Newsletter", icon: Mail },
   { id: "analytics", label: "Analytics", icon: BarChart3 },
   { id: "settings", label: "Site Settings", icon: Settings },
+  { id: "account", label: "Account", icon: UserCog },
+  { id: "security", label: "Security", icon: ShieldCheck },
 ];
 
 export function AdminView() {
@@ -127,6 +131,8 @@ export function AdminView() {
           {tab === "newsletter" && <AdminNewsletter />}
           {tab === "analytics" && <AdminAnalytics />}
           {tab === "settings" && <AdminSettings />}
+          {tab === "account" && <AdminAccount />}
+          {tab === "security" && <AdminSecurity />}
         </motion.main>
       </div>
     </div>

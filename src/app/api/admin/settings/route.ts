@@ -1,23 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/auth/session";
+import { parseSettings, serializeSettingsForDb } from "@/lib/settings-defaults";
+import { logAudit } from "@/lib/security/audit";
 
 export async function GET() {
   const s = await db.siteSettings.findUnique({ where: { id: "singleton" } });
-  if (!s) return NextResponse.json({ settings: null });
-  return NextResponse.json({ settings: { ...s, navItems: JSON.parse(s.navItems || "[]") } });
+  return NextResponse.json({ settings: parseSettings(s) });
 }
 
 export async function PUT(req: NextRequest) {
   const user = await getCurrentUser();
   if (!user || user.role !== "admin") return NextResponse.json({ error: "Admin only" }, { status: 403 });
   const body = await req.json();
-  const data: any = { ...body };
-  if (Array.isArray(body.navItems)) data.navItems = JSON.stringify(body.navItems);
+  const data = serializeSettingsForDb(body);
   const s = await db.siteSettings.upsert({
     where: { id: "singleton" },
     update: data,
-    create: { id: "singleton", ...data, navItems: JSON.stringify(body.navItems || []) },
+    create: { id: "singleton", ...data },
   });
-  return NextResponse.json({ settings: { ...s, navItems: JSON.parse(s.navItems || "[]") } });
+  await logAudit({ userId: user.id, userEmail: user.email, action: "settings_update", targetType: "siteSettings", targetId: "singleton" });
+  return NextResponse.json({ settings: parseSettings(s) });
 }

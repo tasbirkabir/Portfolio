@@ -14,6 +14,10 @@ import { useNav } from "@/lib/store/nav";
 import { BookCover } from "@/components/site/book-cover";
 import { CheckoutModal } from "@/components/platform/checkout-modal";
 import { useToast } from "@/hooks/use-toast";
+import { JsonLd } from "@/lib/seo/json-ld";
+import { bookSchema, productSchema, breadcrumbSchema, faqPageSchema } from "@/lib/seo/schema";
+import { FaqSection } from "@/components/site/faq-section";
+import { BOOK_FAQS } from "@/lib/seo/faq-data";
 
 export function BookView({ slug }: { slug: string }) {
   const { data, loading } = useData<{ book: any; testimonials: any[] }>(`/api/books/${slug}`);
@@ -60,6 +64,17 @@ export function BookView({ slug }: { slug: string }) {
 
   return (
     <div>
+      {/* JSON-LD (Book + Product + Breadcrumb + FAQ) */}
+      <JsonLd data={[
+        bookSchema(book),
+        productSchema(book),
+        breadcrumbSchema([
+          { name: "Home", url: "https://tasbirkabir.site/" },
+          { name: "Books", url: "https://tasbirkabir.site/?v=books" },
+          { name: book.title, url: `https://tasbirkabir.site/?v=book&slug=${book.slug}` },
+        ]),
+        faqPageSchema(BOOK_FAQS),
+      ]} />
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border/60">
         <div
@@ -353,6 +368,9 @@ function PurchaseCard({
           30-day, no-questions refund. If it doesn't pay for itself, email me.
         </p>
       </div>
+
+      {/* FAQ (GEO) */}
+      <FaqSection faqs={BOOK_FAQS} eyebrow="Questions" title={`FAQ — ${book.title}`} />
     </div>
   );
 }

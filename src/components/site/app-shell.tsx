@@ -21,6 +21,7 @@ import { ContactView } from "@/components/views/contact-view";
 import { LibraryView } from "@/components/views/library-view";
 import { AccountView } from "@/components/views/account-view";
 import { SearchView } from "@/components/views/search-view";
+import { KnowledgeHubView } from "@/components/views/knowledge-hub-view";
 
 export function AppShell() {
   const { view, bookSlug, postSlug, pageKey, readerBookSlug } = useNav();
@@ -71,6 +72,7 @@ export function AppShell() {
             {view === "library" && <LibraryView />}
             {view === "account" && <AccountView />}
             {view === "search" && <SearchView />}
+            {view === "knowledge" && <KnowledgeHubView />}
           </motion.div>
         </AnimatePresence>
       </main>

@@ -2,17 +2,22 @@
 
 import { cn } from "@/lib/utils";
 import { useNav } from "@/lib/store/nav";
+import { useData } from "@/hooks/use-data";
 
 /**
  * Tasbir Kabir brand logo — the stylized portrait mark.
  * Used in the navbar, footer, post bylines, author cards, etc.
+ *
+ * If the site settings expose a `logoUrl`, that is used for all sizes.
+ * Otherwise the original size-based logic applies (small WebP for ≤ 64px,
+ * full WebP for larger).
  */
 export function Logo({
   size = 32,
   className,
   rounded = "rounded-full",
   onClickHome = false,
-  alt = "Tasbir Kabir",
+  alt,
 }: {
   size?: number;
   className?: string;
@@ -21,12 +26,17 @@ export function Logo({
   alt?: string;
 }) {
   const navigate = useNav((s) => s.navigate);
-  // Use the small WebP for sizes <= 64, full WebP for larger
-  const src = size <= 64 ? "/images/logo-small.webp" : "/images/logo.webp";
+  const { data: settingsData } = useData<{ settings: any }>("/api/settings");
+  const s = settingsData?.settings ?? null;
+
+  // Settings logoUrl wins; otherwise the original size-based fallback.
+  const src = s?.logoUrl || (size <= 64 ? "/images/logo-small.webp" : "/images/logo.webp");
+  const resolvedAlt = alt || s?.brandName || "Tasbir Kabir";
+
   return (
     <img
       src={src}
-      alt={alt}
+      alt={resolvedAlt}
       width={size}
       height={size}
       loading="eager"
