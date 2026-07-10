@@ -27,7 +27,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       where: { userEmail: body.userEmail, itemType: body.removeAccess.type, itemSlug: body.removeAccess.slug },
     });
   }
-  const u = data.banned !== undefined || data.role ? await db.user.update({ where: { id }, data }) : await db.user.findUnique({ where: { id } });
+  const u = data.banned !== undefined || data.role ? await db.profile.update({ where: { id }, data }) : await db.profile.findUnique({ where: { id } });
   return NextResponse.json({ user: u });
 }
 
@@ -35,6 +35,6 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
   const user = await getCurrentUser();
   if (!user || user.role !== "admin") return NextResponse.json({ error: "Admin only" }, { status: 403 });
   const { id } = await params;
-  await db.user.delete({ where: { id } });
+  await db.profile.delete({ where: { id } });
   return NextResponse.json({ ok: true });
 }

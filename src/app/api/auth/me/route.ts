@@ -1,10 +1,29 @@
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth/session";
+import { createClient } from "@/lib/supabase/server";
+import { db } from "@/lib/db";
+import { getOrCreateProfile } from "@/lib/auth/session";
 
+/** GET /api/auth/me — returns the current user's profile (role, name, image). */
 export async function GET() {
-  const user = await getCurrentUser();
-  if (!user) return NextResponse.json({ user: null });
-  return NextResponse.json({
-    user: { id: user.id, email: user.email, name: user.name, role: user.role },
-  });
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      return NextResponse.json({ user: null });
+    }
+
+    // Get or create the profile
+    const profile = await getOrCreateProfile(user);
+
+    // Update last login
+    await db.profile.update({
+      where: { id: user.id },
+      data: { lastLoginAt: new Date() },
+    }).catch(() => {});
+
+    return NextResponse.json({ user: profile });
+  } catch {
+    return NextResponse.json({ user: null });
+  }
 }

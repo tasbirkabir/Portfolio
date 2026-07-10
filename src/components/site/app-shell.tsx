@@ -4,6 +4,7 @@ import { useEffect, lazy, Suspense } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useNav } from "@/lib/store/nav";
 import { useAuth } from "@/lib/store/auth";
+import { createClient } from "@/lib/supabase/browser";
 import { Navbar } from "@/components/site/navbar";
 import { MobileNav } from "@/components/site/mobile-nav";
 import { Footer } from "@/components/site/footer";
@@ -39,9 +40,25 @@ export function AppShell() {
   const { view, bookSlug, postSlug, pageKey, readerBookSlug } = useNav();
   const fetchUser = useAuth((s) => s.fetchUser);
 
-  // Fetch the current user on mount so the whole app knows the auth state
+  // Fetch the current user on mount + listen for Supabase auth state changes
   useEffect(() => {
     fetchUser();
+    // Listen for auth state changes (sign in, sign out, token refresh)
+    let subscription: any = null;
+    try {
+      const supabase = createClient();
+      const { data } = supabase.auth.onAuthStateChange((event) => {
+        if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
+          fetchUser();
+        } else if (event === "SIGNED_OUT") {
+          useAuth.setState({ user: null });
+        }
+      });
+      subscription = data.subscription;
+    } catch {}
+    return () => {
+      if (subscription) subscription.unsubscribe();
+    };
   }, [fetchUser]);
 
   // Admin view: no public chrome

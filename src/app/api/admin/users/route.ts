@@ -5,7 +5,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 export async function GET() {
   const user = await getCurrentUser();
   if (!user || user.role !== "admin") return NextResponse.json({ error: "Admin only" }, { status: 403 });
-  const users = await db.user.findMany({ orderBy: { createdAt: "desc" } });
+  const users = await db.profile.findMany({ orderBy: { createdAt: "desc" } });
   const orders = await db.order.findMany();
   const access = await db.libraryAccess.findMany();
 

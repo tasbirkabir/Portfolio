@@ -1,0 +1,1276 @@
+     1→     1→You are given a task to integrate an existing React component in the codebase
+     2→     2→
+     3→     3→The codebase should support:
+     4→     4→- shadcn project structure  
+     5→     5→- Tailwind CSS
+     6→     6→- Typescript
+     7→     7→
+     8→     8→If it doesn't, provide instructions on how to setup project via shadcn CLI, install Tailwind or Typescript.
+     9→     9→
+    10→    10→Determine the default path for components and styles. 
+    11→    11→If default path for components is not /components/ui, provide instructions on why it's important to create this folder
+    12→    12→Copy-paste this component to /components/ui folder:
+    13→    13→```tsx
+    14→    14→multistep-form.tsx
+    15→    15→import { type ClassValue, clsx } from "clsx";
+    16→    16→import { twMerge } from "tailwind-merge";
+    17→    17→
+    18→    18→export function cn(...inputs: ClassValue[]) {
+    19→    19→  return twMerge(clsx(inputs));
+    20→    20→}
+    21→    21→
+    22→    22→
+    23→    23→demo.tsx
+    24→    24→"use client";
+    25→    25→
+    26→    26→import { useState } from "react";
+    27→    27→import { motion, AnimatePresence } from "framer-motion";
+    28→    28→import { ChevronLeft, ChevronRight, Check, Loader2 } from "lucide-react";
+    29→    29→import { Button } from "@/components/ui/button";
+    30→    30→import {
+    31→    31→  Card,
+    32→    32→  CardContent,
+    33→    33→  CardDescription,
+    34→    34→  CardFooter,
+    35→    35→  CardHeader,
+    36→    36→  CardTitle,
+    37→    37→} from "@/components/ui/card";
+    38→    38→import { Input } from "@/components/ui/input";
+    39→    39→import { Label } from "@/components/ui/label";
+    40→    40→import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+    41→    41→import { Textarea } from "@/components/ui/textarea";
+    42→    42→import {
+    43→    43→  Select,
+    44→    44→  SelectContent,
+    45→    45→  SelectItem,
+    46→    46→  SelectTrigger,
+    47→    47→  SelectValue,
+    48→    48→} from "@/components/ui/select";
+    49→    49→import { Checkbox } from "@/components/ui/checkbox";
+    50→    50→import { toast } from "sonner";
+    51→    51→import { cn } from "@/lib/utils";
+    52→    52→
+    53→    53→const steps = [
+    54→    54→  { id: "personal", title: "Personal Info" },
+    55→    55→  { id: "professional", title: "Professional" },
+    56→    56→  { id: "goals", title: "Website Goals" },
+    57→    57→  { id: "design", title: "Design" },
+    58→    58→  { id: "budget", title: "Budget" },
+    59→    59→  { id: "requirements", title: "Requirements" },
+    60→    60→];
+    61→    61→
+    62→    62→interface FormData {
+    63→    63→  name: string;
+    64→    64→  email: string;
+    65→    65→  company: string;
+    66→    66→  profession: string;
+    67→    67→  experience: string;
+    68→    68→  industry: string;
+    69→    69→  primaryGoal: string;
+    70→    70→  targetAudience: string;
+    71→    71→  contentTypes: string[];
+    72→    72→  colorPreference: string;
+    73→    73→  stylePreference: string;
+    74→    74→  inspirations: string;
+    75→    75→  budget: string;
+    76→    76→  timeline: string;
+    77→    77→  features: string[];
+    78→    78→  additionalInfo: string;
+    79→    79→}
+    80→    80→
+    81→    81→const fadeInUp = {
+    82→    82→  hidden: { opacity: 0, y: 20 },
+    83→    83→  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+    84→    84→};
+    85→    85→
+    86→    86→const contentVariants = {
+    87→    87→  hidden: { opacity: 0, x: 50 },
+    88→    88→  visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+    89→    89→  exit: { opacity: 0, x: -50, transition: { duration: 0.2 } },
+    90→    90→};
+    91→    91→
+    92→    92→const OnboardingForm = () => {
+    93→    93→  const [currentStep, setCurrentStep] = useState(0);
+    94→    94→  const [isSubmitting, setIsSubmitting] = useState(false);
+    95→    95→  const [formData, setFormData] = useState<FormData>({
+    96→    96→    name: "",
+    97→    97→    email: "",
+    98→    98→    company: "",
+    99→    99→    profession: "",
+   100→   100→    experience: "",
+   101→   101→    industry: "",
+   102→   102→    primaryGoal: "",
+   103→   103→    targetAudience: "",
+   104→   104→    contentTypes: [],
+   105→   105→    colorPreference: "",
+   106→   106→    stylePreference: "",
+   107→   107→    inspirations: "",
+   108→   108→    budget: "",
+   109→   109→    timeline: "",
+   110→   110→    features: [],
+   111→   111→    additionalInfo: "",
+   112→   112→  });
+   113→   113→
+   114→   114→  const updateFormData = (field: keyof FormData, value: string) => {
+   115→   115→    setFormData((prev) => ({ ...prev, [field]: value }));
+   116→   116→  };
+   117→   117→
+   118→   118→  const toggleFeature = (feature: string) => {
+   119→   119→    setFormData((prev) => {
+   120→   120→      const features = [...prev.features];
+   121→   121→      if (features.includes(feature)) {
+   122→   122→        return { ...prev, features: features.filter((f) => f !== feature) };
+   123→   123→      } else {
+   124→   124→        return { ...prev, features: [...features, feature] };
+   125→   125→      }
+   126→   126→    });
+   127→   127→  };
+   128→   128→
+   129→   129→  const toggleContentType = (type: string) => {
+   130→   130→    setFormData((prev) => {
+   131→   131→      const types = [...prev.contentTypes];
+   132→   132→      if (types.includes(type)) {
+   133→   133→        return { ...prev, contentTypes: types.filter((t) => t !== type) };
+   134→   134→      } else {
+   135→   135→        return { ...prev, contentTypes: [...types, type] };
+   136→   136→      }
+   137→   137→    });
+   138→   138→  };
+   139→   139→
+   140→   140→  const nextStep = () => {
+   141→   141→    if (currentStep < steps.length - 1) {
+   142→   142→      setCurrentStep((prev) => prev + 1);
+   143→   143→    }
+   144→   144→  };
+   145→   145→
+   146→   146→  const prevStep = () => {
+   147→   147→    if (currentStep > 0) {
+   148→   148→      setCurrentStep((prev) => prev - 1);
+   149→   149→    }
+   150→   150→  };
+   151→   151→
+   152→   152→  const handleSubmit = () => {
+   153→   153→    setIsSubmitting(true);
+   154→   154→
+   155→   155→    // Simulate API call
+   156→   156→    setTimeout(() => {
+   157→   157→      toast.success("Form submitted successfully!");
+   158→   158→      setIsSubmitting(false);
+   159→   159→    }, 1500);
+   160→   160→  };
+   161→   161→
+   162→   162→  // Check if step is valid for next button
+   163→   163→  const isStepValid = () => {
+   164→   164→    switch (currentStep) {
+   165→   165→      case 0:
+   166→   166→        return formData.name.trim() !== "" && formData.email.trim() !== "";
+   167→   167→      case 1:
+   168→   168→        return formData.profession.trim() !== "" && formData.industry !== "";
+   169→   169→      case 2:
+   170→   170→        return formData.primaryGoal !== "";
+   171→   171→      case 3:
+   172→   172→        return formData.stylePreference !== "";
+   173→   173→      case 4:
+   174→   174→        return formData.budget !== "" && formData.timeline !== "";
+   175→   175→      default:
+   176→   176→        return true;
+   177→   177→    }
+   178→   178→  };
+   179→   179→
+   180→   180→  const preventDefault = (e: React.MouseEvent) => {
+   181→   181→    e.preventDefault();
+   182→   182→  };
+   183→   183→
+   184→   184→  return (
+   185→   185→    <div className="w-full max-w-lg mx-auto py-8">
+   186→   186→      {/* Progress indicator */}
+   187→   187→      <motion.div
+   188→   188→        className="mb-8"
+   189→   189→        initial={{ opacity: 0, y: -20 }}
+   190→   190→        animate={{ opacity: 1, y: 0 }}
+   191→   191→        transition={{ duration: 0.5 }}
+   192→   192→      >
+   193→   193→        <div className="flex justify-between mb-2">
+   194→   194→          {steps.map((step, index) => (
+   195→   195→            <motion.div
+   196→   196→              key={index}
+   197→   197→              className="flex flex-col items-center"
+   198→   198→              whileHover={{ scale: 1.1 }}
+   199→   199→            >
+   200→   200→              <motion.div
+   201→   201→                className={cn(
+   202→   202→                  "w-4 h-4 rounded-full cursor-pointer transition-colors duration-300",
+   203→   203→                  index < currentStep
+   204→   204→                    ? "bg-primary"
+   205→   205→                    : index === currentStep
+   206→   206→                      ? "bg-primary ring-4 ring-primary/20"
+   207→   207→                      : "bg-muted",
+   208→   208→                )}
+   209→   209→                onClick={() => {
+   210→   210→                  // Only allow going back or to completed steps
+   211→   211→                  if (index <= currentStep) {
+   212→   212→                    setCurrentStep(index);
+   213→   213→                  }
+   214→   214→                }}
+   215→   215→                whileTap={{ scale: 0.95 }}
+   216→   216→              />
+   217→   217→              <motion.span
+   218→   218→                className={cn(
+   219→   219→                  "text-xs mt-1.5 hidden sm:block",
+   220→   220→                  index === currentStep
+   221→   221→                    ? "text-primary font-medium"
+   222→   222→                    : "text-muted-foreground",
+   223→   223→                )}
+   224→   224→              >
+   225→   225→                {step.title}
+   226→   226→              </motion.span>
+   227→   227→            </motion.div>
+   228→   228→          ))}
+   229→   229→        </div>
+   230→   230→        <div className="w-full bg-muted h-1.5 rounded-full overflow-hidden mt-2">
+   231→   231→          <motion.div
+   232→   232→            className="h-full bg-primary"
+   233→   233→            initial={{ width: 0 }}
+   234→   234→            animate={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
+   235→   235→            transition={{ duration: 0.3 }}
+   236→   236→          />
+   237→   237→        </div>
+   238→   238→      </motion.div>
+   239→   239→
+   240→   240→      {/* Form card */}
+   241→   241→      <motion.div
+   242→   242→        initial={{ opacity: 0, y: 20 }}
+   243→   243→        animate={{ opacity: 1, y: 0 }}
+   244→   244→        transition={{ duration: 0.5, delay: 0.2 }}
+   245→   245→      >
+   246→   246→        <Card className="border shadow-md rounded-3xl overflow-hidden">
+   247→   247→          <div>
+   248→   248→            <AnimatePresence mode="wait">
+   249→   249→              <motion.div
+   250→   250→                key={currentStep}
+   251→   251→                initial="hidden"
+   252→   252→                animate="visible"
+   253→   253→                exit="exit"
+   254→   254→                variants={contentVariants}
+   255→   255→              >
+   256→   256→                {/* Step 1: Personal Info */}
+   257→   257→                {currentStep === 0 && (
+   258→   258→                  <>
+   259→   259→                    <CardHeader>
+   260→   260→                      <CardTitle>Tell us about yourself</CardTitle>
+   261→   261→                      <CardDescription>
+   262→   262→                        Let&apos;s start with some basic information
+   263→   263→                      </CardDescription>
+   264→   264→                    </CardHeader>
+   265→   265→                    <CardContent className="space-y-4">
+   266→   266→                      <motion.div variants={fadeInUp} className="space-y-2">
+   267→   267→                        <Label htmlFor="name">Full Name</Label>
+   268→   268→                        <Input
+   269→   269→                          id="name"
+   270→   270→                          placeholder="John Doe"
+   271→   271→                          value={formData.name}
+   272→   272→                          onChange={(e) =>
+   273→   273→                            updateFormData("name", e.target.value)
+   274→   274→                          }
+   275→   275→                          className="transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
+   276→   276→                        />
+   277→   277→                      </motion.div>
+   278→   278→                      <motion.div variants={fadeInUp} className="space-y-2">
+   279→   279→                        <Label htmlFor="email">Email Address</Label>
+   280→   280→                        <Input
+   281→   281→                          id="email"
+   282→   282→                          type="email"
+   283→   283→                          placeholder="john@example.com"
+   284→   284→                          value={formData.email}
+   285→   285→                          onChange={(e) =>
+   286→   286→                            updateFormData("email", e.target.value)
+   287→   287→                          }
+   288→   288→                          className="transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
+   289→   289→                        />
+   290→   290→                      </motion.div>
+   291→   291→                      <motion.div variants={fadeInUp} className="space-y-2">
+   292→   292→                        <Label htmlFor="company">
+   293→   293→                          Company/Organization (Optional)
+   294→   294→                        </Label>
+   295→   295→                        <Input
+   296→   296→                          id="company"
+   297→   297→                          placeholder="Your Company"
+   298→   298→                          value={formData.company}
+   299→   299→                          onChange={(e) =>
+   300→   300→                            updateFormData("company", e.target.value)
+   301→   301→                          }
+   302→   302→                          className="transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
+   303→   303→                        />
+   304→   304→                      </motion.div>
+   305→   305→                    </CardContent>
+   306→   306→                  </>
+   307→   307→                )}
+   308→   308→
+   309→   309→                {/* Step 2: Professional Background */}
+   310→   310→                {currentStep === 1 && (
+   311→   311→                  <>
+   312→   312→                    <CardHeader>
+   313→   313→                      <CardTitle>Professional Background</CardTitle>
+   314→   314→                      <CardDescription>
+   315→   315→                        Tell us about your professional experience
+   316→   316→                      </CardDescription>
+   317→   317→                    </CardHeader>
+   318→   318→                    <CardContent className="space-y-4">
+   319→   319→                      <motion.div variants={fadeInUp} className="space-y-2">
+   320→   320→                        <Label htmlFor="profession">
+   321→   321→                          What&apos;s your profession?
+   322→   322→                        </Label>
+   323→   323→                        <Input
+   324→   324→                          id="profession"
+   325→   325→                          placeholder="e.g. Designer, Developer, Marketer"
+   326→   326→                          value={formData.profession}
+   327→   327→                          onChange={(e) =>
+   328→   328→                            updateFormData("profession", e.target.value)
+   329→   329→                          }
+   330→   330→                          className="transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
+   331→   331→                        />
+   332→   332→                      </motion.div>
+   333→   333→
+   334→   334→                      <motion.div variants={fadeInUp} className="space-y-2">
+   335→   335→                        <Label htmlFor="industry">
+   336→   336→                          What industry do you work in?
+   337→   337→                        </Label>
+   338→   338→                        <Select
+   339→   339→                          value={formData.industry}
+   340→   340→                          onValueChange={(value) =>
+   341→   341→                            updateFormData("industry", value)
+   342→   342→                          }
+   343→   343→                        >
+   344→   344→                          <SelectTrigger
+   345→   345→                            id="industry"
+   346→   346→                            className="transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
+   347→   347→                          >
+   348→   348→                            <SelectValue placeholder="Select an industry" />
+   349→   349→                          </SelectTrigger>
+   350→   350→                          <SelectContent>
+   351→   351→                            <SelectItem value="technology">
+   352→   352→                              Technology
+   353→   353→                            </SelectItem>
+   354→   354→                            <SelectItem value="healthcare">
+   355→   355→                              Healthcare
+   356→   356→                            </SelectItem>
+   357→   357→                            <SelectItem value="education">Education</SelectItem>
+   358→   358→                            <SelectItem value="finance">Finance</SelectItem>
+   359→   359→                            <SelectItem value="retail">Retail</SelectItem>
+   360→   360→                            <SelectItem value="creative">
+   361→   361→                              Creative Arts
+   362→   362→                            </SelectItem>
+   363→   363→                            <SelectItem value="other">Other</SelectItem>
+   364→   364→                          </SelectContent>
+   365→   365→                        </Select>
+   366→   366→                      </motion.div>
+   367→   367→                    </CardContent>
+   368→   368→                  </>
+   369→   369→                )}
+   370→   370→
+   371→   371→                {/* Step 3: Website Goals */}
+   372→   372→                {currentStep === 2 && (
+   373→   373→                  <>
+   374→   374→                    <CardHeader>
+   375→   375→                      <CardTitle>Website Goals</CardTitle>
+   376→   376→                      <CardDescription>
+   377→   377→                        What are you trying to achieve with your website?
+   378→   378→                      </CardDescription>
+   379→   379→                    </CardHeader>
+   380→   380→                    <CardContent className="space-y-4">
+   381→   381→                      <motion.div variants={fadeInUp} className="space-y-2">
+   382→   382→                        <Label>
+   383→   383→                          What&apos;s the primary goal of your website?
+   384→   384→                        </Label>
+   385→   385→                        <RadioGroup
+   386→   386→                          value={formData.primaryGoal}
+   387→   387→                          onValueChange={(value) =>
+   388→   388→                            updateFormData("primaryGoal", value)
+   389→   389→                          }
+   390→   390→                          className="space-y-2"
+   391→   391→                        >
+   392→   392→                          {[
+   393→   393→                            {
+   394→   394→                              value: "showcase",
+   395→   395→                              label: "Showcase portfolio/work",
+   396→   396→                            },
+   397→   397→                            { value: "sell", label: "Sell products/services" },
+   398→   398→                            {
+   399→   399→                              value: "generate-leads",
+   400→   400→                              label: "Generate leads/inquiries",
+   401→   401→                            },
+   402→   402→                            {
+   403→   403→                              value: "provide-info",
+   404→   404→                              label: "Provide information",
+   405→   405→                            },
+   406→   406→                            { value: "blog", label: "Blog/content publishing" },
+   407→   407→                          ].map((goal, index) => (
+   408→   408→                            <motion.div
+   409→   409→                              key={goal.value}
+   410→   410→                              className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer hover:bg-accent transition-colors"
+   411→   411→                              whileHover={{ scale: 1.02 }}
+   412→   412→                              whileTap={{ scale: 0.98 }}
+   413→   413→                              transition={{ duration: 0.2 }}
+   414→   414→                              initial={{ opacity: 0, x: -10 }}
+   415→   415→                              animate={{
+   416→   416→                                opacity: 1,
+   417→   417→                                x: 0,
+   418→   418→                                transition: {
+   419→   419→                                  delay: 0.1 * index,
+   420→   420→                                  duration: 0.3,
+   421→   421→                                },
+   422→   422→                              }}
+   423→   423→                            >
+   424→   424→                              <RadioGroupItem
+   425→   425→                                value={goal.value}
+   426→   426→                                id={`goal-${index + 1}`}
+   427→   427→                              />
+   428→   428→                              <Label
+   429→   429→                                htmlFor={`goal-${index + 1}`}
+   430→   430→                                className="cursor-pointer w-full"
+   431→   431→                              >
+   432→   432→                                {goal.label}
+   433→   433→                              </Label>
+   434→   434→                            </motion.div>
+   435→   435→                          ))}
+   436→   436→                        </RadioGroup>
+   437→   437→                      </motion.div>
+   438→   438→                      <motion.div variants={fadeInUp} className="space-y-2">
+   439→   439→                        <Label htmlFor="targetAudience">
+   440→   440→                          Who is your target audience?
+   441→   441→                        </Label>
+   442→   442→                        <Textarea
+   443→   443→                          id="targetAudience"
+   444→   444→                          placeholder="Describe your ideal visitors/customers"
+   445→   445→                          value={formData.targetAudience}
+   446→   446→                          onChange={(e) =>
+   447→   447→                            updateFormData("targetAudience", e.target.value)
+   448→   448→                          }
+   449→   449→                          className="min-h-[80px] transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
+   450→   450→                        />
+   451→   451→                      </motion.div>
+   452→   452→                    </CardContent>
+   453→   453→                  </>
+   454→   454→                )}
+   455→   455→
+   456→   456→                {/* Step 4: Design Preferences */}
+   457→   457→                {currentStep === 3 && (
+   458→   458→                  <>
+   459→   459→                    <CardHeader>
+   460→   460→                      <CardTitle>Design Preferences</CardTitle>
+   461→   461→                      <CardDescription>
+   462→   462→                        Tell us about your aesthetic preferences
+   463→   463→                      </CardDescription>
+   464→   464→                    </CardHeader>
+   465→   465→                    <CardContent className="space-y-4">
+   466→   466→                      <motion.div variants={fadeInUp} className="space-y-2">
+   467→   467→                        <Label>
+   468→   468→                          What style do you prefer for your website?
+   469→   469→                        </Label>
+   470→   470→                        <RadioGroup
+   471→   471→                          value={formData.stylePreference}
+   472→   472→                          onValueChange={(value) =>
+   473→   473→                            updateFormData("stylePreference", value)
+   474→   474→                          }
+   475→   475→                          className="space-y-2"
+   476→   476→                        >
+   477→   477→                          {[
+   478→   478→                            { value: "modern", label: "Modern & Sleek" },
+   479→   479→                            { value: "minimalist", label: "Minimalist" },
+   480→   480→                            { value: "bold", label: "Bold & Creative" },
+   481→   481→                            {
+   482→   482→                              value: "corporate",
+   483→   483→                              label: "Corporate & Professional",
+   484→   484→                            },
+   485→   485→                          ].map((style, index) => (
+   486→   486→                            <motion.div
+   487→   487→                              key={style.value}
+   488→   488→                              className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer hover:bg-accent transition-colors"
+   489→   489→                              whileHover={{ scale: 1.02 }}
+   490→   490→                              whileTap={{ scale: 0.98 }}
+   491→   491→                              transition={{ duration: 0.2 }}
+   492→   492→                              initial={{ opacity: 0, y: 10 }}
+   493→   493→                              animate={{
+   494→   494→                                opacity: 1,
+   495→   495→                                y: 0,
+   496→   496→                                transition: {
+   497→   497→                                  delay: 0.1 * index,
+   498→   498→                                  duration: 0.3,
+   499→   499→                                },
+   500→   500→                              }}
+   501→   501→                            >
+   502→   502→                              <RadioGroupItem
+   503→   503→                                value={style.value}
+   504→   504→                                id={`style-${index + 1}`}
+   505→   505→                              />
+   506→   506→                              <Label
+   507→   507→                                htmlFor={`style-${index + 1}`}
+   508→   508→                                className="cursor-pointer w-full"
+   509→   509→                              >
+   510→   510→                                {style.label}
+   511→   511→                              </Label>
+   512→   512→                            </motion.div>
+   513→   513→                          ))}
+   514→   514→                        </RadioGroup>
+   515→   515→                      </motion.div>
+   516→   516→                      <motion.div variants={fadeInUp} className="space-y-2">
+   517→   517→                        <Label htmlFor="inspirations">
+   518→   518→                          Any websites you like for inspiration?
+   519→   519→                        </Label>
+   520→   520→                        <Textarea
+   521→   521→                          id="inspirations"
+   522→   522→                          placeholder="List websites you admire or want to emulate"
+   523→   523→                          value={formData.inspirations}
+   524→   524→                          onChange={(e) =>
+   525→   525→                            updateFormData("inspirations", e.target.value)
+   526→   526→                          }
+   527→   527→                          className="min-h-[80px] transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
+   528→   528→                        />
+   529→   529→                      </motion.div>
+   530→   530→                    </CardContent>
+   531→   531→                  </>
+   532→   532→                )}
+   533→   533→
+   534→   534→                {/* Step 5: Budget & Timeline */}
+   535→   535→                {currentStep === 4 && (
+   536→   536→                  <>
+   537→   537→                    <CardHeader>
+   538→   538→                      <CardTitle>Budget & Timeline</CardTitle>
+   539→   539→                      <CardDescription>
+   540→   540→                        Let&apos;s talk about your investment and timeline
+   541→   541→                      </CardDescription>
+   542→   542→                    </CardHeader>
+   543→   543→                    <CardContent className="space-y-4">
+   544→   544→                      <motion.div variants={fadeInUp} className="space-y-2">
+   545→   545→                        <Label htmlFor="budget">
+   546→   546→                          What&apos;s your budget range? (USD)
+   547→   547→                        </Label>
+   548→   548→                        <Select
+   549→   549→                          value={formData.budget}
+   550→   550→                          onValueChange={(value) =>
+   551→   551→                            updateFormData("budget", value)
+   552→   552→                          }
+   553→   553→                        >
+   554→   554→                          <SelectTrigger
+   555→   555→                            id="budget"
+   556→   556→                            className="transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
+   557→   557→                          >
+   558→   558→                            <SelectValue placeholder="Select your budget" />
+   559→   559→                          </SelectTrigger>
+   560→   560→                          <SelectContent>
+   561→   561→                            <SelectItem value="under-1000">
+   562→   562→                              Under $1,000
+   563→   563→                            </SelectItem>
+   564→   564→                            <SelectItem value="1000-3000">
+   565→   565→                              $1,000 - $3,000
+   566→   566→                            </SelectItem>
+   567→   567→                            <SelectItem value="3000-5000">
+   568→   568→                              $3,000 - $5,000
+   569→   569→                            </SelectItem>
+   570→   570→                            <SelectItem value="5000-10000">
+   571→   571→                              $5,000 - $10,000
+   572→   572→                            </SelectItem>
+   573→   573→                            <SelectItem value="over-10000">
+   574→   574→                              Over $10,000
+   575→   575→                            </SelectItem>
+   576→   576→                          </SelectContent>
+   577→   577→                        </Select>
+   578→   578→                      </motion.div>
+   579→   579→                      <motion.div variants={fadeInUp} className="space-y-2">
+   580→   580→                        <Label>What&apos;s your expected timeline?</Label>
+   581→   581→                        <RadioGroup
+   582→   582→                          value={formData.timeline}
+   583→   583→                          onValueChange={(value) =>
+   584→   584→                            updateFormData("timeline", value)
+   585→   585→                          }
+   586→   586→                          className="space-y-2"
+   587→   587→                        >
+   588→   588→                          {[
+   589→   589→                            { value: "asap", label: "ASAP" },
+   590→   590→                            { value: "1-month", label: "Within 1 month" },
+   591→   591→                            { value: "3-months", label: "1-3 months" },
+   592→   592→                            { value: "flexible", label: "Flexible" },
+   593→   593→                          ].map((time, index) => (
+   594→   594→                            <motion.div
+   595→   595→                              key={time.value}
+   596→   596→                              className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer hover:bg-accent transition-colors"
+   597→   597→                              whileHover={{ scale: 1.02 }}
+   598→   598→                              whileTap={{ scale: 0.98 }}
+   599→   599→                              transition={{ duration: 0.2 }}
+   600→   600→                              initial={{ opacity: 0, x: -10 }}
+   601→   601→                              animate={{
+   602→   602→                                opacity: 1,
+   603→   603→                                x: 0,
+   604→   604→                                transition: {
+   605→   605→                                  delay: 0.1 * index,
+   606→   606→                                  duration: 0.3,
+   607→   607→                                },
+   608→   608→                              }}
+   609→   609→                            >
+   610→   610→                              <RadioGroupItem
+   611→   611→                                value={time.value}
+   612→   612→                                id={`time-${index + 1}`}
+   613→   613→                              />
+   614→   614→                              <Label
+   615→   615→                                htmlFor={`time-${index + 1}`}
+   616→   616→                                className="cursor-pointer w-full"
+   617→   617→                              >
+   618→   618→                                {time.label}
+   619→   619→                              </Label>
+   620→   620→                            </motion.div>
+   621→   621→                          ))}
+   622→   622→                        </RadioGroup>
+   623→   623→                      </motion.div>
+   624→   624→                    </CardContent>
+   625→   625→                  </>
+   626→   626→                )}
+   627→   627→
+   628→   628→                {/* Step 6: Additional Requirements */}
+   629→   629→                {currentStep === 5 && (
+   630→   630→                  <>
+   631→   631→                    <CardHeader>
+   632→   632→                      <CardTitle>Additional Requirements</CardTitle>
+   633→   633→                      <CardDescription>
+   634→   634→                        Any other specific needs for your website?
+   635→   635→                      </CardDescription>
+   636→   636→                    </CardHeader>
+   637→   637→                    <CardContent className="space-y-4">
+   638→   638→                      <motion.div variants={fadeInUp} className="space-y-2">
+   639→   639→                        <Label>Which features do you need?</Label>
+   640→   640→                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+   641→   641→                          {[
+   642→   642→                            "Contact Form",
+   643→   643→                            "Blog/News",
+   644→   644→                            "E-commerce",
+   645→   645→                            "User Accounts",
+   646→   646→                            "Search Functionality",
+   647→   647→                            "Social Media Integration",
+   648→   648→                            "Newsletter Signup",
+   649→   649→                            "Analytics",
+   650→   650→                          ].map((feature, index) => (
+   651→   651→                            <motion.div
+   652→   652→                              key={feature}
+   653→   653→                              className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer hover:bg-accent transition-colors"
+   654→   654→                              whileHover={{ scale: 1.02 }}
+   655→   655→                              whileTap={{ scale: 0.98 }}
+   656→   656→                              transition={{ duration: 0.2 }}
+   657→   657→                              initial={{ opacity: 0, y: 10 }}
+   658→   658→                              animate={{
+   659→   659→                                opacity: 1,
+   660→   660→                                y: 0,
+   661→   661→                                transition: {
+   662→   662→                                  delay: 0.05 * index,
+   663→   663→                                  duration: 0.3,
+   664→   664→                                },
+   665→   665→                              }}
+   666→   666→                              onClick={() =>
+   667→   667→                                toggleFeature(feature.toLowerCase())
+   668→   668→                              }
+   669→   669→                            >
+   670→   670→                              <Checkbox
+   671→   671→                                id={`feature-${feature}`}
+   672→   672→                                checked={formData.features.includes(
+   673→   673→                                  feature.toLowerCase(),
+   674→   674→                                )}
+   675→   675→                                onCheckedChange={() =>
+   676→   676→                                  toggleFeature(feature.toLowerCase())
+   677→   677→                                }
+   678→   678→                              />
+   679→   679→                              <Label
+   680→   680→                                htmlFor={`feature-${feature}`}
+   681→   681→                                className="cursor-pointer w-full"
+   682→   682→                              >
+   683→   683→                                {feature}
+   684→   684→                              </Label>
+   685→   685→                            </motion.div>
+   686→   686→                          ))}
+   687→   687→                        </div>
+   688→   688→                      </motion.div>
+   689→   689→                      <motion.div variants={fadeInUp} className="space-y-2">
+   690→   690→                        <Label htmlFor="additionalInfo">
+   691→   691→                          Anything else we should know?
+   692→   692→                        </Label>
+   693→   693→                        <Textarea
+   694→   694→                          id="additionalInfo"
+   695→   695→                          placeholder="Any additional requirements or information"
+   696→   696→                          value={formData.additionalInfo}
+   697→   697→                          onChange={(e) =>
+   698→   698→                            updateFormData("additionalInfo", e.target.value)
+   699→   699→                          }
+   700→   700→                          className="min-h-[80px] transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
+   701→   701→                        />
+   702→   702→                      </motion.div>
+   703→   703→                    </CardContent>
+   704→   704→                  </>
+   705→   705→                )}
+   706→   706→              </motion.div>
+   707→   707→            </AnimatePresence>
+   708→   708→
+   709→   709→            <CardFooter className="flex justify-between pt-6 pb-4">
+   710→   710→              <motion.div
+   711→   711→                whileHover={{ scale: 1.05 }}
+   712→   712→                whileTap={{ scale: 0.95 }}
+   713→   713→              >
+   714→   714→                <Button
+   715→   715→                  type="button"
+   716→   716→                  variant="outline"
+   717→   717→                  onClick={prevStep}
+   718→   718→                  disabled={currentStep === 0}
+   719→   719→                  className="flex items-center gap-1 transition-all duration-300 rounded-2xl"
+   720→   720→                >
+   721→   721→                  <ChevronLeft className="h-4 w-4" /> Back
+   722→   722→                </Button>
+   723→   723→              </motion.div>
+   724→   724→              <motion.div
+   725→   725→                whileHover={{ scale: 1.05 }}
+   726→   726→                whileTap={{ scale: 0.95 }}
+   727→   727→              >
+   728→   728→                <Button
+   729→   729→                  type="button"
+   730→   730→                  onClick={
+   731→   731→                    currentStep === steps.length - 1 ? handleSubmit : nextStep
+   732→   732→                  }
+   733→   733→                  disabled={!isStepValid() || isSubmitting}
+   734→   734→                  className={cn(
+   735→   735→                    "flex items-center gap-1 transition-all duration-300 rounded-2xl",
+   736→   736→                    currentStep === steps.length - 1 ? "" : "",
+   737→   737→                  )}
+   738→   738→                >
+   739→   739→                  {isSubmitting ? (
+   740→   740→                    <>
+   741→   741→                      <Loader2 className="h-4 w-4 animate-spin" /> Submitting...
+   742→   742→                    </>
+   743→   743→                  ) : (
+   744→   744→                    <>
+   745→   745→                      {currentStep === steps.length - 1 ? "Submit" : "Next"}
+   746→   746→                      {currentStep === steps.length - 1 ? (
+   747→   747→                        <Check className="h-4 w-4" />
+   748→   748→                      ) : (
+   749→   749→                        <ChevronRight className="h-4 w-4" />
+   750→   750→                      )}
+   751→   751→                    </>
+   752→   752→                  )}
+   753→   753→                </Button>
+   754→   754→              </motion.div>
+   755→   755→            </CardFooter>
+   756→   756→          </div>
+   757→   757→        </Card>
+   758→   758→      </motion.div>
+   759→   759→
+   760→   760→      {/* Step indicator */}
+   761→   761→      <motion.div
+   762→   762→        className="mt-4 text-center text-sm text-muted-foreground"
+   763→   763→        initial={{ opacity: 0 }}
+   764→   764→        animate={{ opacity: 1 }}
+   765→   765→        transition={{ duration: 0.5, delay: 0.4 }}
+   766→   766→      >
+   767→   767→        Step {currentStep + 1} of {steps.length}: {steps[currentStep].title}
+   768→   768→      </motion.div>
+   769→   769→    </div>
+   770→   770→  );
+   771→   771→};
+   772→   772→
+   773→   773→export default OnboardingForm;
+   774→   774→
+   775→   775→```
+   776→   776→
+   777→   777→Copy-paste these files for dependencies:
+   778→   778→```tsx
+   779→   779→shadcn/button
+   780→   780→import * as React from "react"
+   781→   781→import { Slot } from "@radix-ui/react-slot"
+   782→   782→import { cva, type VariantProps } from "class-variance-authority"
+   783→   783→
+   784→   784→import { cn } from "@/lib/utils"
+   785→   785→
+   786→   786→const buttonVariants = cva(
+   787→   787→  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+   788→   788→  {
+   789→   789→    variants: {
+   790→   790→      variant: {
+   791→   791→        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+   792→   792→        destructive:
+   793→   793→          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+   794→   794→        outline:
+   795→   795→          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+   796→   796→        secondary:
+   797→   797→          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+   798→   798→        ghost: "hover:bg-accent hover:text-accent-foreground",
+   799→   799→        link: "text-primary underline-offset-4 hover:underline",
+   800→   800→      },
+   801→   801→      size: {
+   802→   802→        default: "h-10 px-4 py-2",
+   803→   803→        sm: "h-9 rounded-md px-3",
+   804→   804→        lg: "h-11 rounded-md px-8",
+   805→   805→        icon: "h-10 w-10",
+   806→   806→      },
+   807→   807→    },
+   808→   808→    defaultVariants: {
+   809→   809→      variant: "default",
+   810→   810→      size: "default",
+   811→   811→    },
+   812→   812→  },
+   813→   813→)
+   814→   814→
+   815→   815→export interface ButtonProps
+   816→   816→  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+   817→   817→    VariantProps<typeof buttonVariants> {
+   818→   818→  asChild?: boolean
+   819→   819→}
+   820→   820→
+   821→   821→const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+   822→   822→  ({ className, variant, size, asChild = false, ...props }, ref) => {
+   823→   823→    const Comp = asChild ? Slot : "button"
+   824→   824→    return (
+   825→   825→      <Comp
+   826→   826→        className={cn(buttonVariants({ variant, size, className }))}
+   827→   827→        ref={ref}
+   828→   828→        {...props}
+   829→   829→      />
+   830→   830→    )
+   831→   831→  },
+   832→   832→)
+   833→   833→Button.displayName = "Button"
+   834→   834→
+   835→   835→export { Button, buttonVariants }
+   836→   836→
+   837→   837→```
+   838→   838→```tsx
+   839→   839→shadcn/input
+   840→   840→import * as React from "react"
+   841→   841→
+   842→   842→import { cn } from "@/lib/utils"
+   843→   843→
+   844→   844→export interface InputProps
+   845→   845→  extends React.InputHTMLAttributes<HTMLInputElement> {}
+   846→   846→
+   847→   847→const Input = React.forwardRef<HTMLInputElement, InputProps>(
+   848→   848→  ({ className, type, ...props }, ref) => {
+   849→   849→    return (
+   850→   850→      <input
+   851→   851→        type={type}
+   852→   852→        className={cn(
+   853→   853→          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+   854→   854→          className
+   855→   855→        )}
+   856→   856→        ref={ref}
+   857→   857→        {...props}
+   858→   858→      />
+   859→   859→    )
+   860→   860→  }
+   861→   861→)
+   862→   862→Input.displayName = "Input"
+   863→   863→
+   864→   864→export { Input }
+   865→   865→
+   866→   866→```
+   867→   867→```tsx
+   868→   868→shadcn/label
+   869→   869→"use client"
+   870→   870→
+   871→   871→import * as React from "react"
+   872→   872→import * as LabelPrimitive from "@radix-ui/react-label"
+   873→   873→import { cva, type VariantProps } from "class-variance-authority"
+   874→   874→
+   875→   875→import { cn } from "@/lib/utils"
+   876→   876→
+   877→   877→const labelVariants = cva(
+   878→   878→  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+   879→   879→)
+   880→   880→
+   881→   881→const Label = React.forwardRef<
+   882→   882→  React.ElementRef<typeof LabelPrimitive.Root>,
+   883→   883→  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &
+   884→   884→    VariantProps<typeof labelVariants>
+   885→   885→>(({ className, ...props }, ref) => (
+   886→   886→  <LabelPrimitive.Root
+   887→   887→    ref={ref}
+   888→   888→    className={cn(labelVariants(), className)}
+   889→   889→    {...props}
+   890→   890→  />
+   891→   891→))
+   892→   892→Label.displayName = LabelPrimitive.Root.displayName
+   893→   893→
+   894→   894→export { Label }
+   895→   895→
+   896→   896→```
+   897→   897→```tsx
+   898→   898→shadcn/card
+   899→   899→import * as React from "react"
+   900→   900→
+   901→   901→import { cn } from "@/lib/utils"
+   902→   902→
+   903→   903→const Card = React.forwardRef<
+   904→   904→  HTMLDivElement,
+   905→   905→  React.HTMLAttributes<HTMLDivElement>
+   906→   906→>(({ className, ...props }, ref) => (
+   907→   907→  <div
+   908→   908→    ref={ref}
+   909→   909→    className={cn(
+   910→   910→      "rounded-lg border bg-card text-card-foreground shadow-sm",
+   911→   911→      className,
+   912→   912→    )}
+   913→   913→    {...props}
+   914→   914→  />
+   915→   915→))
+   916→   916→Card.displayName = "Card"
+   917→   917→
+   918→   918→const CardHeader = React.forwardRef<
+   919→   919→  HTMLDivElement,
+   920→   920→  React.HTMLAttributes<HTMLDivElement>
+   921→   921→>(({ className, ...props }, ref) => (
+   922→   922→  <div
+   923→   923→    ref={ref}
+   924→   924→    className={cn("flex flex-col space-y-1.5 p-6", className)}
+   925→   925→    {...props}
+   926→   926→  />
+   927→   927→))
+   928→   928→CardHeader.displayName = "CardHeader"
+   929→   929→
+   930→   930→const CardTitle = React.forwardRef<
+   931→   931→  HTMLParagraphElement,
+   932→   932→  React.HTMLAttributes<HTMLHeadingElement>
+   933→   933→>(({ className, ...props }, ref) => (
+   934→   934→  <h3
+   935→   935→    ref={ref}
+   936→   936→    className={cn(
+   937→   937→      "text-2xl font-semibold leading-none tracking-tight",
+   938→   938→      className,
+   939→   939→    )}
+   940→   940→    {...props}
+   941→   941→  />
+   942→   942→))
+   943→   943→CardTitle.displayName = "CardTitle"
+   944→   944→
+   945→   945→const CardDescription = React.forwardRef<
+   946→   946→  HTMLParagraphElement,
+   947→   947→  React.HTMLAttributes<HTMLParagraphElement>
+   948→   948→>(({ className, ...props }, ref) => (
+   949→   949→  <p
+   950→   950→    ref={ref}
+   951→   951→    className={cn("text-sm text-muted-foreground", className)}
+   952→   952→    {...props}
+   953→   953→  />
+   954→   954→))
+   955→   955→CardDescription.displayName = "CardDescription"
+   956→   956→
+   957→   957→const CardContent = React.forwardRef<
+   958→   958→  HTMLDivElement,
+   959→   959→  React.HTMLAttributes<HTMLDivElement>
+   960→   960→>(({ className, ...props }, ref) => (
+   961→   961→  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+   962→   962→))
+   963→   963→CardContent.displayName = "CardContent"
+   964→   964→
+   965→   965→const CardFooter = React.forwardRef<
+   966→   966→  HTMLDivElement,
+   967→   967→  React.HTMLAttributes<HTMLDivElement>
+   968→   968→>(({ className, ...props }, ref) => (
+   969→   969→  <div
+   970→   970→    ref={ref}
+   971→   971→    className={cn("flex items-center p-6 pt-0", className)}
+   972→   972→    {...props}
+   973→   973→  />
+   974→   974→))
+   975→   975→CardFooter.displayName = "CardFooter"
+   976→   976→
+   977→   977→export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+   978→   978→
+   979→   979→```
+   980→   980→```tsx
+   981→   981→shadcn/radio-group
+   982→   982→"use client"
+   983→   983→
+   984→   984→import * as React from "react"
+   985→   985→import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
+   986→   986→import { Circle } from "lucide-react"
+   987→   987→
+   988→   988→import { cn } from "@/lib/utils"
+   989→   989→
+   990→   990→const RadioGroup = React.forwardRef<
+   991→   991→  React.ElementRef<typeof RadioGroupPrimitive.Root>,
+   992→   992→  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
+   993→   993→>(({ className, ...props }, ref) => {
+   994→   994→  return (
+   995→   995→    <RadioGroupPrimitive.Root
+   996→   996→      className={cn("grid gap-2", className)}
+   997→   997→      {...props}
+   998→   998→      ref={ref}
+   999→   999→    />
+  1000→  1000→  )
+  1001→  1001→})
+  1002→  1002→RadioGroup.displayName = RadioGroupPrimitive.Root.displayName
+  1003→  1003→
+  1004→  1004→const RadioGroupItem = React.forwardRef<
+  1005→  1005→  React.ElementRef<typeof RadioGroupPrimitive.Item>,
+  1006→  1006→  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
+  1007→  1007→>(({ className, ...props }, ref) => {
+  1008→  1008→  return (
+  1009→  1009→    <RadioGroupPrimitive.Item
+  1010→  1010→      ref={ref}
+  1011→  1011→      className={cn(
+  1012→  1012→        "aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  1013→  1013→        className,
+  1014→  1014→      )}
+  1015→  1015→      {...props}
+  1016→  1016→    >
+  1017→  1017→      <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
+  1018→  1018→        <Circle className="h-2.5 w-2.5 fill-current text-current" />
+  1019→  1019→      </RadioGroupPrimitive.Indicator>
+  1020→  1020→    </RadioGroupPrimitive.Item>
+  1021→  1021→  )
+  1022→  1022→})
+  1023→  1023→RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName
+  1024→  1024→
+  1025→  1025→export { RadioGroup, RadioGroupItem }
+  1026→  1026→
+  1027→  1027→```
+  1028→  1028→```tsx
+  1029→  1029→shadcn/checkbox
+  1030→  1030→"use client"
+  1031→  1031→
+  1032→  1032→import * as React from "react"
+  1033→  1033→import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
+  1034→  1034→import { Check } from "lucide-react"
+  1035→  1035→
+  1036→  1036→import { cn } from "@/lib/utils"
+  1037→  1037→
+  1038→  1038→const Checkbox = React.forwardRef<
+  1039→  1039→  React.ElementRef<typeof CheckboxPrimitive.Root>,
+  1040→  1040→  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
+  1041→  1041→>(({ className, ...props }, ref) => (
+  1042→  1042→  <CheckboxPrimitive.Root
+  1043→  1043→    ref={ref}
+  1044→  1044→    className={cn(
+  1045→  1045→      "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
+  1046→  1046→      className,
+  1047→  1047→    )}
+  1048→  1048→    {...props}
+  1049→  1049→  >
+  1050→  1050→    <CheckboxPrimitive.Indicator
+  1051→  1051→      className={cn("flex items-center justify-center text-current")}
+  1052→  1052→    >
+  1053→  1053→      <Check className="h-4 w-4" />
+  1054→  1054→    </CheckboxPrimitive.Indicator>
+  1055→  1055→  </CheckboxPrimitive.Root>
+  1056→  1056→))
+  1057→  1057→Checkbox.displayName = CheckboxPrimitive.Root.displayName
+  1058→  1058→
+  1059→  1059→export { Checkbox }
+  1060→  1060→
+  1061→  1061→```
+  1062→  1062→```tsx
+  1063→  1063→shadcn/select
+  1064→  1064→"use client"
+  1065→  1065→
+  1066→  1066→import * as React from "react"
+  1067→  1067→import * as SelectPrimitive from "@radix-ui/react-select"
+  1068→  1068→import { Check, ChevronDown, ChevronUp } from "lucide-react"
+  1069→  1069→
+  1070→  1070→import { cn } from "@/lib/utils"
+  1071→  1071→
+  1072→  1072→const Select = SelectPrimitive.Root
+  1073→  1073→
+  1074→  1074→const SelectGroup = SelectPrimitive.Group
+  1075→  1075→
+  1076→  1076→const SelectValue = SelectPrimitive.Value
+  1077→  1077→
+  1078→  1078→const SelectTrigger = React.forwardRef<
+  1079→  1079→  React.ElementRef<typeof SelectPrimitive.Trigger>,
+  1080→  1080→  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
+  1081→  1081→>(({ className, children, ...props }, ref) => (
+  1082→  1082→  <SelectPrimitive.Trigger
+  1083→  1083→    ref={ref}
+  1084→  1084→    className={cn(
+  1085→  1085→      "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+  1086→  1086→      className,
+  1087→  1087→    )}
+  1088→  1088→    {...props}
+  1089→  1089→  >
+  1090→  1090→    {children}
+  1091→  1091→    <SelectPrimitive.Icon asChild>
+  1092→  1092→      <ChevronDown className="h-4 w-4 opacity-50" />
+  1093→  1093→    </SelectPrimitive.Icon>
+  1094→  1094→  </SelectPrimitive.Trigger>
+  1095→  1095→))
+  1096→  1096→SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
+  1097→  1097→
+  1098→  1098→const SelectScrollUpButton = React.forwardRef<
+  1099→  1099→  React.ElementRef<typeof SelectPrimitive.ScrollUpButton>,
+  1100→  1100→  React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>
+  1101→  1101→>(({ className, ...props }, ref) => (
+  1102→  1102→  <SelectPrimitive.ScrollUpButton
+  1103→  1103→    ref={ref}
+  1104→  1104→    className={cn(
+  1105→  1105→      "flex cursor-default items-center justify-center py-1",
+  1106→  1106→      className,
+  1107→  1107→    )}
+  1108→  1108→    {...props}
+  1109→  1109→  >
+  1110→  1110→    <ChevronUp className="h-4 w-4" />
+  1111→  1111→  </SelectPrimitive.ScrollUpButton>
+  1112→  1112→))
+  1113→  1113→SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
+  1114→  1114→
+  1115→  1115→const SelectScrollDownButton = React.forwardRef<
+  1116→  1116→  React.ElementRef<typeof SelectPrimitive.ScrollDownButton>,
+  1117→  1117→  React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton>
+  1118→  1118→>(({ className, ...props }, ref) => (
+  1119→  1119→  <SelectPrimitive.ScrollDownButton
+  1120→  1120→    ref={ref}
+  1121→  1121→    className={cn(
+  1122→  1122→      "flex cursor-default items-center justify-center py-1",
+  1123→  1123→      className,
+  1124→  1124→    )}
+  1125→  1125→    {...props}
+  1126→  1126→  >
+  1127→  1127→    <ChevronDown className="h-4 w-4" />
+  1128→  1128→  </SelectPrimitive.ScrollDownButton>
+  1129→  1129→))
+  1130→  1130→SelectScrollDownButton.displayName =
+  1131→  1131→  SelectPrimitive.ScrollDownButton.displayName
+  1132→  1132→
+  1133→  1133→const SelectContent = React.forwardRef<
+  1134→  1134→  React.ElementRef<typeof SelectPrimitive.Content>,
+  1135→  1135→  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
+  1136→  1136→>(({ className, children, position = "popper", ...props }, ref) => (
+  1137→  1137→  <SelectPrimitive.Portal>
+  1138→  1138→    <SelectPrimitive.Content
+  1139→  1139→      ref={ref}
+  1140→  1140→      className={cn(
+  1141→  1141→        "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+  1142→  1142→        position === "popper" &&
+  1143→  1143→          "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
+  1144→  1144→        className,
+  1145→  1145→      )}
+  1146→  1146→      position={position}
+  1147→  1147→      {...props}
+  1148→  1148→    >
+  1149→  1149→      <SelectScrollUpButton />
+  1150→  1150→      <SelectPrimitive.Viewport
+  1151→  1151→        className={cn(
+  1152→  1152→          "p-1",
+  1153→  1153→          position === "popper" &&
+  1154→  1154→            "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]",
+  1155→  1155→        )}
+  1156→  1156→      >
+  1157→  1157→        {children}
+  1158→  1158→      </SelectPrimitive.Viewport>
+  1159→  1159→      <SelectScrollDownButton />
+  1160→  1160→    </SelectPrimitive.Content>
+  1161→  1161→  </SelectPrimitive.Portal>
+  1162→  1162→))
+  1163→  1163→SelectContent.displayName = SelectPrimitive.Content.displayName
+  1164→  1164→
+  1165→  1165→const SelectLabel = React.forwardRef<
+  1166→  1166→  React.ElementRef<typeof SelectPrimitive.Label>,
+  1167→  1167→  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
+  1168→  1168→>(({ className, ...props }, ref) => (
+  1169→  1169→  <SelectPrimitive.Label
+  1170→  1170→    ref={ref}
+  1171→  1171→    className={cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className)}
+  1172→  1172→    {...props}
+  1173→  1173→  />
+  1174→  1174→))
+  1175→  1175→SelectLabel.displayName = SelectPrimitive.Label.displayName
+  1176→  1176→
+  1177→  1177→const SelectItem = React.forwardRef<
+  1178→  1178→  React.ElementRef<typeof SelectPrimitive.Item>,
+  1179→  1179→  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
+  1180→  1180→>(({ className, children, ...props }, ref) => (
+  1181→  1181→  <SelectPrimitive.Item
+  1182→  1182→    ref={ref}
+  1183→  1183→    className={cn(
+  1184→  1184→      "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+  1185→  1185→      className,
+  1186→  1186→    )}
+  1187→  1187→    {...props}
+  1188→  1188→  >
+  1189→  1189→    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+  1190→  1190→      <SelectPrimitive.ItemIndicator>
+  1191→  1191→        <Check className="h-4 w-4" />
+  1192→  1192→      </SelectPrimitive.ItemIndicator>
+  1193→  1193→    </span>
+  1194→  1194→
+  1195→  1195→    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+  1196→  1196→  </SelectPrimitive.Item>
+  1197→  1197→))
+  1198→  1198→SelectItem.displayName = SelectPrimitive.Item.displayName
+  1199→  1199→
+  1200→  1200→const SelectSeparator = React.forwardRef<
+  1201→  1201→  React.ElementRef<typeof SelectPrimitive.Separator>,
+  1202→  1202→  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
+  1203→  1203→>(({ className, ...props }, ref) => (
+  1204→  1204→  <SelectPrimitive.Separator
+  1205→  1205→    ref={ref}
+  1206→  1206→    className={cn("-mx-1 my-1 h-px bg-muted", className)}
+  1207→  1207→    {...props}
+  1208→  1208→  />
+  1209→  1209→))
+  1210→  1210→SelectSeparator.displayName = SelectPrimitive.Separator.displayName
+  1211→  1211→
+  1212→  1212→export {
+  1213→  1213→  Select,
+  1214→  1214→  SelectGroup,
+  1215→  1215→  SelectValue,
+  1216→  1216→  SelectTrigger,
+  1217→  1217→  SelectContent,
+  1218→  1218→  SelectLabel,
+  1219→  1219→  SelectItem,
+  1220→  1220→  SelectSeparator,
+  1221→  1221→  SelectScrollUpButton,
+  1222→  1222→  SelectScrollDownButton,
+  1223→  1223→}
+  1224→  1224→
+  1225→  1225→```
+  1226→  1226→```tsx
+  1227→  1227→shadcn/textarea
+  1228→  1228→import * as React from "react"
+  1229→  1229→
+  1230→  1230→import { cn } from "@/lib/utils"
+  1231→  1231→
+  1232→  1232→export interface TextareaProps
+  1233→  1233→  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+  1234→  1234→
+  1235→  1235→const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  1236→  1236→  ({ className, ...props }, ref) => {
+  1237→  1237→    return (
+  1238→  1238→      <textarea
+  1239→  1239→        className={cn(
+  1240→  1240→          "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  1241→  1241→          className
+  1242→  1242→        )}
+  1243→  1243→        ref={ref}
+  1244→  1244→        {...props}
+  1245→  1245→      />
+  1246→  1246→    )
+  1247→  1247→  }
+  1248→  1248→)
+  1249→  1249→Textarea.displayName = "Textarea"
+  1250→  1250→
+  1251→  1251→export { Textarea }
+  1252→  1252→
+  1253→  1253→```
+  1254→  1254→
+  1255→  1255→Install NPM dependencies:
+  1256→  1256→```bash
+  1257→  1257→clsx, tailwind-merge, @radix-ui/react-slot, class-variance-authority, @radix-ui/react-label, lucide-react, @radix-ui/react-radio-group, @radix-ui/react-checkbox, @radix-ui/react-select
+  1258→  1258→```
+  1259→  1259→
+  1260→  1260→Implementation Guidelines
+  1261→  1261→ 1. Analyze the component structure and identify all required dependencies
+  1262→  1262→ 2. Review the component's argumens and state
+  1263→  1263→ 3. Identify any required context providers or hooks and install them
+  1264→  1264→ 4. Questions to Ask
+  1265→  1265→ - What data/props will be passed to this component?
+  1266→  1266→ - Are there any specific state management requirements?
+  1267→  1267→ - Are there any required assets (images, icons, etc.)?
+  1268→  1268→ - What is the expected responsive behavior?
+  1269→  1269→ - What is the best place to use this component in the app?
+  1270→  1270→
+  1271→  1271→Steps to integrate
+  1272→  1272→ 0. Copy paste all the code above in the correct directories
+  1273→  1273→ 1. Install external dependencies
+  1274→  1274→ 2. Fill image assets with Unsplash stock images you know exist
+  1275→  1275→ 3. Use lucide-react icons for svgs or logos if component requires them
+  1276→  1276→

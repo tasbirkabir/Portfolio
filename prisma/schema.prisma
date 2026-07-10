@@ -1,11 +1,14 @@
 // Prisma schema for Tasbir Kabir — Digital HQ platform
-// SQLite — nested arrays stored as JSON strings.
+// Uses PostgreSQL (Supabase) for production. Auth is handled by Supabase Auth.
+// This Prisma schema manages content + profiles only (not auth users/sessions).
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
+  // For local dev: use "sqlite" with DATABASE_URL="file:./db/custom.db"
+  // For Vercel/Supabase: change to "postgresql" and set DATABASE_URL to your Supabase connection string
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
@@ -103,56 +106,21 @@ model Testimonial {
   avatar String?
 }
 
-// ---------- Users & Auth ----------
+// ---------- Profiles (Supabase Auth handles users/sessions) ----------
 
-model User {
-  id                  String   @id @default(cuid())
-  email               String   @unique
-  name                String?
-  password            String
-  role                String   @default("user")
-  banned              Boolean  @default(false)
-  emailVerified       Boolean  @default(false)
-  passwordResetToken  String?
-  passwordResetExpiry DateTime?
-  profileImage        String?
-  twoFactorSecret     String?
-  twoFactorEnabled    Boolean  @default(false)
-  lastLoginAt         DateTime?
-  lastLoginIp         String?
-  passwordChangedAt   DateTime?
-  createdAt           DateTime @default(now())
-  sessions            Session[]
-}
-
-model Session {
-  id           String   @id @default(cuid())
-  userId       String
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  sid          String   @unique
-  userAgent    String?
-  ip           String?
-  deviceName   String?
-  createdAt    DateTime @default(now())
-  lastActiveAt DateTime @default(now())
-  expiresAt    DateTime
-  revokedAt    DateTime?
-
-  @@index([userId])
-}
-
-model LoginHistory {
-  id        String   @id @default(cuid())
-  userId    String?
-  email     String
-  ip        String?
-  userAgent String?
-  success   Boolean
-  reason    String?
-  createdAt DateTime @default(now())
-
-  @@index([userId])
-  @@index([email])
+// Profile links to Supabase auth.users by id (UUID).
+// Stores app-specific data: role, display name, profile image.
+model Profile {
+  id           String    @id           // Matches Supabase auth.users.id (UUID)
+  email        String    @unique
+  name         String?
+  role         String    @default("user") // user | admin
+  profileImage String?
+  banned       Boolean   @default(false)
+  lastLoginAt  DateTime?
+  lastLoginIp  String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 }
 
 model LibraryAccess {

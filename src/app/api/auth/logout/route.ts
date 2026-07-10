@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
-import { clearSessionRes, revokeCurrentSession } from "@/lib/auth/session";
+import { createClient } from "@/lib/supabase/server";
 
+/** POST /api/auth/logout — signs the user out via Supabase. */
 export async function POST() {
-  await revokeCurrentSession();
-  const res = NextResponse.json({ ok: true });
-  return clearSessionRes(res);
+  try {
+    const supabase = await createClient();
+    await supabase.auth.signOut();
+  } catch {}
+  return NextResponse.json({ ok: true });
 }

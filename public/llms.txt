@@ -1,0 +1,55 @@
+# Tasbir Kabir — Digital HQ
+
+> AI Consultant, Web Developer, and Media Buyer based in Dhaka, Bangladesh. I build AI agents, automation systems, and high-performing websites that help businesses save time, generate leads, and scale faster.
+
+## About
+
+Tasbir Kabir is an AI Consultant and Entrepreneur who creates ebooks, operating systems, frameworks, and digital resources for entrepreneurs, freelancers, and AI builders. He has published 8 ebooks, created 10+ free resources, and delivered 60+ projects. His bestseller, "The AI Agency Operating System," is a 16-chapter framework for building, pricing, and scaling an AI services business.
+
+## Expertise
+
+- AI Agents — Custom AI systems that automate workflows and business operations
+- Automation Systems — End-to-end automation for marketing, sales and operations using n8n, Make, and API integrations
+- High-Performance Websites — Fast, conversion-focused websites built to scale
+- Growth Systems — Tracking, funnels, analytics and performance optimization
+- Digital Products — Ebooks, frameworks, templates and business resources
+
+## Books
+
+- [The AI Agency Operating System](/?v=book&slug=ai-agency-operating-system) — $19 — 16-chapter framework for building, pricing, and scaling an AI services business
+- [The Solo Scale Playbook](/?v=book&slug=solo-scale-playbook) — $15 — How to grow a one-person business past six figures without hiring a team
+- [Content OS](/?v=book&slug=content-os) — $17 — The framework for turning content into a client pipeline that compounds
+- [Deep Work for Builders](/?v=book&slug=deep-work-for-builders) — $12 — A focus system for makers who ship in a world built to distract them
+- [The Prompt Engineering Bible](/?v=book&slug=prompt-engineering-bible) — $24 — From basics to production: the complete guide to making AI do real work
+- [Landing Pages That Convert](/?v=book&slug=landing-pages-that-convert) — $14 — The anatomy of pages that turn strangers into buyers
+- [The $10K Month System](/?v=book&slug=10k-month-system) — $18 — A 90-day plan to your first consistent five-figure month as a solo operator
+- [Systems Thinking for Founders](/?v=book&slug=systems-thinking-for-founders) — $16 — See the loops, leverage points, and bottlenecks that run your business
+
+## Free Resources
+
+- [The Offer One-Pager](/?v=resources) — Template to sharpen any offer in under an hour
+- [Weekly Review Checklist](/?v=resources) — The 30-minute Monday ritual that turns numbers into actions
+- [AI Agency Prompt Pack](/?v=resources) — 24 production prompts for delivery, sales, and content
+- [Pricing Calculator](/?v=resources) — A spreadsheet that prices your work for leverage instead of hours
+- [Content Calendar Framework](/?v=resources) — The 4-pillar content calendar that turns posting into a pipeline
+
+## Blog
+
+- [The Compounding Founder: Why Systems Beat Hustle Every Time](/?v=post&slug=compounding-founder-systems-beat-hustle) — Hustle is linear. Systems are exponential.
+- [How I Built a Content Engine That Runs While I Sleep](/?v=post&slug=content-engine-that-runs-while-i-sleep) — Content is the cheapest advertising you will ever produce — if it is built as a system.
+- [Scaling Past Six Figures Without Hiring a Team](/?v=post&slug=scaling-past-six-figures-without-hiring) — You do not need a team to scale. You need leverage.
+
+## Key Frameworks
+
+- Build. Track. Advertise. Convert. — The four-pillar operating system for a productized, AI-native agency
+- The Agency Triangle — Service, Client, and Operations; if any pillar is missing, the agency fails to scale
+- The $1T Automation Gap — The divide between enterprise AI and the local businesses that desperately need it
+- The 5-Phase Discovery Call — Understand, Diagnose, Propose, Address, Close
+
+## Contact
+
+- Email: tasbirrkabir@gmail.com
+- LinkedIn: https://www.linkedin.com/in/tasbirrkabir
+- X (Twitter): https://x.com/tasbirrkabir
+- GitHub: https://github.com/tasbirkabir
+- Location: Dhaka, Bangladesh

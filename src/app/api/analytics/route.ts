@@ -22,7 +22,7 @@ export async function GET() {
   const completions = events.filter((e) => e.type === "reading_complete").length;
 
   const orders = await db.order.findMany({ orderBy: { createdAt: "desc" }, take: 100 });
-  const users = await db.user.count();
+  const users = await db.profile.count();
   const subscribers = await db.newsletterSub.count();
 
   // top products by sales count

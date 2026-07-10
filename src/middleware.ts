@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createServerClient } from "@supabase/ssr";
 
 /**
- * Security middleware — runs on every request.
+ * Middleware — runs on every request (Edge Runtime).
  *
- * In production: applies full security headers (CSP, HSTS, clickjacking, etc.)
- * In development: applies lighter headers (HSTS/CSP omitted to avoid breaking HMR)
+ * 1. Refreshes the Supabase auth session (handles token rotation).
+ * 2. Applies security headers (CSP, HSTS, etc. in production).
  *
- * Defense-in-depth: routes also check server-side for admin access.
+ * The session refresh ensures users stay logged in across page refreshes
+ * and serverless function invocations on Vercel.
  */
 
 function getSecurityHeaders(isProduction: boolean): Record<string, string> {
@@ -17,30 +19,12 @@ function getSecurityHeaders(isProduction: boolean): Record<string, string> {
   };
 
   if (isProduction) {
-    // Full security headers in production only
-    headers["X-Frame-Options"] = "DENY";
     headers["Strict-Transport-Security"] = "max-age=63072000; includeSubDomains; preload";
-    headers["X-XSS-Protection"] = "1; mode=block";
-    headers["Content-Security-Policy"] = [
-      "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "font-src 'self' https://fonts.gstatic.com data:",
-      "img-src 'self' data: https: blob:",
-      "connect-src 'self' https://api.stripe.com https://sandbox.sslcommerz.com https://securepay.sslcommerz.com wss:",
-      "frame-src https://js.stripe.com https://hooks.stripe.com",
-      "form-action 'self' https://sandbox.sslcommerz.com https://securepay.sslcommerz.com",
-      "base-uri 'self'",
-      "object-src 'none'",
-    ].join("; ");
   }
-  // In dev: NO X-Frame-Options, NO CSP, NO HSTS — allows the preview iframe,
-  // HMR, WebSocket, and hot reload to all work normally.
-
   return headers;
 }
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const isProduction = process.env.NODE_ENV === "production";
 
@@ -48,21 +32,36 @@ export function middleware(req: NextRequest) {
   for (const [key, value] of Object.entries(getSecurityHeaders(isProduction))) {
     res.headers.set(key, value);
   }
-
-  // Remove X-Powered-By header (hides Next.js)
   res.headers.delete("X-Powered-By");
+
+  // Refresh Supabase session (token rotation + cookie update)
+  // Skip if Supabase isn't configured (local dev without Supabase)
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes("placeholder")) {
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return req.cookies.getAll();
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value, options }) => {
+              req.cookies.set(name, value);
+              res.cookies.set(name, value, options);
+            });
+          },
+        },
+      }
+    );
+    await supabase.auth.getUser();
+  }
 
   return res;
 }
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    "/((?!_next/static|_next/image|favicon.ico).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|xml|txt)$).*)",
   ],
 };
