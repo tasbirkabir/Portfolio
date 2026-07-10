@@ -9,7 +9,7 @@ generator client {
 datasource db {
   // For local dev: use "sqlite" with DATABASE_URL="file:./db/custom.db"
   // For Vercel/Supabase: change to "postgresql" and set DATABASE_URL to your Supabase connection string
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

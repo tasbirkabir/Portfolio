@@ -25,10 +25,6 @@ export async function GET() {
     return NextResponse.json({ user: profile });
   } catch (err: any) {
     console.error("Error in /api/auth/me:", err);
-    return NextResponse.json({ 
-      user: null, 
-      error: err.message || String(err),
-      stack: err.stack || null
-    });
+    return NextResponse.json({ user: null });
   }
 }
