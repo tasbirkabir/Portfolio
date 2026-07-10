@@ -23,7 +23,8 @@ export async function GET() {
     }).catch(() => {});
 
     return NextResponse.json({ user: profile });
-  } catch {
+  } catch (err: any) {
+    console.error("Error in /api/auth/me:", err);
     return NextResponse.json({ user: null });
   }
 }
