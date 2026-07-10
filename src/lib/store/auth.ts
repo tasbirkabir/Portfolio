@@ -78,28 +78,19 @@ export const useAuth = create<AuthState>((set) => ({
 
   signUp: async (name, email, password) => {
     try {
-      const supabase = createClient();
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { data: { name } },
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
       });
-      if (error) {
-        return { ok: false, error: translateError(error.message) };
+      const data = await res.json();
+      if (!res.ok) {
+        return { ok: false, error: data.error || "Failed to register." };
       }
-      // If email confirmation is required, data.user exists but no session
-      if (data.user && !data.session) {
-        return { ok: true, needsVerification: true };
-      }
-      // If no verification needed, session is created — fetch profile
-      if (data.session) {
-        const res = await fetch("/api/auth/me");
-        if (res.ok) {
-          const d = await res.json();
-          set({ user: d.user, authModalOpen: false });
-        }
-      }
-      return { ok: true };
+      // Auto-login after successful registration
+      const store = useAuth.getState();
+      const loginRes = await store.signIn(email, password);
+      return loginRes;
     } catch (e: any) {
       return { ok: false, error: "Network error. Please try again." };
     }
