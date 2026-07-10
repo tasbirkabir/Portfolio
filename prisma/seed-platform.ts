@@ -212,11 +212,11 @@ async function main() {
     await db.testimonial.create({ data: t });
   }
 
-  // Admin user — password hashed with bcrypt
-  // IMPORTANT: Change this password after first login via the admin panel
-  const { hashPassword } = await import("../src/lib/auth/passwords");
-  const adminPass = await hashPassword("ChangeMe2026!");
-  await db.user.create({ data: { email: "admin@tasbirkabir.site", name: "Tasbir Kabir", password: adminPass, role: "admin" } });
+  // NOTE: Admin account is NO LONGER created here.
+  // The admin account is created via the website signup flow.
+  // Set ADMIN_EMAIL in your env vars, then sign up with that email
+  // — the account is automatically promoted to admin.
+  // See VERCEL-DEPLOY.md for details.
 
   // Newsletter subs
   const subs = [
@@ -259,7 +259,8 @@ async function main() {
     await db.analyticsEvent.create({ data: { ...e, meta: "{}", createdAt: new Date(Date.now() - i * 3600 * 1000) } });
   }
 
-  console.log("Seeded platform: admin@tasbirkabir.site / ChangeMe2026!");
+  console.log("✓ Content seeded successfully (books, blog, resources, testimonials, settings).");
+  console.log("⚠️  No admin user created — sign up on the website with your ADMIN_EMAIL to get admin access.");
 }
 
 main()

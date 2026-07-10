@@ -1,6 +1,7 @@
 # Vercel + Supabase Deployment Guide
 
-Complete step-by-step guide to deploy the Tasbir Kabir Digital HQ to Vercel with Supabase Auth + Postgres.
+**Zero-setup deployment.** No scripts to run. No terminal commands needed.
+Just set environment variables, deploy, and sign up.
 
 ---
 
@@ -51,42 +52,33 @@ Complete step-by-step guide to deploy the Tasbir Kabir Digital HQ to Vercel with
 3. Go to **Authentication** → **Providers** → **Email**
 4. Enable **Email** provider
 5. (Recommended) Enable **Confirm email** — users must verify before signing in
-6. (Optional) Disable email confirmation for faster testing — toggle off "Confirm email"
+6. (Optional for faster testing) Disable email confirmation — toggle off "Confirm email"
 
 ---
 
-## Step 4: Push the Database Schema
+## Step 4: Set Up the Database Schema (one-time, via Supabase Dashboard)
 
-On your local machine (with the project unzipped):
+**Option A: Run SQL in Supabase Dashboard (recommended — no local terminal needed)**
+
+1. In your Supabase project, go to **SQL Editor**
+2. Copy the contents of `prisma/schema.sql` from this project (if provided)
+   — OR — run the Prisma migration locally once:
+
+**Option B: Push schema locally (one-time only)**
 
 ```bash
-# Set environment variables temporarily
-export NEXT_PUBLIC_SUPABASE_URL="https://xxxxx.supabase.co"
-export NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-key"
-export SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
+# Only needed ONCE to create the database tables
+# You do NOT need to run this on every deploy
+
 export DATABASE_URL="postgresql://postgres:password@db.xxxxx.supabase.co:6543/postgres"
-export DATABASE_PROVIDER="postgresql"
-
-# Install dependencies
 bun install
-
-# Push the Prisma schema to Supabase Postgres
 bun run db:push
-
-# Seed the content (books, blog posts, resources)
-bun run prisma/seed-platform.ts
-
-# Create the admin user in Supabase + Profile
-bun run scripts/setup-admin.ts
 ```
 
-You should see:
-```
-✓ Admin setup complete!
-Admin login:
-  Email:    admin@tasbirkabir.site
-  Password: ChangeMe2026!
-```
+This creates all the tables (Book, BlogPost, Resource, Profile, etc.) in your Supabase Postgres database.
+
+> **Note:** This is the only step that requires the terminal — it's a one-time database setup.
+> After this, you never need to run any scripts again.
 
 ---
 
@@ -104,14 +96,28 @@ Admin login:
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | your anon key |
 | `SUPABASE_SERVICE_ROLE_KEY` | your service role key |
 | `DATABASE_URL` | `postgresql://postgres:...@db.xxxxx.supabase.co:6543/postgres` |
-| `DATABASE_PROVIDER` | `postgresql` |
+| `ADMIN_EMAIL` | `admin@tasbirkabir.site` (or your preferred admin email) |
 
 6. Click **Deploy**
 7. Wait 2-3 minutes for the build to complete
 
 ---
 
-## Step 6: Configure Custom Domain
+## Step 6: Create Your Admin Account (via the website — no scripts!)
+
+1. Visit your deployed site: `https://www.tasbirkabir.site`
+2. Click **Sign In** → switch to **Create an account**
+3. Sign up using the email you set as `ADMIN_EMAIL` (e.g., `admin@tasbirkabir.site`)
+4. If email confirmation is enabled, check your email and click the verification link
+5. Sign in with your new account
+6. **The account is automatically promoted to admin** — you'll see the "Admin" button in the navbar
+7. Click **Admin** → access the full admin panel
+
+**That's it. No scripts. No terminal commands. No manual database setup.**
+
+---
+
+## Step 7: Configure Custom Domain
 
 1. In Vercel → **Settings** → **Domains**
 2. Add `tasbirkabir.site` and `www.tasbirkabir.site`
@@ -123,16 +129,19 @@ Admin login:
 
 ---
 
-## Step 7: Verify Everything Works
+## How Admin Roles Work (no setup scripts needed)
 
-1. Visit `https://www.tasbirkabir.site`
-2. Click **Sign In**
-3. Login with `admin@tasbirkabir.site` / `ChangeMe2026!`
-4. Verify the admin panel loads (click "Admin" in navbar)
-5. Verify protected pages work:
-   - `/account` — shows profile
-   - `/library` — shows purchased books
-6. Test sign out and sign in again
+```
+1. You set ADMIN_EMAIL="admin@tasbirkabir.site" in Vercel env vars
+2. You sign up on the website with that exact email
+3. The app sees the email matches ADMIN_EMAIL
+4. The account is AUTOMATICALLY promoted to admin
+5. Admin panel access is granted immediately
+```
+
+The role is stored in the `Profile` table in your database. You can also manually
+change a user's role in the Supabase Dashboard → Table Editor → `Profile` table →
+change `role` from `user` to `admin`.
 
 ---
 
@@ -146,8 +155,8 @@ Admin login:
 | **Password Reset** | Supabase `auth.resetPasswordForEmail()` — sends reset link |
 | **Email Verification** | Supabase sends verification email → `/auth/callback` |
 | **Session Persistence** | Middleware refreshes JWT on every request |
+| **Admin Role** | Auto-assigned when email matches `ADMIN_EMAIL` env var |
 | **Admin Protection** | Server-side: `requireAdmin()` checks Supabase session + Profile.role |
-| **Protected Routes** | Client-side views check auth state; API routes check server-side |
 
 ---
 
@@ -155,21 +164,22 @@ Admin login:
 
 ### "Invalid login credentials"
 - The email/password is wrong
-- Or the admin user hasn't been created yet — run `bun run scripts/setup-admin.ts`
+- Or you haven't created an account yet — sign up first
 
 ### "Email not confirmed"
 - Supabase requires email verification
 - Either verify the email, or disable email confirmation in Supabase Dashboard
 
+### I signed up but don't see the Admin button
+- Check that `ADMIN_EMAIL` in Vercel matches the email you signed up with (case-insensitive)
+- Sign out and sign back in — the role check runs on login
+- Or manually set `role = "admin"` in Supabase Dashboard → Table Editor → Profile table
+
 ### Login works locally but not on Vercel
 - Check that all 5 environment variables are set in Vercel
-- Check that `DATABASE_PROVIDER` is `postgresql` (not `sqlite`)
 - Check the Vercel function logs for errors
 
 ### Database connection errors
 - Make sure you're using the **Transaction** connection string (port 6543)
 - Make sure the password is URL-encoded if it contains special characters
-
-### Admin panel shows "Admin only"
-- The user's Profile.role is not "admin"
-- Run `bun run scripts/setup-admin.ts` to set the admin role
+- Make sure you ran `bun run db:push` once (Step 4) to create the tables
